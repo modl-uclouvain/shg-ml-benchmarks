@@ -4,14 +4,14 @@ default_language_version:
 exclude: '^experiments/'
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.4
+    rev: v0.9.3
     hooks:
       - id: ruff-format
         name: Ruff formatted
         exclude: experiments/
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
     - id: check-symlinks
     - id: check-yaml
@@ -28,21 +28,20 @@ repos:
       args: [--maxkb=1024]
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.19.1
     hooks:
     - id: pyupgrade
       args: ["--py310-plus"]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 'v0.1.4'
+    rev: 'v0.9.3'
     hooks:
     - id: ruff
       args: [--fix, --exit-non-zero-on-fix]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
+    rev: v1.14.1
     hooks:
       - id: mypy
         name: "MyPy"
-        additional_dependencies: ["types-all", "pydantic~=2.0"]
-        exclude: ^tests/.*$
+        exclude: ^tests/.*|scripts_raw/.*$
