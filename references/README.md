@@ -1,1 +1,1 @@
-This folder lists the articles relating to ML and SHG that we are aware of.
+Useful references relating to SHG and ML are provided in [this OneDrive folder](https://uclouvain-my.sharepoint.com/my?id=%2Fpersonal%2Fvictor%5Ftrinquet%5Fuclouvain%5Fbe%2FDocuments%2FDoctorat%2Fre2fractive%5Fshg%2Freferences).
