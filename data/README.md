@@ -32,3 +32,14 @@ This dataset is the direct result of the post-processing of the DFPT workflow ou
 - src_bandgap < 1e-5
 - n > 20
 
+# mod.data_dKP_fastfeat_polariz_n_Eg_pgnn_featselec_v20.gz
+
+This MODData contains the latest dataset (thus corresponding to df_rot_ieee_pmg) and its features containing:
+- the "fast" features from MODNet 2024 FastFeaturizer
+- the Magpie_Polarization feature has been added (in the last AL) iteration because physically it makes sense
+- the prediction of the refractive index and its uncertainty by the last re2fractive MODNet model
+- the source bandgap, i.e., from the MP or Alexandria (and its uncertainty = 0)
+- the pGNN features (mmv1, ofm, mvl32)
+
+The features selection has been run and stored in self.optimal_features wrt. dKP as target.
+
