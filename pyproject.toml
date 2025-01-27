@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shg-ml-benchmarks"
+version = "0.1.0"
+description = "Benchmarking ML models for SHG coefficient prediction"
+authors = []
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "pymatgen",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shg_ml_benchmarks"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
