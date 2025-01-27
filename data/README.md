@@ -42,4 +42,3 @@ This MODData contains the latest dataset (thus corresponding to df_rot_ieee_pmg)
 - the pGNN features (mmv1, ofm, mvl32)
 
 The features selection has been run and stored in self.optimal_features wrt. dKP as target.
-
