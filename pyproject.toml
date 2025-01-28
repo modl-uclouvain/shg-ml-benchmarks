@@ -1,5 +1,5 @@
 [project]
-name = "shg-ml-benchmark"
+name = "shg-ml-benchmarks"
 description = "Benchmarking ML models for SHG coefficient prediction"
 authors = []
 readme = "README.md"
