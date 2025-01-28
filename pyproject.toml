@@ -1,26 +1,52 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
 name = "shg-ml-benchmarks"
-version = "0.1.0"
 description = "Benchmarking ML models for SHG coefficient prediction"
 authors = []
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.13"
 dependencies = [
     "numpy",
     "pymatgen",
 ]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
     "pre-commit",
+    "pytest",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/shg_ml_benchmarks"]
+[build-system]
+requires = ["setuptools >= 62", "setuptools_scm ~= 8.1", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.hatch.metadata]
-allow-direct-references = true
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+version_scheme = "post-release"
+
+[tool.setuptools]
+license-files = ["LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "Q", "TC"]
+ignore = ["E501", "E402"]
+fixable = ["A", "B", "C", "D", "E", "F", "I"]
+unfixable = []
+per-file-ignores = {}
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.mypy]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "-rs"

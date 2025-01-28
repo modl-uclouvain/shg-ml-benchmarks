@@ -1,0 +1,57 @@
+name: CI tests
+
+on:
+  pull_request:
+  push:
+    branches:
+    - main
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "0.5.x"
+        enable-cache: true
+
+    - name: Install deps
+      run: |
+        uv sync --all-extras --dev
+
+    - name: Run pre-commit
+      run: |
+        uv run pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
+
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "0.5.x"
+        enable-cache: true
+
+    - name: Install deps
+      run: |
+        uv sync --all-extras --dev
+
+    - name: Run tests
+      run: uv run pytest -rs -vvv --durations=0
