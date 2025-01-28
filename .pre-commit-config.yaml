@@ -8,7 +8,7 @@ repos:
     hooks:
       - id: ruff-format
         name: Ruff formatted
-        exclude: experiments/
+        exclude: "scripts_raw/.*"
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
@@ -32,12 +32,14 @@ repos:
     hooks:
     - id: pyupgrade
       args: ["--py310-plus"]
+      exclude: "scripts_raw/.*"
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: 'v0.9.3'
     hooks:
     - id: ruff
       args: [--fix, --exit-non-zero-on-fix]
+      exclude: "scripts_raw/.*"
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.14.1
