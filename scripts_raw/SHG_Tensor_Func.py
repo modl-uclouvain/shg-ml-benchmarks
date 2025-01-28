@@ -13,7 +13,7 @@ from abipy.abilab import units as abu
 
 # Part of the enforcement the type hinting of the arguments ================================================================
 def enforce(x,x_type,x_annot):
-    
+
     if (x_type) is x_annot or (x_type) in get_args(x_annot):
         pass
     else:
@@ -43,7 +43,7 @@ def to_array(   d:      Union[np.ndarray,list]
 # Throws an error if d is neither an int, a float, a np.ndarray, nor a list
 def au_to_pmV(  d: Union[int,float,np.ndarray,list]
                 ) -> np.ndarray:
-    
+
     # Enforce the types of the arguments from annotations (generic section)
     args        = inspect.getfullargspec(au_to_pmV).args
     annotations = inspect.getfullargspec(au_to_pmV).annotations
@@ -53,8 +53,8 @@ def au_to_pmV(  d: Union[int,float,np.ndarray,list]
         enforce(x,x_type,x_annot)
 
     coef_au_to_pmV = 16 * np.pi**2 * abu.bohr_to_ang**2 * 1e-8 * cst.epsilon_0 / cst.elementary_charge
-    
-    return d*coef_au_to_pmV 
+
+    return d*coef_au_to_pmV
 
 # Returns True if the given list or array is in Voigt notation (shape 3x6)================================================
 # Throws an Exception if d is neither 3x3x3 nor 3x6
@@ -73,7 +73,7 @@ def is_voigt(d: Union[np.ndarray,list]) -> np.ndarray:
 # Returns the d tensor (list or array) in Voigt notation (array, 3x6)======================================================
 # Throws an Exception if shape different than 3x6 (Voigt) or 3x3x3
 def to_voigt(d: Union[np.ndarray,list]) -> np.ndarray:
-    
+
     d = to_array(d)
 
     if is_voigt(d):
@@ -81,18 +81,18 @@ def to_voigt(d: Union[np.ndarray,list]) -> np.ndarray:
     else:
         d_new = np.zeros([3,6])
         voigt = [[0,0], [1,1], [2,2], [1,2], [0,2], [0,1]]
-        
+
         for i in range(3):
             for j in range(6):
                 d_new[i,j] = d[i,voigt[j][0], voigt[j][1]]
-        
+
         return d_new
 
 
 # Returns the d tensor (list or array) in non-Voigt notation (array, 3x3x3)===============================================
 # Throws an Exception if shape different than 3x6 (Voigt) or 3x3x3
 def from_voigt(d: Union[np.ndarray,list]) -> np.ndarray:
-    
+
     d = to_array(d)
 
     if is_voigt(d):
@@ -100,12 +100,12 @@ def from_voigt(d: Union[np.ndarray,list]) -> np.ndarray:
         voigt = np.array([[0, 5, 4],
                         [5, 1, 3],
                         [4, 3, 2]])
-                
+
         for i in range(3):
             for j in range(3):
                 for k in range(3):
                     d_new[i,j,k] = d[i, int(voigt[j, k])]
-                    
+
         return d_new
     else:
         return d
@@ -118,7 +118,7 @@ def from_voigt(d: Union[np.ndarray,list]) -> np.ndarray:
 def get_dKP_old(d: Union[np.ndarray,list]) -> float:
 
     d = from_voigt(d)
-    
+
     first = 0
     second = 0
     third = 0
@@ -128,15 +128,15 @@ def get_dKP_old(d: Union[np.ndarray,list]) -> float:
             if j != i:
                 second += (13/105) * d[i,i,i] * d[i,j,j]
                 third += (44/105) * d[i,i,j]**2 # 14/105 in Francesco's thesis
-                
-                
+
+
     fourth = 0
     for i, j, k in ((0,1,2), (1,2,0), (2,0,1)):
     #for i, j, k in ((0,1,2), (1,2,0), (2,0,1), (0,2,1), (1,0,2), (2,1,0)): # no, only three, stated in Cyvin 1965
         fourth += (13/105) * (d[i,i,j]*d[j,k,k] + (5/7)*d[i,j,k]**2)
-    
+
     #print(first, second, third, fourth)
-    
+
     return np.sqrt(first + second + third + fourth)
 
 
@@ -144,7 +144,7 @@ def get_dKP_old(d: Union[np.ndarray,list]) -> float:
 def get_dKP_weird(d: Union[np.ndarray,list]) -> float:
 
     d = from_voigt(d)
-    
+
     first = 0
     second = 0
     third = 0
@@ -154,15 +154,15 @@ def get_dKP_weird(d: Union[np.ndarray,list]) -> float:
             if j != i:
                 second += (13/105) * d[i,i,i] * d[i,j,j]
                 third += (44/105) * d[i,i,j]**2 # 14/105 in Francesco's thesis
-                
-                
+
+
     fourth = 0
     for i, j, k in ((0,1,2), (1,2,0), (2,0,1)):
         fourth += (13/105) * (d[i,i,j]*d[j,k,k])
     fifth = (5/7)*(d[0,1,2]**2)
-    
+
     #print(first, second, third, fourth)
-    
+
     return np.sqrt(first + second + third + fourth + fifth)
 
 def get_dKP(d: Union[np.ndarray,list]) -> float:
@@ -184,13 +184,13 @@ def get_dRMS(d: Union[np.ndarray,list]) -> float:
 # Rotation of alpha around x, then beta around new y, then gamma around new z (angles in degrees!)
 # Throws an Exception/Error if the arguments are not of the same type as the annotations
 # d is a tensor of arbitrary order but must be "3D" or in Voigt notation
-def apply_rot(  d:      Union[np.ndarray,list], 
-                alpha:  Union[int,float,np.float64,np.int64], 
-                beta:   Union[int,float,np.float64,np.int64], 
+def apply_rot(  d:      Union[np.ndarray,list],
+                alpha:  Union[int,float,np.float64,np.int64],
+                beta:   Union[int,float,np.float64,np.int64],
                 gamma:  Union[int,float,np.float64,np.int64],
                 ) ->    np.ndarray:
-    
-    
+
+
     # Enforce the types of the arguments from annotations (generic section)
     args        = inspect.getfullargspec(apply_rot).args
     annotations = inspect.getfullargspec(apply_rot).annotations
@@ -198,7 +198,7 @@ def apply_rot(  d:      Union[np.ndarray,list],
         x_type  = type(locals()[x])
         x_annot = annotations[x]
         enforce(x,x_type,x_annot)
-    
+
     # Convert d into a np.ndarray and into a non-Voigt format if necessary and checks that d is "3D" for a rotation in 3D
     d = to_array(d)
     if d.shape == (3,6):
@@ -209,24 +209,24 @@ def apply_rot(  d:      Union[np.ndarray,list],
     alpha *= np.pi/180
     beta  *= np.pi/180
     gamma *= np.pi/180
-    
+
     # Define variables for cosinus and sinus of the Euler angles
     ca = np.cos(alpha) ; sa = np.sin(alpha)
     cb = np.cos(beta)  ; sb = np.sin(beta)
     cg = np.cos(gamma) ; sg = np.sin(gamma)
-    
+
     # Rotation matrix Rz*Ry*Rx = https://en.wikipedia.org//wiki/Rotation_matrix#General_rotations
-    # When discussing a rotation, there are two possible conventions: rotation of the axes, and 
+    # When discussing a rotation, there are two possible conventions: rotation of the axes, and
     # rotation of the object relative to fixed axes. The latter is adopted here with the right-handed rule for positive angles,
     # i.e., counter-clockwise rotation when viewed from above the rotational axis
     R = np.array([[cb*cg, sa*sb*cg-ca*sg, ca*sb*cg+sa*sg],
                   [cb*sg, sa*sb*sg+ca*cg, ca*sb*sg-sa*cg],
                   [-sb,   sa*cb,          ca*cb]])
-     
-    
+
+
     # Define the order of the tensor to rotate
     ndim = len(d.shape)
-    
+
     # Rotate d: use np.einsum to multiply d by R in a for-loop over the order of tensor to target each dimension
     subs = 'ijklmnop'[:ndim]
     eins = 'Zz,{}->{}'
@@ -255,7 +255,7 @@ def apply_rot_syst( syst:   Union[np.ndarray,list],
         x_annot = annotations[x]
         enforce(x,x_type,x_annot)
 
-    # Decomposes the rotation by rotating each vector (1st order tensor) individually 
+    # Decomposes the rotation by rotating each vector (1st order tensor) individually
     syst = to_array(syst)
     syst_rot = np.zeros(np.shape(syst))
     for i in range(len(syst)):
@@ -267,7 +267,7 @@ def apply_rot_syst( syst:   Union[np.ndarray,list],
 # Applies rotations of step from 0 to maxangle along alpha, beta and gamma to the 3x3x3 or 3x6 tensor d  ==================
 # Computes d_KP and prints some information on the distribution.
 def apply_rot_get_dKP_old(  d:          Union[np.ndarray,list],
-                        step:       int                     =10, 
+                        step:       int                     =10,
                         maxangle:   Union[int,float]        =180
                         ) -> tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray,np.ndarray,float,float,float,float,float]:
 
@@ -288,26 +288,26 @@ def apply_rot_get_dKP_old(  d:          Union[np.ndarray,list],
     # Instantiate two arrays with the dKP and dijk for each rotation respectively
     dKP_ar  = np.zeros([l,l,l])
     dijk_ar = np.zeros([l,l,l,3,3,3])
-    
+
     for ia, alpha in enumerate(valpha):
         for ib, beta in enumerate(vbeta):
             for ig, gamma in enumerate(vgamma):
                 d_rot               = apply_rot(d, alpha, beta, gamma)
                 dKP_ar[ia, ib, ig]  = get_dKP_old(d_rot)
                 dijk_ar[ia, ib, ig] = d_rot
-    
+
     #print(f"Angles around each axis: {valpha}")
     #print("Minimum d_KP :{0}".format(np.min(dKP_ar)))
     #print("Maximum d_KP: {0}".format(np.max(dKP_ar)))
     #print("Average d_KP: {0}".format(np.average(dKP_ar)))
     #print("Minimum value of dij : {0}".format(np.min(dijk_ar)))
     #print("Maximum value of dij : {0}".format(np.max(dijk_ar)))
-    
+
     return valpha,vbeta,vgamma,dijk_ar,dKP_ar,np.min(dKP_ar),np.max(dKP_ar),np.average(dKP_ar),np.min(dijk_ar),np.max(dijk_ar)
 
 
 def apply_rot_get_dKP_weird(  d:          Union[np.ndarray,list],
-                        step:       int                     =10, 
+                        step:       int                     =10,
                         maxangle:   Union[int,float]        =180
                         ) -> tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray,np.ndarray,float,float,float,float,float]:
 
@@ -328,25 +328,25 @@ def apply_rot_get_dKP_weird(  d:          Union[np.ndarray,list],
     # Instantiate two arrays with the dKP and dijk for each rotation respectively
     # dKP_ar  = np.zeros([l,l,l])
     dijk_ar = np.zeros([l,l,l,3,3,3])
-    
+
     for ia, alpha in enumerate(valpha):
         for ib, beta in enumerate(vbeta):
             for ig, gamma in enumerate(vgamma):
                 d_rot               = apply_rot(d, alpha, beta, gamma)
                 # dKP_ar[ia, ib, ig]  = get_dKP_weird(d_rot)
                 dijk_ar[ia, ib, ig] = d_rot
-    
+
     #print(f"Angles around each axis: {valpha}")
     #print("Minimum d_KP :{0}".format(np.min(dKP_ar)))
     #print("Maximum d_KP: {0}".format(np.max(dKP_ar)))
     #print("Average d_KP: {0}".format(np.average(dKP_ar)))
     #print("Minimum value of dij : {0}".format(np.min(dijk_ar)))
     #print("Maximum value of dij : {0}".format(np.max(dijk_ar)))
-    
+
     return valpha,vbeta,vgamma,dijk_ar
 
 def apply_rot_get_dKP(  d:          Union[np.ndarray,list],
-                        step:       int                     =10, 
+                        step:       int                     =10,
                         maxangle:   Union[int,float]        =180
                         ) -> tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray,np.ndarray,float,float,float,float,float]:
     return apply_rot_get_dKP_weird( d,
@@ -455,8 +455,8 @@ def plot_3D_axes(latt1: Union[np.ndarray,list],
 # Plot the lattice vectors and atoms positions of an abipy Structure with its rotated counterpart in 3D ===================
 def plot_3D_struc(struc:        Structure,
                   name:         str                                     = 'NLDS',
-                  alpha:        Union[int,float,np.float64,np.int64]    = 0, 
-                  beta:         Union[int,float,np.float64,np.int64]    = 0, 
+                  alpha:        Union[int,float,np.float64,np.int64]    = 0,
+                  beta:         Union[int,float,np.float64,np.int64]    = 0,
                   gamma:        Union[int,float,np.float64,np.int64]    = 0,
                   sites_orig:   bool                                    = True,
                   sites_rot:    bool                                    = True
@@ -507,7 +507,7 @@ def plot_3D_struc(struc:        Structure,
                                         line=dict(width=5,color='blue'),
                                         marker=dict(size=5),
                                         name='C')])
-    
+
     if sites_orig:
         for iuniq in range(len(uniqs)):
             uniq = uniqs[iuniq] ; idx = idcs[iuniq] ; count = counts[iuniq]
@@ -575,25 +575,25 @@ def plot_3D_struc(struc:        Structure,
 def get_kernel(d):
     # See https://arxiv.org/pdf/1704.01327.pdf
     # We compute the kernel U of d
-    
+
     U = np.zeros([3,3])
-    
+
     for i in range(3):
         for l in range(3):
             for j in range(3):
                 for k in range(3):
                     U[i,l] += d[i, j, k] * d[j, k, l]
-                    
+
     return U
 
 
 def get_zeigenvalue(d, guessV=[1/3**0.5, 1/3**0.5, 1/3**0.5], guessZ=1, iter=1):
-    # Compute the Z-eigenvalue nu, as defined by 
+    # Compute the Z-eigenvalue nu, as defined by
     # d_ijk x_j x_k = nu x_i with x_i x_i = 1
     #
     # The equation is solved using an initial guess for x (guessV) and nu (guessZ)
     # Feel free to change them !
-    
+
     from scipy.optimize import fsolve
 
     def equations(vars, D):
@@ -608,24 +608,24 @@ def get_zeigenvalue(d, guessV=[1/3**0.5, 1/3**0.5, 1/3**0.5], guessZ=1, iter=1):
                 eq1 += D[0, j, k] * x[j] * x[k] - nu * x1
                 eq2 += D[1, j, k] * x[j] * x[k] - nu * x2
                 eq3 += D[2, j, k] * x[j] * x[k] - nu * x3
-    
+
         eq4 = x1**2 + x2**2 + x3**2 - 1
-    
+
         return (eq1, eq2, eq3, eq4)
-    
+
     x1, x2, x3, nu = fsolve(equations, (guessV[0], guessV[1], guessV[2], guessZ), args=(d))
     zeros = np.array(equations((x1, x2, x3, nu), d))
 
     if np.any(np.abs(zeros[0:-1]) >= 1e-8):
         print("The Z-eigenvalue might not be correct : check the result !")
-    
+
     elif nu <= 0:
-        
+
         if iter > 2:
             print("The Z-eigenvalue is negative, even with an opposite vector")
         else:
             x1, x2, x3, nu = get_zeigenvalue(d, guessV=-np.array(guessV), guessZ=1, iter=2)
-        
+
     return x1, x2, x3, nu
 
 
@@ -638,20 +638,20 @@ def get_invariants(d):
     # Inv2 = a**2 + b**2 + c**2
     # Inv3 = a**3 + b**3 + c**3
     # Inv4 = Z-eigenvalue of d
-    
+
     U = get_kernel(d) # The eigenvalues of U are lambda_i
-                    
+
     Inv1 = np.trace(U) # Same as lambda1 + lambda2 + lambda3
     Inv2 = np.trace(np.matmul(U,U)) # Same as lambda1**2 + lambda2**2 + lambda3**2
     Inv3 = np.trace(np.matmul(U, np.matmul(U,U))) # Same as lambda1**3 + lambda2**3 + lambda3**3
-    
+
     # Inv4 = get_zeigenvalue(d)[3]
-    
+
     return Inv1, Inv2, Inv3#, Inv4
 
 
 def apply_rot_get_invariants(  d:          Union[np.ndarray,list],
-                        step:       int                     =20, 
+                        step:       int                     =20,
                         maxangle:   Union[int,float]        =360,
                         inv: int = 2
                         ) -> tuple[np.ndarray,np.ndarray,np.ndarray,np.ndarray,np.ndarray,float,float,float,float,float]:
@@ -673,19 +673,19 @@ def apply_rot_get_invariants(  d:          Union[np.ndarray,list],
     # Instantiate two arrays with the dKP and dijk for each rotation respectively
     dKP_ar  = np.zeros([l,l,l])
     dijk_ar = np.zeros([l,l,l,3,3,3])
-    
+
     for ia, alpha in enumerate(valpha):
         for ib, beta in enumerate(vbeta):
             for ig, gamma in enumerate(vgamma):
                 d_rot               = apply_rot(d, alpha, beta, gamma)
                 dKP_ar[ia, ib, ig]  = get_invariants(d_rot)[inv-1]
                 dijk_ar[ia, ib, ig] = d_rot
-    
+
     #print(f"Angles around each axis: {valpha}")
     #print("Minimum d_KP :{0}".format(np.min(dKP_ar)))
     #print("Maximum d_KP: {0}".format(np.max(dKP_ar)))
     #print("Average d_KP: {0}".format(np.average(dKP_ar)))
     #print("Minimum value of dij : {0}".format(np.min(dijk_ar)))
     #print("Maximum value of dij : {0}".format(np.max(dijk_ar)))
-    
+
     return valpha,vbeta,vgamma,dijk_ar,dKP_ar,np.min(dKP_ar),np.max(dKP_ar),np.average(dKP_ar),np.min(dijk_ar),np.max(dijk_ar)
