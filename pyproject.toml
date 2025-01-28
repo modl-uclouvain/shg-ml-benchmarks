@@ -13,6 +13,7 @@ dynamic = ["version"]
 [project.optional-dependencies]
 dev = [
     "pre-commit",
+    "pytest",
 ]
 
 [build-system]
