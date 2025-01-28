@@ -1,8 +1,12 @@
-from typing import Any
-from collections.abc import Callable
+import importlib.metadata
 import json
+from collections.abc import Callable
+from typing import Any
+
 import numpy as np
 from pymatgen.core import Structure
+
+__version__ = importlib.metadata.version("shg-ml-benchmarks")
 
 
 class DummyModel:
