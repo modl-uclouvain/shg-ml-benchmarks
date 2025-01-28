@@ -1,6 +1,5 @@
 [project]
-name = "shg-ml-benchmarks"
-version = "0.1.0"
+name = "shg-ml-benchmark"
 description = "Benchmarking ML models for SHG coefficient prediction"
 authors = []
 readme = "README.md"
@@ -9,6 +8,7 @@ dependencies = [
     "numpy",
     "pymatgen",
 ]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
@@ -16,8 +16,12 @@ dev = [
 ]
 
 [build-system]
-requires = ["setuptools >= 62", "wheel"]
+requires = ["setuptools >= 62", "setuptools_scm ~= 8.1", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+version_scheme = "post-release"
 
 [tool.setuptools]
 license-files = ["LICENSE"]

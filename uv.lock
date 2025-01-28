@@ -793,8 +793,7 @@ wheels = [
 ]
 
 [[package]]
-name = "shg-ml-benchmarks"
-version = "0.1.0"
+name = "shg-ml-benchmark"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
