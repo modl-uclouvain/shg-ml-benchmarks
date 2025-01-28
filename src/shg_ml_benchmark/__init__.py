@@ -3,6 +3,9 @@ from collections.abc import Callable
 import json
 import numpy as np
 from pymatgen.core import Structure
+import importlib.metadata
+
+__version__ = importlib.metadata.version("shg-ml-benchmarks")
 
 
 class DummyModel:
