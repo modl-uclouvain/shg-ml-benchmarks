@@ -66,4 +66,4 @@ matplotlibrc
 *pkl*
 *mdd*
 *mod.*
-*json*
+#*json*
