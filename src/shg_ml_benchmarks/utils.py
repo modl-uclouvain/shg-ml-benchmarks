@@ -50,16 +50,17 @@ class StratifiedKFoldReg(StratifiedKFold):
         return super().split(X=np.zeros(n_samples), y=y_labels)
 
 
-def get_holdout_set(
+def get_holdout_validation_set(
     data_path: str | Path = _DATA_PATH_DFLT,
     data: pd.DataFrame | list | np.ndarray = None,
     target_name: str = "dKP_full_neum",
     n_holdout: int = 100,
+    include_validation: bool = False,
     strategy_holdout: str = "distribution",
     n_bins_distribution=None,
     random_seed: int = 42,
     shuffle: bool = True,
-) -> list:
+) -> tuple[list, list]:
     if "pkl" not in str(data_path):
         raise NameError(
             "data_path should be a pd.Dataframe in a pickle file (compressed or not)."
@@ -76,7 +77,7 @@ def get_holdout_set(
         targets = data
     else:
         raise TypeError(
-            f"data is of type {type(data)} instead pf pd.Dataframe | list | np.ndarray"
+            f"data is of type {type(data)} instead of pd.Dataframe | list | np.ndarray"
         )
 
     n_splits = len(df) // n_holdout
@@ -85,18 +86,29 @@ def get_holdout_set(
         skf = StratifiedKFoldReg(
             n_splits=n_splits, shuffle=shuffle, random_state=random_seed
         )
-        _, ind_holdout = next(skf.split(y=targets, n_bins=n_bins_distribution))
+        split_gen = skf.split(y=targets, n_bins=n_bins_distribution)
     elif strategy_holdout == "random":
         kf = KFold(n_splits=n_splits, shuffle=shuffle, random_state=random_seed)
-        _, ind_holdout = next(kf.split(X=np.zeros(len(targets)), y=targets))
+        split_gen = kf.split(X=np.zeros(len(targets)), y=targets)
     else:
         raise ValueError(
             "strategy_holdout should either be 'distribution' or 'random'."
         )
 
+    _, ind_holdout = next(split_gen)
     ind_holdout = ind_holdout[:n_holdout]
-
     if isinstance(df, pd.DataFrame):
-        return df.iloc[ind_holdout].index.tolist()
+        idx_holdout = df.iloc[ind_holdout].index.tolist()
     else:
-        return list(ind_holdout)
+        idx_holdout = list(ind_holdout)
+
+    idx_validation = []
+    if include_validation:
+        _, ind_validation = next(split_gen)
+        ind_validation = ind_validation[:n_holdout]
+        if isinstance(df, pd.DataFrame):
+            idx_validation = df.iloc[ind_validation].index.tolist()
+        else:
+            idx_validation = list(ind_validation)
+
+    return idx_holdout, idx_validation
