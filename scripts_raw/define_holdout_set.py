@@ -6,7 +6,7 @@ def main():
 
     # Equi-distribution per bin
     strategy = "distribution"
-    n_holdout=250
+    n_holdout=125
     include_val = True
     id_holdout, id_validation = utils.get_holdout_validation_set(
         n_holdout=n_holdout,
@@ -26,7 +26,7 @@ def main():
 
     # Random sampling
     strategy = "random"
-    n_holdout=250
+    n_holdout=125
     include_val = True
     id_holdout, id_validation = utils.get_holdout_validation_set(
         n_holdout=n_holdout,
