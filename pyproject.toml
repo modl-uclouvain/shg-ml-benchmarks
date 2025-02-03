@@ -5,8 +5,9 @@ authors = []
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 dependencies = [
-    "numpy",
-    "pymatgen",
+    "numpy>=2,<3",
+    "pymatgen>=2024",
+    "scikit-learn~=1.6",
 ]
 dynamic = ["version"]
 
