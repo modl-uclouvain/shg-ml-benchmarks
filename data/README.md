@@ -1,7 +1,7 @@
 # Data on Github
 
 ## holdout_id_{strategy}_{number}.json
-These files contain the ids for holdout sets to be used in the benchmarking. The sampling strategy is written in the file name as well as the number of instances in this set. They were obtained via the script ```define_holdout_set.py``` in ```../scripts_raw```.
+These files contain the ids for holdout sets to be used in the benchmarking. The sampling strategy is written in the file name as well as the number of instances in this set. They were obtained via the script ```define_holdout_set.py``` in ```../scripts_raw```. IT IS IMPORTANT TO NOTE THAT THEY WERE GENERATED FROM THE "is_unique_here == True" SUBSET OF df_rot_ieee_pmg.
 
 # OneDrive folder
 
@@ -9,7 +9,9 @@ All data can be found in the re2fractive_shg/data folder on Victor's OneDrive. I
 
 ## df_rot_ieee_pmg
 
-The dataframe ```df_rot_ieee_pmg``` has been obtained via the ```scripts_raw/find_conventional_dijk.py```. It has a lot of columns, but the main ones are:
+The dataframe ```df_rot_ieee_pmg``` (2699 entries) has been obtained via the ```scripts_raw/find_conventional_dijk.py```. It has a lot of columns, but the main ones are:
+
+- is_unique_here --> indicates that the compound is unique wrt. pmg StructureMatcher, TO BE USED! == 2626 entries
 
 - dijk --> the full SHG tensor
 - epsij --> the full dielectric tensor
