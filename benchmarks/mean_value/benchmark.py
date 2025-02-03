@@ -9,8 +9,8 @@ from shg_ml_benchmarks.utils import DummyModel
 if __name__ == "__main__":
     dummy = DummyModel()
 
-    def train_fn(structures, targets):
-        dummy.train(structures, targets)
+    def train_fn(structures, target):
+        dummy.train(structures, target)
         return dummy
 
     def predict_fn(model, structure):

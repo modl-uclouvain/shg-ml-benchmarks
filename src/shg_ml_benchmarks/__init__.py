@@ -87,7 +87,7 @@ def run_benchmark(
     Args:
         model: Model object
         predict_fn: Function that takes (model, structure) and returns prediction
-        train_fn: Function that takes (structures, targets) and returns model (optional)
+        train_fn: Function that takes (structures, target) and returns model (optional)
         task: the task to run; corresponds to the filenames of pre-defined holdout sets found in `./data`.
         data_path: Path to data JSON
         holdout_path: Path to holdout IDs JSON
