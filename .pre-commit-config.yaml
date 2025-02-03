@@ -19,6 +19,7 @@ repos:
     - id: check-json
     - id: destroyed-symlinks
     - id: end-of-file-fixer
+      exclude: "benchmarks/.*"
     - id: requirements-txt-fixer
       name: Fix requirements*.txt
       files: ^requirements.*\.txt$

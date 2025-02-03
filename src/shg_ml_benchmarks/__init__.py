@@ -4,29 +4,12 @@ from collections.abc import Callable
 from typing import Any
 
 import numpy as np
+import pandas as pd
 from pymatgen.core import Structure
 
+from shg_ml_benchmarks.utils import BENCHMARKS_DIR, load_holdout, load_train
+
 __version__ = importlib.metadata.version("shg-ml-benchmarks")
-
-
-class DummyModel:
-    """Simple baseline model that predicts the mean of training data."""
-
-    def __init__(self):
-        self.mean_value: float
-
-    def train(
-        self, structures: list[Structure], targets: dict[str, float | np.ndarray]
-    ) -> None:
-        """Compute mean of training targets."""
-        values = list(targets.values())
-        self.mean_value = np.mean(values)  # type: ignore
-
-    def predict(self, structure: Structure) -> float | np.ndarray:
-        """Return mean value for all predictions."""
-        if self.mean_value is None:
-            raise RuntimeError("Model must be trained before prediction")
-        return self.mean_value
 
 
 def load_and_split_data(
@@ -67,7 +50,7 @@ def load_and_split_data(
 
 
 def evaluate_predictions(
-    predictions: dict[str, float | np.ndarray], test_data: dict[str, dict]
+    predictions: dict[str, float | np.ndarray], holdout_df: pd.DataFrame, target: str
 ) -> dict[str, float]:
     """Calculate evaluation metrics.
 
@@ -78,8 +61,11 @@ def evaluate_predictions(
     Returns:
         Dictionary with evaluation metrics
     """
-    true_values = [test_data[id]["target"] for id in predictions.keys()]
-    pred_values = list(predictions.values())
+    true_values = []
+    pred_values = []
+    for structure_id, pred in predictions.items():
+        true_values.append(holdout_df.loc[structure_id][target])
+        pred_values.append(pred)
 
     # Calculate metrics
     mae = np.mean(np.abs(np.array(true_values) - np.array(pred_values)))
@@ -90,17 +76,19 @@ def evaluate_predictions(
 
 def run_benchmark(
     model: Any,
-    train_fn: Callable[[list[Structure], dict[str, Any]], Any],
     predict_fn: Callable[[Any, Structure], float | np.ndarray],
-    data_path: str,
-    holdout_path: str,
-    output_path: str = "benchmark_results.json",
+    train_fn: Callable | None = None,
+    task: str = "random_250",
+    target: str = "dKP_full_neum",
+    write_results: bool = True,
 ) -> dict:
     """Run benchmark using provided training and prediction functions.
 
     Args:
-        train_fn: Function that takes (structures, targets) and returns model
+        model: Model object
         predict_fn: Function that takes (model, structure) and returns prediction
+        train_fn: Function that takes (structures, targets) and returns model (optional)
+        task: the task to run; corresponds to the filenames of pre-defined holdout sets found in `./data`.
         data_path: Path to data JSON
         holdout_path: Path to holdout IDs JSON
         output_path: Where to save results
@@ -109,19 +97,16 @@ def run_benchmark(
         Dictionary with benchmark results and metrics
     """
     # Load data
-    train_data, test_data = load_and_split_data(data_path, holdout_path)
+    holdout_df = load_holdout(task)
+    train_df = load_train(task)
 
-    # Prepare training data
-    train_structures = [entry["structure"] for entry in train_data.values()]
-    train_targets = {id: entry["target"] for id, entry in train_data.items()}
-
-    # Train model
-    model = train_fn(train_structures, train_targets)
+    if train_fn:
+        model = train_fn(train_df, target=target)
 
     # Get predictions
     predictions = {}
-    for structure_id, entry in test_data.items():
-        pred = predict_fn(model, entry["structure"])
+    for structure_id, entry in holdout_df.iterrows():
+        pred = predict_fn(model, Structure.from_dict(entry["structure"]))
         # Convert numpy types to Python native types for JSON serialization
         if isinstance(pred, np.ndarray):
             pred = pred.tolist()
@@ -130,38 +115,17 @@ def run_benchmark(
         predictions[structure_id] = pred
 
     # Calculate metrics
-    metrics = evaluate_predictions(predictions, test_data)
+    metrics = evaluate_predictions(predictions, holdout_df, target)
 
     # Compile results
     results = {"predictions": predictions, "metrics": metrics}
 
-    # Save results
-    with open(output_path, "w") as f:
-        json.dump(results, f, indent=2)
+    if write_results:
+        output_path = BENCHMARKS_DIR / model.label / "tasks" / task / "results.json"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Save results
+        with open(output_path, "w") as f:
+            json.dump(results, f, indent=2)
 
     return results
-
-
-if __name__ == "__main__":
-    # Example usage
-    DATA_PATH = "path/to/data.json"
-    HOLDOUT_PATH = "path/to/holdout.json"
-
-    dummy = DummyModel()
-
-    def train_fn(structures, targets):
-        dummy.train(structures, targets)
-        return dummy
-
-    def predict_fn(model, structure):
-        return model.predict(structure)
-
-    results = run_benchmark(
-        model=dummy,
-        train_fn=train_fn,
-        predict_fn=predict_fn,
-        data_path=DATA_PATH,
-        holdout_path=HOLDOUT_PATH,
-    )
-
-    print(f"Model metrics: {results['metrics']}")
