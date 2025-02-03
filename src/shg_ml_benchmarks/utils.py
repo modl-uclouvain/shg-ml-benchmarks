@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import json
 
 import numpy as np
 import pandas as pd
@@ -10,6 +11,9 @@ _DATA_PATH_DFLT = str(
     / "data"
     / "df_rot_ieee_pmg.pkl.gz"
 )
+
+BENCHMARKS_DIR = Path(__file__).parent.parent.parent / "benchmarks"
+DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 
 # from https://github.com/scikit-learn/scikit-learn/issues/4757#issuecomment-791644181
@@ -115,3 +119,57 @@ def get_holdout_validation_set(
             idx_validation = list(ind_validation)
 
     return idx_holdout, idx_validation
+
+
+def load_holdout(task: str = "distribution_250") -> "pd.DataFrame":
+    """Load holdout dataframe for a given task.
+
+    Args:
+        task (str): Task name
+
+    Returns:
+        The holdout dataframe mapping structure to target.
+    """
+    # Load holdout and validation indices
+    holdout_path = DATA_DIR / f"holdout_id_{task}.json"
+    with open(holdout_path, "r") as f:
+        holdout_ids = json.load(f)
+
+    return pd.read_pickle(_DATA_PATH_DFLT).loc[holdout_ids]
+
+
+def load_train(task: str = "distribution_250") -> "pd.DataFrame":
+    """Load training set dataframe for a given task."""
+    holdout_path = DATA_DIR / f"holdout_id_{task}.json"
+    with open(holdout_path, "r") as f:
+        holdout_ids = json.load(f)
+
+    val_path = DATA_DIR / f"validation_id_{task}.json"
+    with open(val_path, "r") as f:
+        val_ids = json.load(f)
+
+    full_df = pd.read_pickle(_DATA_PATH_DFLT)
+    return full_df.loc[~full_df.index.isin(holdout_ids + val_ids)]
+
+
+class DummyModel:
+    """Simple baseline model that predicts the mean of training data."""
+
+    from pymatgen.core import Structure
+
+    label: str = "mean_value"
+
+    def __init__(self):
+        self.mean_value: float
+
+    def train(self, train_df: pd.DataFrame, target: str) -> "DummyModel":
+        """Compute mean of training targets."""
+        targets = train_df[target].values
+        self.mean_value = np.mean(targets)  # type: ignore
+        return self
+
+    def predict(self, structure: Structure) -> float | np.ndarray:
+        """Return mean value for all predictions."""
+        if self.mean_value is None:
+            raise RuntimeError("Model must be trained before prediction")
+        return self.mean_value
