@@ -149,6 +149,7 @@ def load_train(task: str = "distribution_250") -> "pd.DataFrame":
         val_ids = json.load(f)
 
     full_df = pd.read_pickle(_DATA_PATH_DFLT)
+    full_df = full_df.query("is_unique_here == True")
     return full_df.loc[~full_df.index.isin(holdout_ids + val_ids)]
 
 
