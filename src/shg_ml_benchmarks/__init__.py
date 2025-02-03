@@ -77,7 +77,7 @@ def evaluate_predictions(
 def run_benchmark(
     model: Any,
     predict_fn: Callable[[Any, Structure], float | np.ndarray],
-    train_fn: Callable[[list[Structure], dict[str, Any]], Any] | None = None,
+    train_fn: Callable | None = None,
     task: str = "random_250",
     target: str = "dKP_full_neum",
     write_results: bool = True,

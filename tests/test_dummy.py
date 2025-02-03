@@ -1,7 +1,11 @@
+import pytest
+
 from shg_ml_benchmarks.utils import BENCHMARKS_DIR
 
 
-def test_dummy():
+def test_dummy(dataset_available):
+    if not dataset_available:
+        pytest.skip("Dataset not available")
     from shg_ml_benchmarks import run_benchmark
     from shg_ml_benchmarks.utils import DummyModel
 
