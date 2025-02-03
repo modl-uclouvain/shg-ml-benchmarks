@@ -1,6 +1,6 @@
+import json
 import os
 from pathlib import Path
-import json
 
 import numpy as np
 import pandas as pd
@@ -132,7 +132,7 @@ def load_holdout(task: str = "distribution_250") -> "pd.DataFrame":
     """
     # Load holdout and validation indices
     holdout_path = DATA_DIR / f"holdout_id_{task}.json"
-    with open(holdout_path, "r") as f:
+    with open(holdout_path) as f:
         holdout_ids = json.load(f)
 
     return pd.read_pickle(_DATA_PATH_DFLT).loc[holdout_ids]
@@ -141,11 +141,11 @@ def load_holdout(task: str = "distribution_250") -> "pd.DataFrame":
 def load_train(task: str = "distribution_250") -> "pd.DataFrame":
     """Load training set dataframe for a given task."""
     holdout_path = DATA_DIR / f"holdout_id_{task}.json"
-    with open(holdout_path, "r") as f:
+    with open(holdout_path) as f:
         holdout_ids = json.load(f)
 
     val_path = DATA_DIR / f"validation_id_{task}.json"
-    with open(val_path, "r") as f:
+    with open(val_path) as f:
         val_ids = json.load(f)
 
     full_df = pd.read_pickle(_DATA_PATH_DFLT)

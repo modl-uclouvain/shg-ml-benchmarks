@@ -6,7 +6,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 from pymatgen.core import Structure
-from shg_ml_benchmarks.utils import load_holdout, load_train, BENCHMARKS_DIR
+
+from shg_ml_benchmarks.utils import BENCHMARKS_DIR, load_holdout, load_train
 
 __version__ = importlib.metadata.version("shg-ml-benchmarks")
 
@@ -102,7 +103,6 @@ def run_benchmark(
     if train_fn:
         model = train_fn(train_df, target=target)
 
-
     # Get predictions
     predictions = {}
     for structure_id, entry in holdout_df.iterrows():
@@ -118,7 +118,7 @@ def run_benchmark(
     metrics = evaluate_predictions(predictions, holdout_df, target)
 
     # Compile results
-    results = {"predictions": predictions , "metrics": metrics}
+    results = {"predictions": predictions, "metrics": metrics}
 
     if write_results:
         output_path = BENCHMARKS_DIR / model.label / "tasks" / task / "results.json"
