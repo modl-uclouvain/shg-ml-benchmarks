@@ -68,6 +68,7 @@ def get_holdout_validation_set(
 
     if not data:
         df = pd.read_pickle(data_path)
+        df = df.query("is_unique_here == True")
         targets = df[target_name].tolist()
     elif isinstance(data, pd.DataFrame):
         df = data
@@ -79,6 +80,8 @@ def get_holdout_validation_set(
         raise TypeError(
             f"data is of type {type(data)} instead of pd.Dataframe | list | np.ndarray"
         )
+
+    print(f"{len(targets) = }")
 
     n_splits = len(df) // n_holdout
 
