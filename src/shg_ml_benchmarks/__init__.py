@@ -81,7 +81,7 @@ def run_benchmark(
     task: str = "random_250",
     target: str = "dKP_full_neum",
     write_results: bool = True,
-) -> dict:
+) -> dict | None:
     """Run benchmark using provided training and prediction functions.
 
     Args:
@@ -89,13 +89,25 @@ def run_benchmark(
         predict_fn: Function that takes (model, structure) and returns prediction
         train_fn: Function that takes (structures, target) and returns model (optional)
         task: the task to run; corresponds to the filenames of pre-defined holdout sets found in `./data`.
-        data_path: Path to data JSON
-        holdout_path: Path to holdout IDs JSON
-        output_path: Where to save results
+        target: the target property to predict
+        write_results: whether to write the results to disk
 
     Returns:
         Dictionary with benchmark results and metrics
     """
+    if write_results:
+        # Check if the benchmark has already been run
+        results_fname = "results.json"
+        if getattr(model, "tags", None) is not None:
+            results_fname = f"{model.tags}_results.json"
+        results_path = BENCHMARKS_DIR / model.label / "tasks" / task / results_fname
+
+        if results_path.exists():
+            print(
+                "Benchmark has already been run. Use `write_results=False` to skip writing results."
+            )
+            return None
+
     # Load data
     holdout_df = load_holdout(task)
     train_df = load_train(task)
@@ -121,11 +133,10 @@ def run_benchmark(
     results = {"predictions": predictions, "metrics": metrics}
 
     if write_results:
-        output_path = BENCHMARKS_DIR / model.label / "tasks" / task / "results.json"
-        output_path.parent.mkdir(parents=True, exist_ok=True)
+        results_path.parent.mkdir(parents=True, exist_ok=True)
 
         # Save results
-        with open(output_path, "w") as f:
+        with open(results_path, "w") as f:
             json.dump(results, f, indent=2)
 
     return results
