@@ -16,11 +16,19 @@
 # ///
 """Modified from https://github.com/MasterAI-EAM/Darwin/commit/d6961e30f58af6943e9b66798098a232fb7f6b42."""
 
-import torch
+import logging
 from enum import Enum
-from transformers import LlamaTokenizer, LlamaForCausalLM
-from shg_ml_benchmarks import run_benchmark
+from functools import partial
 from pathlib import Path
+
+logging.basicConfig(level=logging.INFO)
+
+import torch
+from transformers import LlamaForCausalLM, LlamaTokenizer
+
+from shg_ml_benchmarks import run_benchmark
+from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
+
 
 class LLMInputStructureRepresentation(str, Enum):
     composition = "composition"
@@ -80,23 +88,37 @@ def evaluate(
     response = process_response(response)
     return response
 
+
 def predict_fn(model, structure, task_instruction: str):
-    """A prediction function for the shg-ml-benchmarks that receives a 
+    """A prediction function for the shg-ml-benchmarks that receives a
     pymatgen structure, maps it into the chosen string representation,
     then passes it to the LLM and returns the processed prediction.
     """
     if model.input_structure_repr == LLMInputStructureRepresentation.composition:
         input_structure = structure.composition.reduced_formula
     else:
-        raise NotImplementedError(f"Input structure representation {model.input_structure_repr} not yet implemented.")
+        raise NotImplementedError(
+            f"Input structure representation {model.input_structure_repr} not yet implemented."
+        )
 
-    return evaluate(task_instruction, input=input_structure)
+    response = evaluate(task_instruction, input=input_structure)
+    try:
+        response = float(response)
+        logging.info("Input: %s - Response: %s", input_structure, response)
+    except Exception:
+        logging.error(
+            "!!! Bad response for input: %s - Response: %s", input_structure, response
+        )
+        return 0.0
+    return response
 
 
 system_prompt: str | None = None
 task_instruction: str = "Given this description of a crystal structure, predict its second-harmonic generation coefficient in the Kurtz-Perry form."
 
-input_structure_repr: LLMInputStructureRepresentation = LLMInputStructureRepresentation.composition
+input_structure_repr: LLMInputStructureRepresentation = (
+    LLMInputStructureRepresentation.composition
+)
 
 model_path = Path(__file__).parent / "model"
 tokenizer = LlamaTokenizer.from_pretrained(model_path)
@@ -107,15 +129,18 @@ model = LlamaForCausalLM.from_pretrained(
 
 model.input_structure_repr = input_structure_repr
 model.in_context_learning = False
-model.label = f"darwin-1.5-{input_structure_repr}"
+model.label = "darwin-1.5"
+model.tags = f"darwin-1.5-{input_structure_repr.value}"
 if model.in_context_learning:
-    model.label += "-icl"
+    model.tags += "-icl"
 else:
-    model.label += "-no-icl"
+    model.tags += "-no-icl"
 
-run_benchmark(
-    model=model,
-    predict_fn=predict_fn,
-    task="random_125",
-    train_fn=None,
-)
+for split in SHG_BENCHMARK_SPLITS:
+    logging.info("Running benchmark %s for split %s", model.tags, split)
+    run_benchmark(
+        model=model,
+        predict_fn=partial(predict_fn, task_instruction=task_instruction),
+        task=split,
+        train_fn=None,
+    )
