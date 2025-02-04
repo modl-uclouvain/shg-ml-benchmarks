@@ -47,4 +47,4 @@ repos:
     hooks:
       - id: mypy
         name: "MyPy"
-        exclude: ^tests/.*|scripts_raw/.*$
+        exclude: ^tests/.*|scripts_raw/.*|benchmarks/.*$

@@ -15,7 +15,7 @@ def main():
                 with open(path_id, "w") as f:
                     json.dump(id_validation, f)
 
-    # Equi-distribution per bin
+    # Reproduce distribution of global dataset
     strategy = "distribution"
     n_holdout=125
     include_val = True
