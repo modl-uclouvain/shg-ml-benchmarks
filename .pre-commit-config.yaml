@@ -14,7 +14,7 @@ repos:
     rev: v5.0.0
     hooks:
     - id: check-symlinks
-      exclude: "benchmarks/matten/scripts_*/model_final.ckpt"
+      exclude: "benchmarks/matten/predict_.*/model_final.ckpt"
     - id: check-yaml
       name: Check YAML
     - id: check-json
