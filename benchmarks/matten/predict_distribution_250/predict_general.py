@@ -33,9 +33,9 @@ if __name__ == "__main__":
     df_predictions = pd.DataFrame(index=df_holdout.index)
     df_predictions["dijk_matten"] = list_tensor
 
-    path_df_pred = "df_pred_matten_holdout.pkl.gz"
+    path_df_pred = "df_pred_matten_holdout.json.gz"
     if not Path(path_df_pred).exists():
-        df_predictions.to_pickle(path_df_pred)
+        df_predictions.to_json(path_df_pred)
 
     # print("value:", tensor)
     # print("type:", type(tensor))
