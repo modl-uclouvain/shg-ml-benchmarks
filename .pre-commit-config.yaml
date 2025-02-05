@@ -18,6 +18,7 @@ repos:
       name: Check YAML
     - id: check-json
     - id: destroyed-symlinks
+      exclude: "benchmarks/matten/scripts_*/model_final.ckpt"
     - id: end-of-file-fixer
       exclude: "benchmarks/.*"
     - id: requirements-txt-fixer
@@ -47,4 +48,4 @@ repos:
     hooks:
       - id: mypy
         name: "MyPy"
-        exclude: ^tests/.*|scripts_raw/.*|benchmarks/.*$
+        exclude: ^tests/.*|scripts_raw/.*|benchmarks/.*
