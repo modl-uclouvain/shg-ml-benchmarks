@@ -1,6 +1,7 @@
 import logging
 import time
 from enum import Enum
+import os
 from functools import partial
 from robocrys import StructureCondenser, StructureDescriber
 
@@ -10,6 +11,7 @@ from shg_ml_benchmarks import run_benchmark
 from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
 
 from pydantic_ai import Agent
+from pydantic_ai.models.anthropic import AnthropicModel
 
 STRUCTURE_CONDENSER = StructureCondenser(
     mineral_matcher=False, use_symmetry_equivalent_sites=True
@@ -29,7 +31,7 @@ class LLMInputStructureRepresentation(str, Enum):
 
 def generate_prompt(instruction, input=None):
     if input:
-        return f"""The following is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+        return f"""The following is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request. You will be scored against a ground truth dataset for this task.
     ### Instruction:
     {instruction}
     ### Input:
@@ -44,7 +46,7 @@ def generate_prompt(instruction, input=None):
 
 def process_response(response):
     try:
-        response = response.split("Response: ")[1].split("\n")[0]
+        response = float(response)
     except Exception:
         logging.warning(f"Response could not be processed: {response=}")
         response = None
@@ -54,9 +56,9 @@ def process_response(response):
 def evaluate(instruction, input=None):
     """Evaluation method from Darwin repo."""
     prompt = generate_prompt(instruction, input)
-    logging.info("Prompt: %s", prompt)
-    response = model.run(prompt).message
-    logging.info("Response: %s", response)
+    logging.debug("Prompt: %s", prompt)
+    response = model.run_sync(prompt).data
+    logging.debug("Response: %s", response)
     response = process_response(response)
     return response
 
@@ -117,12 +119,15 @@ input_structure_repr: LLMInputStructureRepresentation = (
     LLMInputStructureRepresentation.composition
 )
 
+if os.getenv("ANTHROPIC_API_KEY") is None:
+    raise SystemExit("ANTHROPIC_API_KEY not set in environment variables.")
+
 model = Agent("anthropic:claude-3-5-sonnet-latest")
 
 
 for input_structure_repr in LLMInputStructureRepresentation:
-    task_instruction: str = f"Given this description of a crystal structure ({input_structure_repr.value.replace('_', ' ')}), predict its second-harmonic generation coefficient in the Kurtz-Perry form."
-    for split in SHG_BENCHMARK_SPLITS[:1]:
+    task_instruction: str = f"Given this description of a crystal structure ({input_structure_repr.value.replace('_', ' ')}), predict its second-harmonic generation coefficient in the Kurtz-Perry form in pm/V. Simply respond with the value which will be read as a raw float. Do not provide any explanation."
+    for split in SHG_BENCHMARK_SPLITS:
         model.input_structure_repr = input_structure_repr
         model.in_context_learning = False
         model.label = "claude-sonnet-3.5"
