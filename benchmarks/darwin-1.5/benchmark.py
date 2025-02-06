@@ -21,6 +21,7 @@ import logging
 from enum import Enum
 from functools import partial
 from pathlib import Path
+
 from robocrys import StructureCondenser, StructureDescriber
 
 logging.basicConfig(level=logging.WARNING)
@@ -92,7 +93,7 @@ def evaluate(
 
     if len(input_ids) > CONTEXT_WINDOW - 1:
         logging.error("Input too long, clipping prompt: %s", prompt)
-        input_ids = input_ids[:CONTEXT_WINDOW - 1]
+        input_ids = input_ids[: CONTEXT_WINDOW - 1]
 
     generated_ids = model.generate(
         input_ids,
@@ -181,7 +182,6 @@ model, tokenizer = load_model()
 for input_structure_repr in LLMInputStructureRepresentation:
     task_instruction: str = f"Given this description of a crystal structure ({input_structure_repr.value.replace('_', ' ')}), predict its second-harmonic generation coefficient in the Kurtz-Perry form."
     for split in SHG_BENCHMARK_SPLITS:
-
         model.input_structure_repr = input_structure_repr
         model.in_context_learning = False
         model.label = "darwin-1.5"
