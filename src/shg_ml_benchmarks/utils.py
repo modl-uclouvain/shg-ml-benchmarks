@@ -14,6 +14,12 @@ _DATA_PATH_DFLT = str(
 
 BENCHMARKS_DIR = Path(__file__).parent.parent.parent / "benchmarks"
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
+SHG_BENCHMARK_SPLITS = (
+    "random_125",
+    "random_250",
+    "distribution_125",
+    "distribution_250",
+)
 
 
 # from https://github.com/scikit-learn/scikit-learn/issues/4757#issuecomment-791644181
@@ -168,7 +174,7 @@ class DummyModel:
     label: str = "mean_value"
 
     def __init__(self):
-        self.mean_value: float
+        self.mean_value: float | None = None
 
     def train(self, train_df: pd.DataFrame, target: str) -> "DummyModel":
         """Compute mean of training targets."""
