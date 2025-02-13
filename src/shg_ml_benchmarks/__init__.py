@@ -9,6 +9,8 @@ import plotly.graph_objs as go
 from pymatgen.core import Structure
 from scipy.stats import spearmanr
 from sklearn.metrics import r2_score
+import logging
+logging.basicConfig(level=logging.INFO)
 
 from shg_ml_benchmarks.utils import BENCHMARKS_DIR, load_holdout, load_train
 
@@ -163,6 +165,7 @@ def run_benchmark(
     model_label=None,
     model_tags=None,
     predict_individually=True,
+    tasks_tag=""
 ) -> dict | None:
     """Run benchmark using provided training and prediction functions.
 
@@ -186,9 +189,9 @@ def run_benchmark(
         else:
             results_fname = "results.json"
         if getattr(model, "label", None) is not None:
-            results_path = BENCHMARKS_DIR / model.label / "tasks" / task / results_fname
+            results_path = BENCHMARKS_DIR / model.label / f"tasks{tasks_tag}" / task / results_fname
         else:
-            results_path = BENCHMARKS_DIR / model_label / "tasks" / task / results_fname
+            results_path = BENCHMARKS_DIR / model_label / f"tasks{tasks_tag}" / task / results_fname
 
         if results_path.exists():
             print(
@@ -224,11 +227,11 @@ def run_benchmark(
     else:
         try:
             df_pred, df_unc = predict_fn(model, [Structure.from_dict(s) for s in holdout_df['structure']], holdout_df.index.tolist())
+            uncertainties = df_unc[df_unc.columns[0]].to_dict()
         except ValueError:
             df_pred = predict_fn(model, [Structure.from_dict(s) for s in holdout_df['structure']], holdout_df.index.tolist())
             df_unc = None
         predictions = df_pred[df_pred.columns[0]].to_dict()
-        uncertainties = df_unc[df_unc.columns[0]].to_dict()
 
 
     # Calculate metrics
@@ -258,5 +261,8 @@ def run_benchmark(
         fig_parity_plot.write_image(f'{str(figs_path)}.svg')
         fig_parity_plot.write_image(f'{str(figs_path)}.png', scale=10)
         fig_parity_plot.write_html(f'{str(figs_path)}.html')
+
+        logging.info(f"The results have been saved at {results_path}.")
+
 
     return results
