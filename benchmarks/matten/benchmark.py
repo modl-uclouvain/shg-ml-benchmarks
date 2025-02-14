@@ -4,9 +4,11 @@ from modnet.preprocessing import MODData
 from pathlib import Path
 import numpy as np
 import pandas as pd
+from typing import Any
 
 logging.basicConfig(level=logging.INFO)
 
+import shg_ml_benchmarks.utils_shg as shg
 from shg_ml_benchmarks import run_benchmark
 from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
 
@@ -14,46 +16,41 @@ from train import train_fn, get_features
 
 
 def predict_fn(
-        model,
-        structures,
-        ids,
-        n_jobs=2,
+        model: Any,
+        ids: list,
+        path_pred: str | Path,
+        structures: list | None = None, # Needed for compatibility with the other models
 ):
 
-    # . Load the predictions
-    df_pred_matten = pd.read_json("df_pred_matten_holdout.json.gz")
+    # Load the predictions
+    df_pred_matten = pd.read_json(path_pred)
+    df_pred_matten = df_pred_matten.filter(ids, axis=0)
+
+    # Get the dKP from the tensor predictions into a single df
+    df_pred = pd.DataFrame(
+        index = ids,
+        data = [shg.get_dKP(dijk_matten) for dijk_matten in df_pred_matten['dijk_matten']],
+        columns=['dKP_full_neum']
+    )
+
+    return df_pred
 
 
-    # 3. Use the predict function of the EnsembleMODNet to predict the target
-    return model.predict(md, return_unc=True)
-
+# Just to have the model.label accessible
+class Object(object):
+    pass
+model = Object()
+model.label = "matten"
 
 for split in SHG_BENCHMARK_SPLITS:
-    for incl_feat in ['mmf', 'pgnn', 'mmf_pgnn']:
-        logging.info("Running benchmark %s for split %s", incl_feat, split)
+    logging.info("Running benchmark for split %s", split)
 
-        # 1. Load the model corresponding to this task (split)
-            # - use train_fn?
-        model = train_fn(
-            ids = ['whatever'],
-            structures = [None], # Not okay wrt. doc of the function
-            targets = [0.0],
-            name_target = ['whatever'],
-            path_model = f"training/{split}/{incl_feat}/models/model_ensemble_modnet.pkl",
-        )
+    path_pred = "./training/predict_" + split + "/df_pred_matten_holdout.json.gz"
 
-        # TODO: maybe need to adapt run_benchmark for incl_feat tag somewhere?
-        type_features = []
-        if "mmf" in incl_feat:
-            type_features.append("mm_fast")
-        if "pgnn" in incl_feat:
-            type_features.extend(["pgnn_mm", "pgnn_ofm", "pgnn_mvl32"])
-        run_benchmark(
-            model=model,
-            predict_fn=partial(predict_fn, type_features=type_features),
-            task=split,
-            train_fn=None,
-            model_label="modnet",
-            model_tags=incl_feat,
-            predict_individually=False,
-        )
+    run_benchmark(
+        model=model,
+        predict_fn=partial(predict_fn, path_pred=path_pred),
+        task=split,
+        train_fn=None,
+        predict_individually=False,
+    )
