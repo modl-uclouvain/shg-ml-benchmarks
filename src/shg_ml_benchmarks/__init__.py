@@ -92,6 +92,7 @@ def run_benchmark(
         task: the task to run; corresponds to the filenames of pre-defined holdout sets found in `./data`.
         target: the target property to predict
         write_results: whether to write the results to disk
+        predict_individually: whether to predict each structure individually or batch predict,
 
     Returns:
         Dictionary with benchmark results and metrics
@@ -142,6 +143,8 @@ def run_benchmark(
 
     # Compile results
     results = {"predictions": predictions, "metrics": metrics}
+    if model.meta:
+        results["meta"] = model.meta
 
     if write_results:
         results_path.parent.mkdir(parents=True, exist_ok=True)
