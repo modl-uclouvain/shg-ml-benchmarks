@@ -169,7 +169,7 @@ Simply respond with the value which will be read as a raw float, do not provide 
             & (train_df["src_ehull"] < 0.001)
             & (train_df["n"] > 1)
         ].sort_values("FOM")[["formula_reduced", "spg_symbol", "dKP_full_neum"]]
-        reasonable_subset.rename("dKP_full_neum", "SHG coefficient", inplace=True)
+        reasonable_subset.rename({"dKP_full_neum": "SHG coefficient"}, inplace=True)
 
         low_examples = reasonable_subset.head(subset).to_string(index=False)
         high_examples = reasonable_subset.tail(subset).to_string(index=False)
