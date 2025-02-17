@@ -82,7 +82,6 @@ def run_benchmark(
     target: str = "dKP_full_neum",
     write_results: bool = True,
     predict_individually: bool = True,
-) -> dict | None:
     """Run benchmark using provided training and prediction functions.
 
     Args:
