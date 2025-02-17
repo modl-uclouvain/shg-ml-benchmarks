@@ -17,6 +17,10 @@ dev = [
     "pytest",
 ]
 
+llm = [
+    "pydantic_ai"
+]
+
 [build-system]
 requires = ["setuptools >= 62", "setuptools_scm ~= 8.1", "wheel"]
 build-backend = "setuptools.build_meta"
