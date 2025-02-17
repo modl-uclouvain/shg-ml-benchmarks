@@ -76,11 +76,12 @@ def evaluate_predictions(
 
 def run_benchmark(
     model: Any,
-    predict_fn: Callable[[Any, Structure], float | np.ndarray],
+    predict_fn: Callable,
     train_fn: Callable | None = None,
     task: str = "random_250",
     target: str = "dKP_full_neum",
     write_results: bool = True,
+    predict_individually: bool = True,
 ) -> dict | None:
     """Run benchmark using provided training and prediction functions.
 
@@ -117,14 +118,24 @@ def run_benchmark(
 
     # Get predictions
     predictions = {}
-    for structure_id, entry in holdout_df.iterrows():
-        pred = predict_fn(model, Structure.from_dict(entry["structure"]))
-        # Convert numpy types to Python native types for JSON serialization
-        if isinstance(pred, np.ndarray):
-            pred = pred.tolist()
-        elif isinstance(pred, np.generic):
-            pred = pred.item()
-        predictions[structure_id] = pred
+    if predict_individually:
+        for structure_id, entry in holdout_df.iterrows():
+            pred = predict_fn(
+                model=model, structures=Structure.from_dict(entry["structure"])
+            )
+            # Convert numpy types to Python native types for JSON serialization
+            if isinstance(pred, np.ndarray):
+                pred = pred.tolist()
+            elif isinstance(pred, np.generic):
+                pred = pred.item()
+            predictions[structure_id] = pred
+    else:
+        df_pred = predict_fn(
+            model=model,
+            structures=[Structure.from_dict(s) for s in holdout_df["structure"]],
+            ids=holdout_df.index.tolist(),
+        )
+        predictions = df_pred[df_pred.columns[0]].to_dict()
 
     # Calculate metrics
     metrics = evaluate_predictions(predictions, holdout_df, target)

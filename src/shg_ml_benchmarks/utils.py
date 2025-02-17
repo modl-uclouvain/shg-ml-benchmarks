@@ -159,6 +159,13 @@ def load_train(task: str = "distribution_250") -> "pd.DataFrame":
     return full_df.loc[~full_df.index.isin(holdout_ids + val_ids)]
 
 
+def load_full(only_unique=True):
+    full_df = pd.read_pickle(_DATA_PATH_DFLT)
+    if not only_unique:
+        return full_df
+    return full_df.query("is_unique_here == True")
+
+
 class DummyModel:
     """Simple baseline model that predicts the mean of training data."""
 

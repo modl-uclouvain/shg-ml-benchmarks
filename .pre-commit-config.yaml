@@ -14,6 +14,7 @@ repos:
     rev: v5.0.0
     hooks:
     - id: check-symlinks
+      exclude: "benchmarks/matten/training/predict_.*/model_final.ckpt"
     - id: check-yaml
       name: Check YAML
     - id: check-json
@@ -47,4 +48,4 @@ repos:
     hooks:
       - id: mypy
         name: "MyPy"
-        exclude: ^tests/.*|^scripts_raw/.*|^benchmarks/*.
+        exclude: ^tests/.*|^scripts_raw/.*|^benchmarks/.*
