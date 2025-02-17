@@ -174,7 +174,7 @@ class DummyModel:
     label: str = "mean_value"
 
     def __init__(self):
-        self.mean_value: float
+        self.mean_value: float | None = None
 
     def train(self, train_df: pd.DataFrame, target: str) -> "DummyModel":
         """Compute mean of training targets."""
