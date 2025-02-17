@@ -1,37 +1,36 @@
 import logging
 from functools import partial
-from modnet.preprocessing import MODData
-from pathlib import Path
+
 import numpy as np
+from modnet.preprocessing import MODData
 
 logging.basicConfig(level=logging.INFO)
+
+from train import get_features, train_fn
 
 from shg_ml_benchmarks import run_benchmark
 from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
 
-from train import train_fn, get_features
-
 
 def predict_fn(
-        model,
-        structures,
-        ids,
-        type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
-        features=None,
-        n_jobs=2,
+    model,
+    structures,
+    ids,
+    type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
+    features=None,
+    n_jobs=2,
 ):
-
     # 1. Featurize the structure with the same features as the one the model was trained on (consider that an input of the function?)
-        # - Use get_features()?
+    # - Use get_features()?
 
     df_featurized = get_features(
-        ids = ids,
-        structures = structures,
-        type_features = type_features,
-        features = features,
-        n_jobs = n_jobs,
-        path_saved = None,
-        remove_dir_indiv_feat = True,
+        ids=ids,
+        structures=structures,
+        type_features=type_features,
+        features=features,
+        n_jobs=n_jobs,
+        path_saved=None,
+        remove_dir_indiv_feat=True,
     )
     # 1.b Padd the missing features by zero
     features_needed = []
@@ -41,13 +40,15 @@ def predict_fn(
     for feat in features_needed:
         if feat in df_featurized.columns:
             continue
-        print(f"WARNING: THE FEATURE {feat} IS REQUIRED BY THE MODEL, BUT IS NOT AMONG THE FEATURES JUST OBTAINED... IT IS THUS ADDED WITH A VALUE OF NAN...")
-        df_featurized[feat] = [np.nan]*len(df_featurized)
+        print(
+            f"WARNING: THE FEATURE {feat} IS REQUIRED BY THE MODEL, BUT IS NOT AMONG THE FEATURES JUST OBTAINED... IT IS THUS ADDED WITH A VALUE OF NAN..."
+        )
+        df_featurized[feat] = [np.nan] * len(df_featurized)
 
     # 2. Create the MODData to predict from df_featurized
     md = MODData(
         materials=structures,
-        targets = [0.0]*len(structures),
+        targets=[0.0] * len(structures),
         target_names=["dKP_full_neum"],
         structure_ids=ids,
     )
@@ -57,17 +58,17 @@ def predict_fn(
 
 
 for split in SHG_BENCHMARK_SPLITS:
-    for incl_feat in ['mmf', 'pgnn', 'mmf_pgnn']:
+    for incl_feat in ["mmf", "pgnn", "mmf_pgnn"]:
         logging.info("Running benchmark %s for split %s", incl_feat, split)
 
         # 1. Load the model corresponding to this task (split)
-            # - use train_fn?
+        # - use train_fn?
         model = train_fn(
-            ids = ['whatever'],
-            structures = [None], # Not okay wrt. doc of the function
-            targets = [0.0],
-            name_target = ['whatever'],
-            path_model = f"training/{split}/{incl_feat}/models/model_ensemble_modnet.pkl",
+            ids=["whatever"],
+            structures=[None],  # Not okay wrt. doc of the function
+            targets=[0.0],
+            name_target=["whatever"],
+            path_model=f"training/{split}/{incl_feat}/models/model_ensemble_modnet.pkl",
         )
 
         # TODO: maybe need to adapt run_benchmark for incl_feat tag somewhere?
