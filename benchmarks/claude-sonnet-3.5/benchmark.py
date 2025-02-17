@@ -201,28 +201,30 @@ for input_structure_repr in LLMInputStructureRepresentation:
     if input_structure_repr is LLMInputStructureRepresentation.robocrystallographer:
         continue
 
-    for split in SHG_BENCHMARK_SPLITS[:1]:
-        # Use a different system prompt per split to avoid data leakage
+    for in_context_learning in [True, False]:
 
-        model_card = ModelCard(
-            input_structure_repr=input_structure_repr, in_context_learning=True
-        )
+        for split in SHG_BENCHMARK_SPLITS:
+            # Use a different system prompt per split to avoid data leakage
 
-        logging.info("Running benchmark %s for split %s", model_card.tags, split)
-        try:
-            run_benchmark(
-                model=model_card,
-                predict_fn=partial(predict_fn, task_instruction=task_instruction),
-                train_fn=partial(
-                    train_fn,
-                    subset=200 if model_card.in_context_learning else None,
-                    model_card=model_card,
-                ),
-                task=split,
-                predict_individually=True,
+            model_card = ModelCard(
+                input_structure_repr=input_structure_repr, in_context_learning=in_context_learning
             )
-        except NotImplementedError:
-            logging.error(
-                "NotImplementedError for split %s, repr %s", split, input_structure_repr
-            )
-            continue
+
+            logging.info("Running benchmark %s for split %s", model_card.tags, split)
+            try:
+                run_benchmark(
+                    model=model_card,
+                    predict_fn=partial(predict_fn, task_instruction=task_instruction),
+                    train_fn=partial(
+                        train_fn,
+                        subset=200 if model_card.in_context_learning else None,
+                        model_card=model_card,
+                    ),
+                    task=split,
+                    predict_individually=True,
+                )
+            except NotImplementedError:
+                logging.error(
+                    "NotImplementedError for split %s, repr %s", split, input_structure_repr
+                )
+                continue
