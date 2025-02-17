@@ -230,7 +230,6 @@ def run_benchmark(
         predictions = df_pred[df_pred.columns[0]].to_dict()
         uncertainties = df_unc[df_unc.columns[0]].to_dict()
 
-
     # Calculate metrics
     metrics = evaluate_predictions(predictions, holdout_df, target)
     fig_parity_plot = visualize_predictions(predictions, holdout_df, target)
