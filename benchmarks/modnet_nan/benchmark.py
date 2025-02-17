@@ -7,7 +7,7 @@ import numpy as np
 logging.basicConfig(level=logging.INFO)
 
 from shg_ml_benchmarks import run_benchmark
-from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
+from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS, load_full, load_holdout
 
 from train import train_fn, get_features
 
@@ -16,6 +16,8 @@ def predict_fn(
         model,
         structures,
         ids,
+        task,
+        task_feat,
         type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
         features=None,
         n_jobs=2,
@@ -32,17 +34,33 @@ def predict_fn(
         n_jobs = n_jobs,
         path_saved = None,
         remove_dir_indiv_feat = True,
+        drop_nans=False
     )
-    # 1.b Padd the missing features by zero
-    features_needed = []
-    for vanilla in model.models:
-        features_needed.extend(vanilla.optimal_descriptors)
-    features_needed = set(features_needed)
-    for feat in features_needed:
-        if feat in df_featurized.columns:
-            continue
-        print(f"WARNING: THE FEATURE {feat} IS REQUIRED BY THE MODEL, BUT IS NOT AMONG THE FEATURES JUST OBTAINED... IT IS THUS ADDED WITH A VALUE OF NAN...")
-        df_featurized[feat] = [np.nan]*len(df_featurized)
+    # 1.c Replace the NaN values by the mean of the corresponding feature in the training dataset
+    # Load training + validation data
+    path_training_features = f"{task_feat}/features/df_featurized_final.csv.gz"
+    logging.info(f"Loading the training features at {path_training_features} to replace NaNs by the mean of the training set for relevant features.")
+    df_train = load_full()
+    df_train = df_train.drop(load_holdout(task).index, axis=0)
+    df_train_featurized = get_features(
+        ids = df_train.index.tolist(),
+        structures = [None],
+        path_saved = path_training_features,
+    )
+    cols_with_nan = df_featurized.columns[df_featurized.isnull().any()].tolist()
+    for c in cols_with_nan:
+        if c in df_train_featurized.columns.tolist():
+            for v in df_train_featurized[c]:
+                if np.isnan(v):
+                    continue
+                if int(v)!=v:
+                    df_featurized[c].fillna(df_train_featurized[c].mean(), inplace=True)
+                    break
+            else:
+                df_featurized[c].fillna(round(df_train_featurized[c].mean()), inplace=True)
+        else:
+            df_featurized = df_featurized.drop([c], axis=1)
+    logging.info("The NaNs have been replaced.")
 
     # 2. Create the MODData to predict from df_featurized
     md = MODData(
@@ -51,7 +69,7 @@ def predict_fn(
         target_names=["dKP_full_neum"],
         structure_ids=ids,
     )
-    md.df_featurized = df_featurized
+    md.df_featurized = df_featurized.filter(ids, axis=0)
     # 3. Use the predict function of the EnsembleMODNet to predict the target
     return model.predict(md, return_unc=True)
 
@@ -59,6 +77,8 @@ def predict_fn(
 for split in SHG_BENCHMARK_SPLITS:
     for incl_feat in ['mmf', 'pgnn', 'mmf_pgnn']:
         logging.info("Running benchmark %s for split %s", incl_feat, split)
+
+        task_feat = "training/" + split + "/" + incl_feat
 
         # 1. Load the model corresponding to this task (split)
             # - use train_fn?
@@ -78,10 +98,10 @@ for split in SHG_BENCHMARK_SPLITS:
             type_features.extend(["pgnn_mm", "pgnn_ofm", "pgnn_mvl32"])
         run_benchmark(
             model=model,
-            predict_fn=partial(predict_fn, type_features=type_features),
+            predict_fn=partial(predict_fn, type_features=type_features, task=split, task_feat=task_feat),
             task=split,
             train_fn=None,
-            model_label="modnet",
+            model_label="modnet_nan",
             model_tags=incl_feat,
             predict_individually=False,
         )

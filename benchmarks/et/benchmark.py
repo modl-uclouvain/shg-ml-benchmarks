@@ -1,12 +1,12 @@
 "Contains functions to predict a given holdout set."
 
-import logging
 import pandas as pd
 from functools import partial
 from pathlib import Path
 import numpy as np
 from sklearn.ensemble import ExtraTreesRegressor
 
+import logging
 logging.basicConfig(level=logging.INFO)
 
 from shg_ml_benchmarks import run_benchmark

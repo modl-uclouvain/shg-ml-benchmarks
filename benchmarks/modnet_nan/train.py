@@ -7,6 +7,8 @@
 #       - include possible prediction of other properties such as n and treat it as a feature?
 # V train and save the model in a given location 
 
+import logging
+logging.basicConfig(level=logging.INFO)
 from copy import deepcopy
 from os import walk
 from modnet.featurizers.presets.matminer_2024_fast import Matminer2024FastFeaturizer
