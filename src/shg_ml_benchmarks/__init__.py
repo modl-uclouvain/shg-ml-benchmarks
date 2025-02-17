@@ -76,12 +76,12 @@ def evaluate_predictions(
 
 def run_benchmark(
     model: Any,
-    predict_fn: Callable[[Any, Structure], float | np.ndarray],
+    predict_fn: Callable,
     train_fn: Callable | None = None,
     task: str = "random_250",
     target: str = "dKP_full_neum",
     write_results: bool = True,
-    predict_individually=True,
+    predict_individually: bool = True,
 ) -> dict | None:
     """Run benchmark using provided training and prediction functions.
 
