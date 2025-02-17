@@ -5,13 +5,13 @@ from functools import partial
 logging.basicConfig(level=logging.INFO)
 
 from shg_ml_benchmarks import run_benchmark
-from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
 from shg_ml_benchmarks.llm_utils import (
     LLMInputStructureRepresentation,
     ModelCard,
-    llm_train_fn,
     llm_predict_fn,
+    llm_train_fn,
 )
+from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
 
 system_prompt: str | None = None
 
@@ -31,7 +31,7 @@ for input_structure_repr in LLMInputStructureRepresentation:
     if input_structure_repr is LLMInputStructureRepresentation.robocrystallographer:
         continue
 
-    for in_context_learning in [True]:  #, False]:
+    for in_context_learning in [True]:  # , False]:
         for split in SHG_BENCHMARK_SPLITS:
             # Use a different system prompt per split to avoid data leakage
 
