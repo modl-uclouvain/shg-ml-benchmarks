@@ -1,0 +1,1138 @@
+2025-02-13 11:47:12,167 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:47:12,203 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:47:12,203 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:47:12,216 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c558f8f10>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c5ac5e050>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c5ac5fe10>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:47:12,554 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:47:12,554 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:47:12,989 - modnet - INFO - Data has successfully been featurized!
+2025-02-13 11:47:14,651 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:47:14,688 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:47:14,689 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:47:14,694 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c50191ed0>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c50171790>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c50170810>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:47:15,099 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:47:15,100 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:47:15,568 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:48:59,333 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:48:59,370 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:48:59,371 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:48:59,376 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c507a8c90>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c3706dfd0>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c3706e350>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:48:59,973 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:48:59,973 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:49:00,630 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:49:50,621 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:49:50,659 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:49:50,660 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:49:50,665 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c4864c310>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c5a2c8110>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c5a2c8e10>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:49:51,316 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:49:51,317 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:49:51,978 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:50:43,371 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:50:43,408 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:50:43,410 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:50:43,417 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c50484f50>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c35477390>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c3daf1990>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:50:44,484 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:50:44,485 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:50:45,772 - modnet - INFO - Data has successfully been featurized!
+2025-02-13 11:50:47,486 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:50:47,523 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:50:47,525 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:50:47,532 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c50096250>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c56b6ea90>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c56b6ed50>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:50:48,586 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:50:48,587 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:50:49,970 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:55:19,115 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:55:19,152 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:55:19,154 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:55:19,161 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c50469b90>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c51ffc610>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c51ffde90>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:55:20,423 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:55:20,424 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:55:21,795 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:56:41,976 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:56:42,014 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:56:42,016 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:56:42,023 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c56cb2050>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c354c2950>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c354c2110>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:56:43,136 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:56:43,137 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:56:44,517 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:58:07,364 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:58:07,401 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:58:07,402 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:58:07,407 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c51f84b90>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c50249f50>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c5024ae50>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:58:08,084 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:58:08,084 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:58:08,782 - modnet - INFO - Data has successfully been featurized!
+2025-02-13 11:58:10,377 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:58:10,417 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:58:10,418 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:58:10,422 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c4a9e21d0>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c2d047a10>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c2d047790>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:58:11,096 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:58:11,096 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:58:11,800 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 11:59:57,941 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 11:59:57,980 - modnet - INFO - Computing features, this can take time...
+2025-02-13 11:59:57,981 - modnet - INFO - Applying composition featurizers...
+2025-02-13 11:59:57,986 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c3fbff250>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c582d1090>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c582d1010>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 11:59:58,703 - modnet - INFO - Applying structure featurizers...
+2025-02-13 11:59:58,703 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 11:59:59,404 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 12:00:49,997 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 12:00:50,034 - modnet - INFO - Computing features, this can take time...
+2025-02-13 12:00:50,035 - modnet - INFO - Applying composition featurizers...
+2025-02-13 12:00:50,041 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c5a324750>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c4859fb90>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c4859fe10>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 12:00:50,735 - modnet - INFO - Applying structure featurizers...
+2025-02-13 12:00:50,736 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 12:00:51,413 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 12:01:44,935 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 12:01:44,971 - modnet - INFO - Computing features, this can take time...
+2025-02-13 12:01:44,973 - modnet - INFO - Applying composition featurizers...
+2025-02-13 12:01:44,980 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c57fbbd50>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c3cb55b50>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c49739290>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 12:01:46,143 - modnet - INFO - Applying structure featurizers...
+2025-02-13 12:01:46,143 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 12:01:47,458 - modnet - INFO - Data has successfully been featurized!
+2025-02-13 12:01:49,315 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 12:01:49,352 - modnet - INFO - Computing features, this can take time...
+2025-02-13 12:01:49,354 - modnet - INFO - Applying composition featurizers...
+2025-02-13 12:01:49,361 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c3d92c0d0>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c51844410>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c51847910>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 12:01:50,505 - modnet - INFO - Applying structure featurizers...
+2025-02-13 12:01:50,506 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 12:01:51,970 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 12:04:43,625 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 12:04:43,664 - modnet - INFO - Computing features, this can take time...
+2025-02-13 12:04:43,666 - modnet - INFO - Applying composition featurizers...
+2025-02-13 12:04:43,674 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c2d1c2f90>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c5b84a650>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c3fbbd210>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 12:04:45,120 - modnet - INFO - Applying structure featurizers...
+2025-02-13 12:04:45,121 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 12:04:46,873 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+2025-02-13 12:06:12,642 - modnet - INFO - Loaded Matminer2023Featurizer featurizer.
+2025-02-13 12:06:12,680 - modnet - INFO - Computing features, this can take time...
+2025-02-13 12:06:12,682 - modnet - INFO - Applying composition featurizers...
+2025-02-13 12:06:12,689 - modnet - INFO - Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c36bbf250>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c35987dd0>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c35986a90>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+2025-02-13 12:06:14,235 - modnet - INFO - Applying structure featurizers...
+2025-02-13 12:06:14,235 - modnet - INFO - Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+2025-02-13 12:06:16,035 - modnet - INFO - Data has successfully been featurized!
+Total params: 681702 (2.60 MB)
+Following invalid structures: [].
+Total params: 644652 (2.46 MB)
+Following invalid structures: [].
+Features calculated for model Efermi_MP_2019.
+Features calculated for model Bandgap_MP_2018.
+Features calculated for model logK_MP_2019.
+Features calculated for model logG_MP_2019.
+�    | 144/250 [00:00<00:00, 216.41it/s]MultipleFeaturizer:  66%|██████▋   | 166/250 [00:00<00:00, 212.48it/s]MultipleFeaturizer:  75%|███████▌  | 188/250 [00:00<00:00, 189.95it/s]MultipleFeaturizer:  96%|█████████▌| 240/250 [00:01<00:00, 228.70it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 229.09it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (250, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (250, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (250, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:root:mvl32 features shape: (250, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/random_250/mmf_pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/random_250/mmf_pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c56cb2050>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c354c2950>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c354c2110>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  12%|█▏        | 30/250 [00:00<00:01, 176.61it/s]MultipleFeaturizer:  28%|██▊       | 70/250 [00:00<00:00, 214.63it/s]MultipleFeaturizer:  44%|████▍     | 110/250 [00:00<00:00, 231.00it/s]MultipleFeaturizer:  60%|██████    | 150/250 [00:00<00:00, 255.40it/s]MultipleFeaturizer:  72%|███████▏  | 180/250 [00:00<00:00, 257.13it/s]MultipleFeaturizer:  84%|████████▍ | 210/250 [00:00<00:00, 255.90it/s]MultipleFeaturizer:  96%|█████████▌| 240/250 [00:00<00:00, 249.78it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 243.60it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  20%|██        | 50/250 [00:00<00:00, 309.56it/s]MultipleFeaturizer:  36%|███▌      | 90/250 [00:00<00:00, 218.28it/s]MultipleFeaturizer:  48%|████▊     | 120/250 [00:00<00:00, 231.64it/s]MultipleFeaturizer:  58%|█████▊    | 145/250 [00:00<00:00, 218.10it/s]MultipleFeaturizer:  68%|██████▊   | 170/250 [00:00<00:00, 199.31it/s]MultipleFeaturizer:  76%|███████▋  | 191/250 [00:00<00:00, 199.29it/s]MultipleFeaturizer:  92%|█████████▏| 230/250 [00:00<00:00, 248.81it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 229.37it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (250, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (250, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (250, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:root:mvl32 features shape: (250, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/random_250/mmf_pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/random_250/mmf_pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/random_250/mmf_pgnn_results.json.
+INFO:root:Running benchmark mmf for split distribution_125
+INFO:root:The model already exists at training/distribution_125/mmf/models/model_et_An.pkl.
+INFO:root:Loading the model...
+INFO:root:ExtraTreesRegressor model loaded.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c51f84b90>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c50249f50>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c5024ae50>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  24%|██▍       | 30/125 [00:00<00:00, 194.15it/s]MultipleFeaturizer:  56%|█████▌    | 70/125 [00:00<00:00, 234.44it/s]MultipleFeaturizer:  80%|████████  | 100/125 [00:00<00:00, 231.46it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 238.32it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  40%|████      | 50/125 [00:00<00:00, 291.57it/s]MultipleFeaturizer:  64%|██████▍   | 80/125 [00:00<00:00, 284.31it/s]MultipleFeaturizer:  96%|█████████▌| 120/125 [00:00<00:00, 312.06it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 316.80it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (125, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Loading the training features at training/distribution_125/mmf/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_125/mmf/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c4a9e21d0>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c2d047a10>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c2d047790>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  24%|██▍       | 30/125 [00:00<00:00, 195.26it/s]MultipleFeaturizer:  56%|█████▌    | 70/125 [00:00<00:00, 233.17it/s]MultipleFeaturizer:  80%|████████  | 100/125 [00:00<00:00, 237.46it/s]MultipleFeaturizer:  99%|█████████▉| 124/125 [00:00<00:00, 237.90it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 235.02it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  40%|████      | 50/125 [00:00<00:00, 292.40it/s]MultipleFeaturizer:  64%|██████▍   | 80/125 [00:00<00:00, 273.54it/s]MultipleFeaturizer:  96%|█████████▌| 120/125 [00:00<00:00, 317.09it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 318.26it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (125, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Loading the training features at training/distribution_125/mmf/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_125/mmf/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/distribution_125/mmf_results.json.
+INFO:root:Running benchmark pgnn for split distribution_125
+INFO:root:The model already exists at training/distribution_125/pgnn/models/model_et_An.pkl.
+INFO:root:Loading the model...
+INFO:root:ExtraTreesRegressor model loaded.
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (125, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (125, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:root:mvl32 features shape: (125, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_125/pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_125/pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (125, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (125, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:root:mvl32 features shape: (125, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_125/pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_125/pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/distribution_125/pgnn_results.json.
+INFO:root:Running benchmark mmf_pgnn for split distribution_125
+INFO:root:The model already exists at training/distribution_125/mmf_pgnn/models/model_et_An.pkl.
+INFO:root:Loading the model...
+INFO:root:ExtraTreesRegressor model loaded.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c3fbff250>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c582d1090>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c582d1010>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  24%|██▍       | 30/125 [00:00<00:00, 176.94it/s]MultipleFeaturizer:  40%|████      | 50/125 [00:00<00:00, 182.22it/s]MultipleFeaturizer:  72%|███████▏  | 90/125 [00:00<00:00, 190.69it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 218.55it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  40%|████      | 50/125 [00:00<00:00, 279.10it/s]MultipleFeaturizer:  62%|██████▏   | 78/125 [00:00<00:00, 273.57it/s]MultipleFeaturizer:  96%|█████████▌| 120/125 [00:00<00:00, 315.88it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 315.69it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (125, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (125, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (125, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:root:mvl32 features shape: (125, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_125/mmf_pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_125/mmf_pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c5a324750>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c4859fb90>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c4859fe10>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  24%|██▍       | 30/125 [00:00<00:00, 176.02it/s]MultipleFeaturizer:  56%|█████▌    | 70/125 [00:00<00:00, 217.17it/s]MultipleFeaturizer:  80%|████████  | 100/125 [00:00<00:00, 218.98it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 223.82it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/125 [00:00<?, ?it/s]MultipleFeaturizer:  40%|████      | 50/125 [00:00<00:00, 274.41it/s]MultipleFeaturizer:  62%|██████▏   | 78/125 [00:00<00:00, 273.65it/s]MultipleFeaturizer:  96%|█████████▌| 120/125 [00:00<00:00, 313.42it/s]MultipleFeaturizer: 100%|██████████| 125/125 [00:00<00:00, 313.32it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (125, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (125, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (125, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:root:mvl32 features shape: (125, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_125/mmf_pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_125/mmf_pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/distribution_125/mmf_pgnn_results.json.
+INFO:root:Running benchmark mmf for split distribution_250
+INFO:root:The model already exists at training/distribution_250/mmf/models/model_et_An.pkl.
+INFO:root:Loading the model...
+INFO:root:ExtraTreesRegressor model loaded.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c57fbbd50>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c3cb55b50>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c49739290>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  12%|█▏        | 30/250 [00:00<00:01, 166.75it/s]MultipleFeaturizer:  28%|██▊       | 70/250 [00:00<00:00, 209.95it/s]MultipleFeaturizer:  44%|████▍     | 110/250 [00:00<00:00, 243.44it/s]MultipleFeaturizer:  56%|█████▌    | 140/250 [00:00<00:00, 245.83it/s]MultipleFeaturizer:  68%|██████▊   | 170/250 [00:00<00:00, 232.49it/s]MultipleFeaturizer:  80%|████████  | 200/250 [00:00<00:00, 233.35it/s]MultipleFeaturizer:  92%|█████████▏| 230/250 [00:00<00:00, 239.84it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 234.07it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  20%|██        | 50/250 [00:00<00:00, 322.36it/s]MultipleFeaturizer:  33%|███▎      | 83/250 [00:00<00:00, 309.18it/s]MultipleFeaturizer:  46%|████▌     | 114/250 [00:00<00:00, 243.62it/s]MultipleFeaturizer:  56%|█████▌    | 140/250 [00:00<00:00, 193.86it/s]MultipleFeaturizer:  64%|██████▍   | 161/250 [00:00<00:00, 189.17it/s]MultipleFeaturizer:  80%|████████  | 200/250 [00:00<00:00, 240.54it/s]MultipleFeaturizer:  91%|█████████ | 227/250 [00:00<00:00, 247.44it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 237.81it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (250, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Loading the training features at training/distribution_250/mmf/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_250/mmf/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c3d92c0d0>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c51844410>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c51847910>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  12%|█▏        | 30/250 [00:00<00:01, 184.58it/s]MultipleFeaturizer:  28%|██▊       | 70/250 [00:00<00:00, 230.09it/s]MultipleFeaturizer:  38%|███▊      | 94/250 [00:00<00:00, 225.67it/s]MultipleFeaturizer:  52%|█████▏    | 130/250 [00:00<00:00, 231.20it/s]MultipleFeaturizer:  64%|██████▍   | 160/250 [00:00<00:00, 240.71it/s]MultipleFeaturizer:  76%|███████▌  | 190/250 [00:00<00:00, 235.78it/s]MultipleFeaturizer:  88%|████████▊ | 220/250 [00:00<00:00, 244.81it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 240.25it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 234.75it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  20%|██        | 50/250 [00:00<00:00, 297.36it/s]MultipleFeaturizer:  32%|███▏      | 80/250 [00:00<00:00, 271.01it/s]MultipleFeaturizer:  43%|████▎     | 107/250 [00:00<00:00, 208.38it/s]MultipleFeaturizer:  52%|█████▏    | 130/250 [00:00<00:00, 195.26it/s]MultipleFeaturizer:  60%|██████    | 150/250 [00:00<00:00, 186.78it/s]MultipleFeaturizer:  68%|██████▊   | 170/250 [00:00<00:00, 185.11it/s]MultipleFeaturizer:  76%|███████▌  | 190/250 [00:00<00:00, 186.10it/s]MultipleFeaturizer:  88%|████████▊ | 220/250 [00:01<00:00, 209.14it/s]MultipleFeaturizer:  96%|█████████▋| 241/250 [00:01<00:00, 190.51it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 209.52it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (250, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Loading the training features at training/distribution_250/mmf/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_250/mmf/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/distribution_250/mmf_results.json.
+INFO:root:Running benchmark pgnn for split distribution_250
+INFO:root:The model already exists at training/distribution_250/pgnn/models/model_et_An.pkl.
+INFO:root:Loading the model...
+INFO:root:ExtraTreesRegressor model loaded.
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (250, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (250, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:root:mvl32 features shape: (250, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_250/pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_250/pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (250, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (250, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:root:mvl32 features shape: (250, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_250/pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_250/pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/distribution_250/pgnn_results.json.
+INFO:root:Running benchmark mmf_pgnn for split distribution_250
+INFO:root:The model already exists at training/distribution_250/mmf_pgnn/models/model_et_An.pkl.
+INFO:root:Loading the model...
+INFO:root:ExtraTreesRegressor model loaded.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c2d1c2f90>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c5b84a650>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c3fbbd210>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  12%|█▏        | 30/250 [00:00<00:01, 129.73it/s]MultipleFeaturizer:  24%|██▍       | 60/250 [00:00<00:01, 184.86it/s]MultipleFeaturizer:  36%|███▌      | 90/250 [00:00<00:00, 169.28it/s]MultipleFeaturizer:  44%|████▍     | 110/250 [00:00<00:00, 169.26it/s]MultipleFeaturizer:  56%|█████▌    | 140/250 [00:00<00:00, 204.16it/s]MultipleFeaturizer:  65%|██████▌   | 163/250 [00:00<00:00, 210.32it/s]MultipleFeaturizer:  74%|███████▍  | 186/250 [00:00<00:00, 214.43it/s]MultipleFeaturizer:  84%|████████▎ | 209/250 [00:01<00:00, 216.60it/s]MultipleFeaturizer:  93%|█████████▎| 232/250 [00:01<00:00, 175.21it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 187.56it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  20%|██        | 50/250 [00:00<00:00, 232.42it/s]MultipleFeaturizer:  32%|███▏      | 80/250 [00:00<00:00, 236.34it/s]MultipleFeaturizer:  42%|████▏     | 104/250 [00:00<00:00, 186.40it/s]MultipleFeaturizer:  49%|████▉     | 123/250 [00:00<00:00, 180.49it/s]MultipleFeaturizer:  57%|█████▋    | 142/250 [00:00<00:00, 135.49it/s]MultipleFeaturizer:  64%|██████▍   | 160/250 [00:00<00:00, 134.37it/s]MultipleFeaturizer:  72%|███████▏  | 180/250 [00:01<00:00, 140.80it/s]MultipleFeaturizer:  88%|████████▊ | 220/250 [00:01<00:00, 187.98it/s]MultipleFeaturizer:  96%|█████████▌| 240/250 [00:01<00:00, 177.83it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 179.89it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (250, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (250, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (250, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:root:mvl32 features shape: (250, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_250/mmf_pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_250/mmf_pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:Considering the 'mm_fast' features...
+INFO:root:Featurizing with Matminer2024FastFeaturizer...
+INFO:modnet:Loaded Matminer2023Featurizer featurizer.
+INFO:modnet:Computing features, this can take time...
+INFO:modnet:Applying composition featurizers...
+INFO:modnet:Applying featurizers (BandCenter(), ElementFraction(), ElementProperty(data_source=<matminer.utils.data.MagpieData object at 0x787c36bbf250>,
+                features=['Number', 'MendeleevNumber', 'AtomicWeight',
+                          'MeltingT', 'Column', 'Row', 'CovalentRadius',
+                          'Electronegativity', 'NsValence', 'NpValence',
+                          'NdValence', 'NfValence', 'NValence', 'NsUnfilled',
+                          'NpUnfilled', 'NdUnfilled', 'NfUnfilled', 'NUnfilled',
+                          'GSvolume_pa', 'GSbandgap', 'GSmagmom',
+                          'SpaceGroupNumber', 'Polarizability'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.PymatgenData object at 0x787c35987dd0>,
+                features=['block', 'mendeleev_no', 'electrical_resistivity',
+                          'velocity_of_sound', 'thermal_conductivity',
+                          'bulk_modulus',
+                          'coefficient_of_linear_thermal_expansion'],
+                stats=['mean', 'avg_dev']), ElementProperty(data_source=<matminer.utils.data.DemlData object at 0x787c35986a90>,
+                features=['atom_radius', 'molar_vol', 'heat_fusion',
+                          'boiling_point', 'heat_cap', 'first_ioniz',
+                          'electric_pol', 'GGAU_Etot', 'mus_fere',
+                          'FERE correction'],
+                stats=['mean', 'avg_dev']), Stoichiometry(p_list=[2, 3, 5, 7, 10]), TMetalFraction(), ValenceOrbital(props=['frac'])) to column 'composition'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  12%|█▏        | 30/250 [00:00<00:01, 127.43it/s]MultipleFeaturizer:  20%|██        | 50/250 [00:00<00:01, 143.29it/s]MultipleFeaturizer:  28%|██▊       | 70/250 [00:00<00:01, 161.13it/s]MultipleFeaturizer:  36%|███▌      | 90/250 [00:00<00:00, 165.65it/s]MultipleFeaturizer:  44%|████▍     | 110/250 [00:00<00:00, 174.69it/s]MultipleFeaturizer:  52%|█████▏    | 130/250 [00:00<00:00, 173.87it/s]MultipleFeaturizer:  68%|██████▊   | 170/250 [00:01<00:00, 180.70it/s]MultipleFeaturizer:  80%|████████  | 200/250 [00:01<00:00, 192.43it/s]MultipleFeaturizer:  88%|████████▊ | 220/250 [00:01<00:00, 186.49it/s]MultipleFeaturizer:  96%|█████████▌| 240/250 [00:01<00:00, 181.73it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 176.11it/s]
+INFO:modnet:Applying structure featurizers...
+INFO:modnet:Applying featurizers (DensityFeatures(), EwaldEnergy(), GlobalSymmetryFeatures(), StructuralComplexity()) to column 'structure'.
+MultipleFeaturizer:   0%|          | 0/250 [00:00<?, ?it/s]MultipleFeaturizer:  20%|██        | 50/250 [00:00<00:00, 231.80it/s]MultipleFeaturizer:  32%|███▏      | 80/250 [00:00<00:00, 255.52it/s]MultipleFeaturizer:  43%|████▎     | 107/250 [00:00<00:00, 158.79it/s]MultipleFeaturizer:  52%|█████▏    | 130/250 [00:00<00:00, 158.43it/s]MultipleFeaturizer:  60%|██████    | 150/250 [00:00<00:00, 155.36it/s]MultipleFeaturizer:  68%|██████▊   | 170/250 [00:01<00:00, 156.09it/s]MultipleFeaturizer:  76%|███████▌  | 190/250 [00:01<00:00, 146.89it/s]MultipleFeaturizer:  88%|████████▊ | 220/250 [00:01<00:00, 161.95it/s]MultipleFeaturizer:  96%|█████████▌| 240/250 [00:01<00:00, 156.43it/s]MultipleFeaturizer: 100%|██████████| 250/250 [00:01<00:00, 171.42it/s]
+INFO:modnet:Data has successfully been featurized!
+INFO:root:Matminer2024FastFeaturizer features shape: (250, 199)
+INFO:root:Matminer2024FastFeaturizer features have been saved at tmp_df_feat/df_mm_fast.csv.gz
+INFO:root:Considering the 'pgnn_mm' features...
+INFO:root:Featurizing with pGNN l_MM_v1...
+INFO:root:l_MM_v1 features shape: (250, 758)
+INFO:root:pGNN l_MM_v1 features have been saved at tmp_df_feat/df_pgnn_mm.csv.gz
+INFO:root:Considering the 'pgnn_ofm' features...
+INFO:root:Featurizing with pGNN l_OFM_v1...
+INFO:root:l_OFM_v1 features shape: (250, 188)
+INFO:root:pGNN l_OFM_v1 features have been saved at tmp_df_feat/df_pgnn_ofm.csv.gz
+INFO:root:Considering the 'pgnn_mvl32' features...
+INFO:root:Featurizing with pGNN mvl32...
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:megnet.utils.models:Package-level mvl_models not included, trying temperary mvl_models downloads..
+INFO:megnet.utils.models:Model found in local mvl_models path
+WARNING:megnet.data.graph:Isolated atoms found in the structure. The cutoff radius might be small
+INFO:root:mvl32 features shape: (250, 128)
+INFO:root:pGNN mvl32 features have been saved at tmp_df_feat/df_pgnn_mvl32.csv.gz
+INFO:root:Loading the training features at training/distribution_250/mmf_pgnn/features/df_featurized_final.csv.gz to replace NaNs by the mean of the training set for relevant features.
+INFO:root:Loading the final features at 'training/distribution_250/mmf_pgnn/features/df_featurized_final.csv.gz'...
+INFO:root:Refeaturizing is not necessary.
+INFO:root:The NaNs have been replaced.
+INFO:root:Predicting the target.
+INFO:root:The predictions have been computed.
+INFO:root:The results have been saved at /home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/et/tasks_An/distribution_250/mmf_pgnn_results.json.
