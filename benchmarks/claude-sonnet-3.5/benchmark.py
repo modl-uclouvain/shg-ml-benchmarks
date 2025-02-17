@@ -1,6 +1,6 @@
 import logging
 import os
-import time
+from dataclasses import dataclass
 from enum import Enum
 from functools import partial
 
@@ -27,6 +27,23 @@ class LLMInputStructureRepresentation(str, Enum):
     composition = "composition"
     composition_spacegroup = "composition_spacegroup"
     robocrystallographer = "robocrystallographer"
+
+
+@dataclass
+class ModelCard:
+    label: str = "claude-sonnet-3.5"
+    in_context_learning: bool = False
+    input_structure_repr: LLMInputStructureRepresentation = (
+        LLMInputStructureRepresentation.composition
+    )
+
+    @property
+    def tags(self):
+        return (
+            f"{self.label}-{self.input_structure_repr.value}" + "-icl"
+            if self.in_context_learning
+            else "-no-icl"
+        )
 
 
 def generate_prompt(instruction=None, input=None):
@@ -56,7 +73,7 @@ def process_response(response):
     return response
 
 
-def evaluate(instruction, input=None):
+def evaluate(instruction, input=None, model=None):
     """Evaluation method from Darwin repo."""
     prompt = generate_prompt(instruction, input)
     logging.info("Prompt: %s", prompt)
@@ -68,11 +85,15 @@ def evaluate(instruction, input=None):
     return response
 
 
-def predict_fn(model, structure, task_instruction: str):
+def predict_fn(model, structures, task_instruction: str | None):
     """A prediction function for the shg-ml-benchmarks that receives a
     pymatgen structure, maps it into the chosen string representation,
     then passes it to the LLM and returns the processed prediction.
     """
+    if isinstance(structures, list):
+        raise NotImplementedError("Batch prediction not yet implemented.")
+    structure = structures
+
     if model.input_structure_repr == LLMInputStructureRepresentation.composition:
         input_structure = structure.composition.reduced_formula
     elif (
@@ -105,7 +126,7 @@ def predict_fn(model, structure, task_instruction: str):
             f"Input structure representation {model.input_structure_repr} not yet implemented."
         )
 
-    response = evaluate(task_instruction, input=input_structure)
+    response = evaluate(task_instruction, input=input_structure, model=model)
     try:
         response = float(response)
         logging.info("Input: %s - Response: %s", input_structure, response)
@@ -118,6 +139,53 @@ def predict_fn(model, structure, task_instruction: str):
     return response
 
 
+def train_fn(
+    train_df, target, subset: int | None = None, model_card: ModelCard | None = None
+):
+    """Creates a system prompt with some subset of the training data and returns a model."""
+    system_prompt = f"""
+Given a description of a crystal structure ({input_structure_repr.value.replace("_", " ")}), predict its second-harmonic generation (SHG) coefficient in the Kurtz-Perry form in pm/V.
+All the structures you see will be non-centrosymmetric.
+In our dataset, the SHG coefficients are computed with DFPT at the PBE level.
+
+Most structures exhibit low SHG coefficients (below 10 pm/V), with exemplary materials ranging up to 170 pm/V.
+Simply respond with the value which will be read as a raw float, do not provide any explanation."""
+
+    if subset is not None:
+        # Choose a subset of experimental structures (i.e., MP entries with ICSD matches)
+        reasonable_subset = train_df[
+            (train_df["src_theoretical"] == False)  # noqa
+            & (train_df["src_bandgap"] < 4)
+            & (train_df["src_bandgap"] > 0.05)
+            & (train_df["src_ehull"] < 0.001)
+            & (train_df["n"] > 1)
+        ].sort_values("FOM")[
+            ["formula_reduced", "spg_symbol", "dKP_full_neum", "src_bandgap"]
+        ]
+
+        # Add the pandas dataframe display of some columns
+        system_prompt += (
+            f"\n\nBad examples include: \n\n{str(reasonable_subset.head(subset))}"
+        )
+        system_prompt += (
+            f"\n\nGood examples include: \n\n{str(reasonable_subset.tail(subset))}"
+        )
+
+    model = Agent(
+        "anthropic:claude-3-5-sonnet-latest",
+        system_prompt=system_prompt,
+        deps_type=float,
+    )
+    if model_card:
+        model.label = model_card.label
+        model.tags = model_card.tags
+        model.input_structure_repr = model_card.input_structure_repr
+        model.in_context_learning = model_card.in_context_learning
+        model.meta = {"system_prompt": system_prompt, "subset": subset}
+
+    return model
+
+
 system_prompt: str | None = None
 
 input_structure_repr: LLMInputStructureRepresentation = (
@@ -128,34 +196,30 @@ if os.getenv("ANTHROPIC_API_KEY") is None:
     raise SystemExit("ANTHROPIC_API_KEY not set in environment variables.")
 
 for input_structure_repr in LLMInputStructureRepresentation:
-
-    system_prompt: str = f"""
-        Given a description of a crystal structure ({input_structure_repr.value.replace('_', ' ')}),
-        predict its second-harmonic generation (SHG) coefficient in the Kurtz-Perry form in pm/V.
-        As you know, most structures exhibit low SHG coefficients (below 10 pm/V), with exemplary materials ranging
-        up to 160 pm/V. Simply respond with the value which will be read as a raw float. Do not provide any explanation.
-    """
-
     task_instruction: str | None = None
 
-    model = Agent("anthropic:claude-3-5-sonnet-latest", system_prompt=system_prompt, deps_type=float)
+    if input_structure_repr is LLMInputStructureRepresentation.robocrystallographer:
+        continue
 
     for split in SHG_BENCHMARK_SPLITS[:1]:
-        model.input_structure_repr = input_structure_repr
-        model.in_context_learning = False
-        model.label = "claude-sonnet-3.5"
-        model.tags = f"{model.label}-{input_structure_repr.value}"
-        if model.in_context_learning:
-            model.tags += "-icl"
-        else:
-            model.tags += "-no-icl"
-        logging.info("Running benchmark %s for split %s", model.tags, split)
+        # Use a different system prompt per split to avoid data leakage
+
+        model_card = ModelCard(
+            input_structure_repr=input_structure_repr, in_context_learning=True
+        )
+
+        logging.info("Running benchmark %s for split %s", model_card.tags, split)
         try:
             run_benchmark(
-                model=model,
+                model=model_card,
                 predict_fn=partial(predict_fn, task_instruction=task_instruction),
+                train_fn=partial(
+                    train_fn,
+                    subset=200 if model_card.in_context_learning else None,
+                    model_card=model_card,
+                ),
                 task=split,
-                train_fn=None,
+                predict_individually=True,
             )
         except NotImplementedError:
             logging.error(
