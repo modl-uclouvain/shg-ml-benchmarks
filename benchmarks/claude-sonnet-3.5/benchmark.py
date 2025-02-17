@@ -1,17 +1,17 @@
 import logging
+import os
 import time
 from enum import Enum
-import os
 from functools import partial
+
 from robocrys import StructureCondenser, StructureDescriber
 
 logging.basicConfig(level=logging.INFO)
 
+from pydantic_ai import Agent
+
 from shg_ml_benchmarks import run_benchmark
 from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
-
-from pydantic_ai import Agent
-from pydantic_ai.models.anthropic import AnthropicModel
 
 STRUCTURE_CONDENSER = StructureCondenser(
     mineral_matcher=False, use_symmetry_equivalent_sites=True
