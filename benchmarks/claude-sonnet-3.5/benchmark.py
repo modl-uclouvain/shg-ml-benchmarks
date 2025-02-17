@@ -29,15 +29,18 @@ class LLMInputStructureRepresentation(str, Enum):
     robocrystallographer = "robocrystallographer"
 
 
-def generate_prompt(instruction, input=None):
+def generate_prompt(instruction=None, input=None):
     if input:
-        return f"""The following is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request. You will be scored against a ground truth dataset for this task.
-    ### Instruction:
-    {instruction}
-    ### Input:
-    {input}
-    ### Response:"""
-    else:
+        if instruction:
+            return f"""The following is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request. You will be scored against a ground truth dataset for this task.
+        ### Instruction:
+        {instruction}
+        ### Input:
+        {input}
+        ### Response:"""
+        else:
+            return input
+
         return f"""The following is an instruction that describes a task. Write a response that appropriately completes the request.
     ### Instruction:
     {instruction}
@@ -56,9 +59,11 @@ def process_response(response):
 def evaluate(instruction, input=None):
     """Evaluation method from Darwin repo."""
     prompt = generate_prompt(instruction, input)
-    logging.debug("Prompt: %s", prompt)
-    response = model.run_sync(prompt).data
-    logging.debug("Response: %s", response)
+    logging.info("Prompt: %s", prompt)
+    result = model.run_sync(prompt)
+    response = result.data
+    logging.info("Response: %s", response)
+    logging.info("Usage: %s", result.usage())
     response = process_response(response)
     return response
 
@@ -109,7 +114,7 @@ def predict_fn(model, structure, task_instruction: str):
             "!!! Bad response for input: %s - Response: %s", input_structure, response
         )
         return 0.0
-    time.sleep(12)
+
     return response
 
 
@@ -122,12 +127,20 @@ input_structure_repr: LLMInputStructureRepresentation = (
 if os.getenv("ANTHROPIC_API_KEY") is None:
     raise SystemExit("ANTHROPIC_API_KEY not set in environment variables.")
 
-model = Agent("anthropic:claude-3-5-sonnet-latest")
-
-
 for input_structure_repr in LLMInputStructureRepresentation:
-    task_instruction: str = f"Given this description of a crystal structure ({input_structure_repr.value.replace('_', ' ')}), predict its second-harmonic generation coefficient in the Kurtz-Perry form in pm/V. Simply respond with the value which will be read as a raw float. Do not provide any explanation."
-    for split in SHG_BENCHMARK_SPLITS:
+
+    system_prompt: str = f"""
+        Given a description of a crystal structure ({input_structure_repr.value.replace('_', ' ')}),
+        predict its second-harmonic generation (SHG) coefficient in the Kurtz-Perry form in pm/V.
+        As you know, most structures exhibit low SHG coefficients (below 10 pm/V), with exemplary materials ranging
+        up to 160 pm/V. Simply respond with the value which will be read as a raw float. Do not provide any explanation.
+    """
+
+    task_instruction: str | None = None
+
+    model = Agent("anthropic:claude-3-5-sonnet-latest", system_prompt=system_prompt, deps_type=float)
+
+    for split in SHG_BENCHMARK_SPLITS[:1]:
         model.input_structure_repr = input_structure_repr
         model.in_context_learning = False
         model.label = "claude-sonnet-3.5"
