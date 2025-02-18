@@ -139,15 +139,15 @@ def run_benchmark(
         try:
             df_pred, df_unc = predict_fn(
                 model,
-                structures = [Structure.from_dict(s) for s in holdout_df["structure"]],
-                ids = holdout_df.index.tolist(),
+                structures=[Structure.from_dict(s) for s in holdout_df["structure"]],
+                ids=holdout_df.index.tolist(),
             )
             uncertainties = df_unc[df_unc.columns[0]].to_dict()
         except ValueError:
             df_pred = predict_fn(
                 model,
-                structures = [Structure.from_dict(s) for s in holdout_df["structure"]],
-                ids = holdout_df.index.tolist(),
+                structures=[Structure.from_dict(s) for s in holdout_df["structure"]],
+                ids=holdout_df.index.tolist(),
             )
             df_unc = None
         predictions = df_pred[df_pred.columns[0]].to_dict()

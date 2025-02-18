@@ -38,21 +38,31 @@ def predict_fn(
 class Object:
     pass
 
+
 model = Object()
 model.label = "matten"
 
 for hparam in ["dflt", "_gdsearch_26"]:
     for split in SHG_BENCHMARK_SPLITS:
-        if split != "distribution_125": # TODO: REMOVE ONCE THE OTHER TEST SETS HAVE BEEN RUN
+        if (
+            split != "distribution_125"
+        ):  # TODO: REMOVE ONCE THE OTHER TEST SETS HAVE BEEN RUN
             continue
 
         logging.info("Running benchmark for split %s and hparams %s", split, hparam)
 
         if hparam != "dflt":
-            path_pred = "./training/gridsearch/predict_" + split + hparam + "/df_pred_matten_holdout.json.gz"
+            path_pred = (
+                "./training/gridsearch/predict_"
+                + split
+                + hparam
+                + "/df_pred_matten_holdout.json.gz"
+            )
             model.tags = "gdsearch"
         else:
-            path_pred = "./training/predict_" + split + "/df_pred_matten_holdout.json.gz"
+            path_pred = (
+                "./training/predict_" + split + "/df_pred_matten_holdout.json.gz"
+            )
 
         run_benchmark(
             model=model,

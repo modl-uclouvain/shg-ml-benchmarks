@@ -12,7 +12,11 @@ if __name__ == "__main__":
     df = df.query("is_unique_here == True")
 
     type_set = "holdout"
-    type_sampling = os.path.basename(Path(os.getcwd())).split("predict_")[1].replace("_gdsearch_26", "")
+    type_sampling = (
+        os.path.basename(Path(os.getcwd()))
+        .split("predict_")[1]
+        .replace("_gdsearch_26", "")
+    )
     # type_sampling = type_sampling.split("_")[0]
     n_sampling = int(type_sampling.split("_")[1])
 
