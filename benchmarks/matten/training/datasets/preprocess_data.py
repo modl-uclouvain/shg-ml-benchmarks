@@ -248,3 +248,86 @@ if not Path(path_set_matten).exists():
         path=path_set_matten,
     )
 # ==============================================================================
+
+# Training+validation
+# ==============================================================================
+type_set = "training_validation"
+type_sampling = "distribution"
+n_sampling = 125
+
+list_idx = []
+for type_set_tmp in ["holdout"]:
+    list_idx_tmp = pd.read_json(
+        f"{DATA_DIR}/{type_set_tmp}_id_{type_sampling}_{n_sampling}.json"
+    )[0].tolist()
+    list_idx.extend(list_idx_tmp)
+
+path_set_matten = f"dataset_{type_set}_{type_sampling}_{n_sampling}.json"
+if not Path(path_set_matten).exists():
+    df_tmp = df.drop(list_idx, axis=0)
+    write_data(
+        [Structure.from_dict(s) for s in df_tmp["structure_rot"].tolist()],
+        [shg.from_voigt(d) for d in df_tmp["dijk_full_neum"].tolist()],
+        path=path_set_matten,
+    )
+# ==============================================================================
+type_set = "training_validation"
+type_sampling = "random"
+n_sampling = 125
+
+list_idx = []
+for type_set_tmp in ["holdout"]:
+    list_idx_tmp = pd.read_json(
+        f"{DATA_DIR}/{type_set_tmp}_id_{type_sampling}_{n_sampling}.json"
+    )[0].tolist()
+    list_idx.extend(list_idx_tmp)
+
+path_set_matten = f"dataset_{type_set}_{type_sampling}_{n_sampling}.json"
+if not Path(path_set_matten).exists():
+    df_tmp = df.drop(list_idx, axis=0)
+    write_data(
+        [Structure.from_dict(s) for s in df_tmp["structure_rot"].tolist()],
+        [shg.from_voigt(d) for d in df_tmp["dijk_full_neum"].tolist()],
+        path=path_set_matten,
+    )
+# ==============================================================================
+type_set = "training_validation"
+type_sampling = "distribution"
+n_sampling = 250
+
+list_idx = []
+for type_set_tmp in ["holdout"]:
+    list_idx_tmp = pd.read_json(
+        f"{DATA_DIR}/{type_set_tmp}_id_{type_sampling}_{n_sampling}.json"
+    )[0].tolist()
+    list_idx.extend(list_idx_tmp)
+
+path_set_matten = f"dataset_{type_set}_{type_sampling}_{n_sampling}.json"
+if not Path(path_set_matten).exists():
+    df_tmp = df.drop(list_idx, axis=0)
+    write_data(
+        [Structure.from_dict(s) for s in df_tmp["structure_rot"].tolist()],
+        [shg.from_voigt(d) for d in df_tmp["dijk_full_neum"].tolist()],
+        path=path_set_matten,
+    )
+# ==============================================================================
+type_set = "training_validation"
+type_sampling = "random"
+n_sampling = 250
+
+list_idx = []
+for type_set_tmp in ["holdout"]:
+    list_idx_tmp = pd.read_json(
+        f"{DATA_DIR}/{type_set_tmp}_id_{type_sampling}_{n_sampling}.json"
+    )[0].tolist()
+    list_idx.extend(list_idx_tmp)
+
+path_set_matten = f"dataset_{type_set}_{type_sampling}_{n_sampling}.json"
+if not Path(path_set_matten).exists():
+    df_tmp = df.drop(list_idx, axis=0)
+    write_data(
+        [Structure.from_dict(s) for s in df_tmp["structure_rot"].tolist()],
+        [shg.from_voigt(d) for d in df_tmp["dijk_full_neum"].tolist()],
+        path=path_set_matten,
+    )
+# ==============================================================================
