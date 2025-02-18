@@ -229,7 +229,7 @@ def run_benchmark(
 
     # Get predictions
     predictions: dict[str, float] = {}
-    uncertainties: dict[str, float] | None = {}
+    uncertainties: dict[str, float] = {}
     if predict_individually:
         for structure_id, entry in holdout_df.iterrows():
             try:
@@ -268,7 +268,7 @@ def run_benchmark(
 
     # Compile results
     if not uncertainties:
-        uncertainties = None
+        uncertainties = None  # type: ignore
 
     results = {
         "predictions": predictions,
