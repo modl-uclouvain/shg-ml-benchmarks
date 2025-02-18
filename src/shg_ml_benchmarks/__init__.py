@@ -82,6 +82,7 @@ def run_benchmark(
         # Check if the benchmark has already been run
         if getattr(model, "tags", None) is not None:
             results_fname = f"{model.tags}_results.json"
+            model_tags = model.tags
         elif model_tags is not None:
             results_fname = f"{model_tags}_results.json"
         else:
@@ -138,15 +139,15 @@ def run_benchmark(
         try:
             df_pred, df_unc = predict_fn(
                 model,
-                [Structure.from_dict(s) for s in holdout_df["structure"]],
-                holdout_df.index.tolist(),
+                structures = [Structure.from_dict(s) for s in holdout_df["structure"]],
+                ids = holdout_df.index.tolist(),
             )
             uncertainties = df_unc[df_unc.columns[0]].to_dict()
         except ValueError:
             df_pred = predict_fn(
                 model,
-                [Structure.from_dict(s) for s in holdout_df["structure"]],
-                holdout_df.index.tolist(),
+                structures = [Structure.from_dict(s) for s in holdout_df["structure"]],
+                ids = holdout_df.index.tolist(),
             )
             df_unc = None
         predictions = df_pred[df_pred.columns[0]].to_dict()
@@ -155,15 +156,16 @@ def run_benchmark(
     metrics = evaluate_predictions(predictions, holdout_df, target)
 
     # Compile results
-    if not uncertainties:
-        uncertainties = None  # type: ignore
+    if uncertainties != {}:
+        results = {
+            "predictions": predictions,
+            "uncertainties": uncertainties,
+            "metrics": metrics,
+        }
+    else:
+        results = {"predictions": predictions, "metrics": metrics}
 
-    results = {
-        "predictions": predictions,
-        "uncertainties": uncertainties,
-        "metrics": metrics,
-    }
-    if getattr(model, "meta", None):
+    if getattr(model, "meta", None) is not None:
         results["meta"] = model.meta
 
     if write_results:
