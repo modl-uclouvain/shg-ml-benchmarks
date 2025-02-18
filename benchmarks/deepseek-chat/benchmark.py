@@ -9,6 +9,7 @@ from robocrys import StructureCondenser, StructureDescriber
 logging.basicConfig(level=logging.INFO)
 
 from pydantic_ai import Agent
+from pydantic_ai.models.openai import OpenAIModel
 
 from shg_ml_benchmarks import run_benchmark
 from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
@@ -20,7 +21,7 @@ STRUCTURE_DESCRIBER = StructureDescriber(
     describe_components=True, describe_component_makeup=True
 )
 
-CONTEXT_WINDOW: int = 128_000
+CONTEXT_WINDOW: int = 64_000
 
 
 class LLMInputStructureRepresentation(str, Enum):
@@ -31,7 +32,7 @@ class LLMInputStructureRepresentation(str, Enum):
 
 @dataclass
 class ModelCard:
-    label: str = "claude-sonnet-3.5"
+    label: str = "deepseek-chat"
     in_context_learning: bool = False
     input_structure_repr: LLMInputStructureRepresentation = (
         LLMInputStructureRepresentation.composition
@@ -172,7 +173,11 @@ Simply respond with the value which will be read as a raw float, do not provide 
         )
 
     model = Agent(
-        "anthropic:claude-3-5-sonnet-latest",
+        OpenAIModel(
+            "deepseek:deepseek-chat",
+            base_url="https://api.deepseek.com",
+            api_key=os.getenv("DEEPSEEK_API_KEY"),
+        ),
         system_prompt=system_prompt,
         deps_type=float,
     )
@@ -192,8 +197,8 @@ input_structure_repr: LLMInputStructureRepresentation = (
     LLMInputStructureRepresentation.composition
 )
 
-if os.getenv("ANTHROPIC_API_KEY") is None:
-    raise SystemExit("ANTHROPIC_API_KEY not set in environment variables.")
+if os.getenv("DEEPSEEK_API_KEY") is None:
+    raise SystemExit("DEEPSEEK_API_KEY not set in environment variables.")
 
 for input_structure_repr in LLMInputStructureRepresentation:
     task_instruction: str | None = None
@@ -201,28 +206,32 @@ for input_structure_repr in LLMInputStructureRepresentation:
     if input_structure_repr is LLMInputStructureRepresentation.robocrystallographer:
         continue
 
-    for split in SHG_BENCHMARK_SPLITS[:1]:
-        # Use a different system prompt per split to avoid data leakage
+    for in_context_learning in [True, False]:
+        for split in SHG_BENCHMARK_SPLITS:
+            # Use a different system prompt per split to avoid data leakage
 
-        model_card = ModelCard(
-            input_structure_repr=input_structure_repr, in_context_learning=True
-        )
+            model_card = ModelCard(
+                input_structure_repr=input_structure_repr,
+                in_context_learning=in_context_learning,
+            )
 
-        logging.info("Running benchmark %s for split %s", model_card.tags, split)
-        try:
-            run_benchmark(
-                model=model_card,
-                predict_fn=partial(predict_fn, task_instruction=task_instruction),
-                train_fn=partial(
-                    train_fn,
-                    subset=200 if model_card.in_context_learning else None,
-                    model_card=model_card,
-                ),
-                task=split,
-                predict_individually=True,
-            )
-        except NotImplementedError:
-            logging.error(
-                "NotImplementedError for split %s, repr %s", split, input_structure_repr
-            )
-            continue
+            logging.info("Running benchmark %s for split %s", model_card.tags, split)
+            try:
+                run_benchmark(
+                    model=model_card,
+                    predict_fn=partial(predict_fn, task_instruction=task_instruction),
+                    train_fn=partial(
+                        train_fn,
+                        subset=200 if model_card.in_context_learning else None,
+                        model_card=model_card,
+                    ),
+                    task=split,
+                    predict_individually=True,
+                )
+            except NotImplementedError:
+                logging.error(
+                    "NotImplementedError for split %s, repr %s",
+                    split,
+                    input_structure_repr,
+                )
+                continue

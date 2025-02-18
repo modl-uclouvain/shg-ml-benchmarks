@@ -7,6 +7,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
+import plotly.io as pio
 from pymatgen.core import Structure
 from scipy.stats import spearmanr
 from sklearn.metrics import r2_score
@@ -228,8 +229,8 @@ def run_benchmark(
         model = train_fn(train_df, target=target)
 
     # Get predictions
-    predictions = {}
-    uncertainties = {}
+    predictions: dict[str, float] = {}
+    uncertainties: dict[str, float] = {}
     if predict_individually:
         for structure_id, entry in holdout_df.iterrows():
             try:
@@ -267,15 +268,15 @@ def run_benchmark(
     fig_parity_plot = visualize_predictions(predictions, holdout_df, target)
 
     # Compile results
-    if uncertainties != {}:
-        results = {
-            "predictions": predictions,
-            "uncertainties": uncertainties,
-            "metrics": metrics,
-        }
-    else:
-        results = {"predictions": predictions, "metrics": metrics}
-    if getattr(model, "meta", None) is not None:
+    if not uncertainties:
+        uncertainties = None  # type: ignore
+
+    results = {
+        "predictions": predictions,
+        "uncertainties": uncertainties,
+        "metrics": metrics,
+    }
+    if getattr(model, "meta", None):
         results["meta"] = model.meta
 
     if write_results:
@@ -289,7 +290,6 @@ def run_benchmark(
         fig_fname = "parity_plot_pred_true"
         figs_path = results_path.parent / f"{model_tags}_figures" / f"{fig_fname}"
         figs_path.parent.mkdir(parents=True, exist_ok=True)
-        import plotly.io as pio
 
         pio.kaleido.scope.mathjax = None  # To remove MathJax box in pdf
         fig_parity_plot.write_image(f"{str(figs_path)}.pdf")
