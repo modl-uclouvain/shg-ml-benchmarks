@@ -228,8 +228,8 @@ def run_benchmark(
         model = train_fn(train_df, target=target)
 
     # Get predictions
-    predictions = {}
-    uncertainties = {}
+    predictions: dict[str, float] = {}
+    uncertainties: dict[str, float] | None = {}
     if predict_individually:
         for structure_id, entry in holdout_df.iterrows():
             try:
