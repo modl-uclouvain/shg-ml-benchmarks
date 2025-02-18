@@ -1,5 +1,6 @@
 campaigns/
 
+*.ipynb_checkpoints
 *.sublime-workspace
 *.sublime-project
 *.tmlanguage.cache
