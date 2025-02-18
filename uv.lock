@@ -1158,6 +1158,7 @@ name = "shg-ml-benchmarks"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
+    { name = "plotly" },
     { name = "pymatgen" },
     { name = "scikit-learn" },
 ]
@@ -1174,6 +1175,7 @@ llm = [
 [package.metadata]
 requires-dist = [
     { name = "numpy", specifier = ">=2,<3" },
+    { name = "plotly", specifier = "~=5.24" },
     { name = "pre-commit", marker = "extra == 'dev'" },
     { name = "pydantic-ai", marker = "extra == 'llm'" },
     { name = "pymatgen", specifier = ">=2024" },
