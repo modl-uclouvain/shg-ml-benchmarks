@@ -1,5 +1,7 @@
 """This module defines functions for the analysis of the benchmark results."""
 
+import json
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -7,6 +9,27 @@ import pandas as pd
 import plotly.graph_objs as go
 from scipy.stats import spearmanr
 from sklearn.metrics import r2_score
+
+from shg_ml_benchmarks.utils import (
+    BENCHMARKS_DIR,
+    RESULTS_DIR,
+    SHG_BENCHMARK_SPLITS,
+    load_holdout,
+)
+
+
+def compute_metrics(true_values, pred_values):
+    mae = np.mean(np.abs(np.array(true_values) - np.array(pred_values)))
+    rmse = np.sqrt(np.mean((np.array(true_values) - np.array(pred_values)) ** 2))
+    spearmanrho = spearmanr(np.array(true_values), np.array(pred_values)).statistic
+    r2score = r2_score(np.array(true_values), np.array(pred_values))
+
+    return {
+        "mae": float(mae),
+        "rmse": float(rmse),
+        "spearman": float(spearmanrho),
+        "r2_score": float(r2score),
+    }
 
 
 def evaluate_predictions(
@@ -29,17 +52,81 @@ def evaluate_predictions(
         pred_values.append(pred)
 
     # Calculate metrics
-    mae = np.mean(np.abs(np.array(true_values) - np.array(pred_values)))
-    rmse = np.sqrt(np.mean((np.array(true_values) - np.array(pred_values)) ** 2))
-    spearmanrho = spearmanr(np.array(true_values), np.array(pred_values)).statistic
-    r2score = r2_score(np.array(true_values), np.array(pred_values))
+    return compute_metrics(true_values, pred_values)
 
-    return {
-        "mae": float(mae),
-        "rmse": float(rmse),
-        "spearman": float(spearmanrho),
-        "r2_score": float(r2score),
+
+def gather_results() -> dict:
+    """Loop over all benchmarks folders, all task folders and all
+    hyperparameter sets to compute consistent metrics.
+
+    Write out a JSON summary into the results folder.
+
+    """
+
+    split_results_nested: dict[str, dict] = {
+        split: {} for split in SHG_BENCHMARK_SPLITS
     }
+
+    benchmarks = BENCHMARKS_DIR.glob("*")
+
+    for b in benchmarks:
+        benchmark_results: dict[str, dict] = {}
+        if b.name.startswith("."):
+            continue
+
+        benchmark_name = b.name
+        print(benchmark_name)
+
+        task_dirs = b.glob("tasks*")
+
+        benchmark_results[b.name] = {}
+
+        for t in task_dirs:
+            if t.name == "tasks":
+                task_name = "default"
+            else:
+                task_name = t.name.split("_")[-1]
+            print("\t" + task_name)
+
+            benchmark_results[benchmark_name][task_name] = {}
+
+            for split in t.glob("*"):
+                if split.name not in SHG_BENCHMARK_SPLITS:
+                    warnings.warn(f"Found unknown split: {split.name}, skipping")
+                    continue
+                print("\t\t" + split.name)
+
+                for results in split.glob("*results.json"):
+                    if "_" in results.name:
+                        results_label = results.name.split("_")[0]
+                    else:
+                        results_label = "default"
+
+                    print("\t\t\t" + results_label)
+
+                    benchmark_results[benchmark_name][task_name][results_label] = {}
+
+                    with open(results) as f:
+                        results_data = json.load(f)
+
+                    pred_dict = results_data["predictions"]
+                    true_df = load_holdout(split.name)
+
+                    metrics = evaluate_predictions(
+                        pred_dict, true_df, target="dKP_full_neum"
+                    )
+                    benchmark_results[benchmark_name][task_name][results_label] = (
+                        metrics
+                    )
+                    split_results_nested[split.name].update(benchmark_results)
+                    print(
+                        f"\t\t\t\tMAE: {metrics['mae']:.1f} pm/V, RMSE: {metrics['rmse']:.1f} pm/V, Spearman: {metrics['spearman']:.1f}, R^2: {metrics['r2_score']:.1f}"
+                    )
+
+    with open(RESULTS_DIR / "summary.json", "w") as f:
+        json.dump(split_results_nested, f, indent=4, allow_nan=True)
+
+    return split_results_nested
 
 
 def visualize_predictions(
