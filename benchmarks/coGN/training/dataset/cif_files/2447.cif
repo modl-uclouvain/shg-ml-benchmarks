@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_NaHgPS4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.40499139
+_cell_length_b   6.40587737
+_cell_length_c   6.54609698
+_cell_angle_alpha   119.28067408
+_cell_angle_beta   119.28758694
+_cell_angle_gamma   90.01346010
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   NaHgPS4
+_chemical_formula_sum   'Na1 Hg1 P1 S4'
+_cell_volume   193.93338769
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.50008539  0.50014303  0.00015411  1
+  Hg  Hg1  1  0.00000235  0.99997498  0.99998479  1
+  P  P2  1  0.74996902  0.24996003  0.49996930  1
+  S  S3  1  0.04419764  0.14798882  0.71347447  1
+  S  S4  1  0.43443448  0.95579398  0.28661335  1
+  S  S5  1  0.85194705  0.33058764  0.28637965  1
+  S  S6  1  0.66924506  0.56543950  0.71337832  1

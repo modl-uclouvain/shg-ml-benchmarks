@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Li2SnGeCl6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.93367576
+_cell_length_b   6.93473354
+_cell_length_c   7.43891770
+_cell_angle_alpha   90.01531638
+_cell_angle_beta   117.76083410
+_cell_angle_gamma   119.99311635
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2SnGeCl6
+_chemical_formula_sum   'Li2 Sn1 Ge1 Cl6'
+_cell_volume   261.14250211
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.95715417  0.47876743  0.43565339  1
+  Li  Li1  1  0.98734558  0.99356009  0.98117282  1
+  Sn  Sn2  1  0.35272582  0.17655286  0.52901404  1
+  Ge  Ge3  1  0.32735342  0.66372856  0.99101185  1
+  Cl  Cl4  1  0.91654493  0.14727596  0.26149778  1
+  Cl  Cl5  1  0.49220260  0.34501095  0.26147338  1
+  Cl  Cl6  1  0.11429814  0.76931018  0.26140053  1
+  Cl  Cl7  1  0.09873127  0.82628407  0.76460739  1
+  Cl  Cl8  1  0.49230070  0.66573691  0.76467007  1
+  Cl  Cl9  1  0.93814138  0.27217199  0.76469975  1

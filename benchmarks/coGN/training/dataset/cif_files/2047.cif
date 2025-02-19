@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_HfMgO3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.30052599
+_cell_length_b   5.30052599
+_cell_length_c   5.67022171
+_cell_angle_alpha   62.12777888
+_cell_angle_beta   62.12777888
+_cell_angle_gamma   59.99221483
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   HfMgO3
+_chemical_formula_sum   'Hf2 Mg2 O6'
+_cell_volume   116.12856757
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Hf  Hf0  1  0.99092372  0.49093488  0.02779453  1
+  Hf  Hf1  1  0.49093488  0.99092372  0.52779453  1
+  Mg  Mg2  1  0.70170712  0.20167375  0.89571625  1
+  Mg  Mg3  1  0.20167375  0.70170712  0.39571625  1
+  O  O4  1  0.39001308  0.60298000  0.72114801  1
+  O  O5  1  0.10301878  0.28629928  0.72128391  1
+  O  O6  1  0.78631848  0.88998291  0.72124429  1
+  O  O7  1  0.88998291  0.78631848  0.22124429  1
+  O  O8  1  0.60298000  0.39001308  0.22114801  1
+  O  O9  1  0.28629928  0.10301878  0.22128391  1

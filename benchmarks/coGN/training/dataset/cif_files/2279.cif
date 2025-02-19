@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_BaNaGaF6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.65752941
+_cell_length_b   5.65752941
+_cell_length_c   5.42944162
+_cell_angle_alpha   89.99499275
+_cell_angle_beta   89.99499275
+_cell_angle_gamma   120.02050430
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   BaNaGaF6
+_chemical_formula_sum   'Ba1 Na1 Ga1 F6'
+_cell_volume   150.46991114
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ba  Ba0  1  0.00004359  0.99995641  0.50000000  1
+  Na  Na1  1  0.33341302  0.66658698  0.00000000  1
+  Ga  Ga2  1  0.66668669  0.33331331  0.00000000  1
+  F  F3  1  0.65516548  0.04771953  0.79607205  1
+  F  F4  1  0.95228047  0.34483452  0.20392795  1
+  F  F5  1  0.65490587  0.60721395  0.20403119  1
+  F  F6  1  0.39240381  0.04742602  0.20375498  1
+  F  F7  1  0.39278605  0.34509413  0.79596881  1
+  F  F8  1  0.95257398  0.60759619  0.79624502  1

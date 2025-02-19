@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_NaCdPSe4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.73296958
+_cell_length_b   6.73455917
+_cell_length_c   6.82509537
+_cell_angle_alpha   119.53232837
+_cell_angle_beta   119.55238881
+_cell_angle_gamma   90.02793284
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   NaCdPSe4
+_chemical_formula_sum   'Na1 Cd1 P1 Se4'
+_cell_volume   221.77298466
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.50024391  0.50036760  0.00036726  1
+  Cd  Cd1  1  0.99995011  0.99988497  0.99995348  1
+  P  P2  1  0.74995746  0.24993092  0.49994992  1
+  Se  Se3  1  0.05252969  0.13958500  0.71633208  1
+  Se  Se4  1  0.42316045  0.94750726  0.28396365  1
+  Se  Se5  1  0.86049502  0.33603335  0.28358562  1
+  Se  Se6  1  0.66354435  0.57657889  0.71580199  1

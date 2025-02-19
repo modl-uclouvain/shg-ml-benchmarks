@@ -1,0 +1,31 @@
+# generated using pymatgen
+data_AgSnCl3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.21598049
+_cell_length_b   5.58822590
+_cell_length_c   6.53749773
+_cell_angle_alpha   104.33837781
+_cell_angle_beta   95.87152823
+_cell_angle_gamma   90.36924583
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   AgSnCl3
+_chemical_formula_sum   'Ag1 Sn1 Cl3'
+_cell_volume   148.36110197
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ag  Ag0  1  0.44969026  0.49075685  0.45067010  1
+  Sn  Sn1  1  0.05129834  0.12066392  0.82541951  1
+  Cl  Cl2  1  0.45716245  0.99333195  0.52671730  1
+  Cl  Cl3  1  0.55166980  0.37963064  0.07501993  1
+  Cl  Cl4  1  0.00018015  0.51549264  0.68217316  1

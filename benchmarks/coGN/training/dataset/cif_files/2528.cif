@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_Li2BeGeSe4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.86678341
+_cell_length_b   5.86804289
+_cell_length_c   6.61234588
+_cell_angle_alpha   116.33244091
+_cell_angle_beta   116.33159279
+_cell_angle_gamma   90.01641026
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Li2BeGeSe4
+_chemical_formula_sum   'Li2 Be1 Ge1 Se4'
+_cell_volume   177.26356598
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.51380674  0.01405377  0.02787895  1
+  Li  Li1  1  0.76406189  0.76413169  0.52818155  1
+  Be  Be2  1  0.01426147  0.51402425  0.02833282  1
+  Ge  Ge3  1  0.26421206  0.26411584  0.52828342  1
+  Se  Se4  1  0.91546179  0.38912861  0.26167282  1
+  Se  Se5  1  0.65593463  0.61283371  0.79498287  1
+  Se  Se6  1  0.13898012  0.18213332  0.79487651  1
+  Se  Se7  1  0.34623230  0.87252881  0.26168905  1

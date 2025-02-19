@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_AsCl3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   10.92182400
+_cell_length_b   10.92182400
+_cell_length_c   17.70598439
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   120.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   AsCl3
+_chemical_formula_sum   'As3 Cl9'
+_cell_volume   1829.11518881
+_cell_formula_units_Z   3
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  As  As0  1  0.27590392  -0.00000000  0.51607861  1
+  As  As1  1  -0.00000000  0.27590392  0.51607861  1
+  As  As2  1  0.72409607  0.72409607  0.51607861  1
+  Cl  Cl3  1  0.76057435  0.58228542  0.44369753  1
+  Cl  Cl4  1  0.41771458  0.17828893  0.44369753  1
+  Cl  Cl5  1  0.82171107  0.23942565  0.44369753  1
+  Cl  Cl6  1  0.58228542  0.76057435  0.44369753  1
+  Cl  Cl7  1  0.17828893  0.41771458  0.44369753  1
+  Cl  Cl8  1  0.23942565  0.82171107  0.44369753  1
+  Cl  Cl9  1  0.42945552  -0.00000000  0.59652633  1
+  Cl  Cl10  1  -0.00000000  0.42945552  0.59652633  1
+  Cl  Cl11  1  0.57054448  0.57054448  0.59652633  1

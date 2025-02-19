@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_TeAsRh
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.14868680
+_cell_length_b   6.14868680
+_cell_length_c   6.14868680
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   TeAsRh
+_chemical_formula_sum   'Te4 As4 Rh4'
+_cell_volume   232.45940129
+_cell_formula_units_Z   4
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Te  Te0  1  0.62361065  0.62361065  0.62361065  1
+  Te  Te1  1  0.87638935  0.37638935  0.12361065  1
+  Te  Te2  1  0.12361065  0.87638935  0.37638935  1
+  Te  Te3  1  0.37638935  0.12361065  0.87638935  1
+  As  As4  1  0.37653863  0.37653863  0.37653863  1
+  As  As5  1  0.12346137  0.62346137  0.87653863  1
+  As  As6  1  0.87653863  0.12346137  0.62346137  1
+  As  As7  1  0.62346137  0.87653863  0.12346137  1
+  Rh  Rh8  1  0.98902614  0.98902614  0.98902614  1
+  Rh  Rh9  1  0.51097386  0.01097386  0.48902614  1
+  Rh  Rh10  1  0.48902614  0.51097386  0.01097386  1
+  Rh  Rh11  1  0.01097386  0.48902614  0.51097386  1

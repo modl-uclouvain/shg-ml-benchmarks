@@ -2,25 +2,31 @@ import os
 
 os.environ["TF_USE_LEGACY_KERAS"] = "1"
 import pickle
+from pathlib import Path
 
 import numpy as np
+import pandas as pd
 from kgcnn.data.crystal import CrystalDataset
 from kgcnn.literature.coGN import make_model
 from kgcnn.training.schedule import KerasPolynomialDecaySchedule
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.optimizers import Adam
 
+# The split to consider
+split = "distribution_125"
+
+
 # Make a Crystal Dataset
+path_dataset = "/home/vtrinquet/Softwares_Packages/Github/modl_uclouvain/shg-ml-benchmarks/benchmarks/coGN/training/dataset/"
 dataset = CrystalDataset(
-    dataset_name="ExampleSmallDataset",
-    data_directory="/home/vtrinquet/Documents/Doctorat/JNB_Scripts_Clusters/NLO/Graph_models/KGCNN/data/ExampleSmallDataset/",
+    dataset_name="dataset",
+    data_directory=path_dataset,
     file_directory="cif_files",
     file_name="id_prop.csv",
 )
 # dataset.prepare_data(file_column_name="file", overwrite=False)
 dataset.prepare_data(file_column_name="file", overwrite=True)
-dataset.read_in_memory(label_column_name="dKP")
+dataset.read_in_memory(label_column_name="dKP_full_neum")
 
 # Dataset is just a list of dictionaries List[Dict]
 print("Length:", len(dataset))
@@ -36,10 +42,22 @@ preproc = KNNAsymmetricUnitCell(k=24)
 dataset.set_representation(preproc)
 print("Dict keys:", dataset[0].keys())
 
-# We can make a train-test split.
-train_indices, test_indices = train_test_split(
-    np.arange(len(dataset)), test_size=0.2, random_state=42, shuffle=True
-)
+# # We can make a train-test split.
+# train_indices, test_indices = train_test_split(
+#     np.arange(len(dataset)), test_size=0.2, random_state=42, shuffle=True
+# )
+# dataset_train, dataset_test = dataset[train_indices], dataset[test_indices]
+
+# Let's make our custom train-test split
+df_id_prop = pd.read_csv(path_dataset + "id_prop.csv", index_col=[0])
+test_indices = df_id_prop[df_id_prop[split] == "test"].index.tolist()
+val_indices = df_id_prop[df_id_prop[split] == "val"].index.tolist()
+train_indices = df_id_prop[df_id_prop[split] == "train"].index.tolist()
+# In the current case, train += val
+train_indices.extend(val_indices)
+# TODO: TO REMOVE BECAUSE JUST FOR TESTING LOCALLY
+train_indices = train_indices[:100]
+test_indices = test_indices[:25]
 dataset_train, dataset_test = dataset[train_indices], dataset[test_indices]
 
 # Get Labels.
@@ -93,49 +111,64 @@ print("Features shape", {key: value.shape for key, value in x_train.items()})
 
 
 # Get the model
-model = make_model(
-    name="coGN",
-    # name = "coNGN",
-    inputs=tensors_for_keras_input,
-    # All defaults else
-)
+path_model = f"model_{split}.pkl"
+if Path(path_model).exists():
+    print(f"A model is already saved at {path_model}")
+else:
+    model = make_model(
+        name="coGN",
+        # name = "coNGN",
+        inputs=tensors_for_keras_input,
+        # All defaults else
+    )
 
-# Compile the mode with loss and metrics.
-model.compile(
-    loss="mean_absolute_error",
-    optimizer=Adam(
-        learning_rate=KerasPolynomialDecaySchedule(
-            dataset_size=159,
-            batch_size=64,
-            epochs=800,
-            lr_start=0.0005,
-            lr_stop=1.0e-05,
+    # Compile the mode with loss and metrics.
+    model.compile(
+        loss="mean_absolute_error",
+        optimizer=Adam(
+            learning_rate=KerasPolynomialDecaySchedule(
+                dataset_size=len(train_indices),
+                batch_size=64,
+                epochs=100,
+                lr_start=0.0005,
+                lr_stop=1.0e-05,
+            )
+        ),
+        metrics=["mean_absolute_error"],  # Note targets are standard scaled.
+    )
+
+    # Fit model.
+    model.fit(
+        x_train,
+        y_train,
+        callbacks=[
+            # We can use schedule instead of scheduler ...
+            # LinearLearningRateScheduler(epo_min=10, epo=1000, learning_rate_start=5e-04, learning_rate_stop=1e-05)
+        ],
+        validation_data=(x_test, y_test),
+        validation_freq=10,
+        shuffle=True,
+        batch_size=64,
+        epochs=100,
+        verbose=2,
+    )
+    # Save model
+    with open(path_model, "wb") as f:
+        pickle.dump(model, f)
+
+    # Model prediction
+    predict_test = scaler.inverse_transform(model.predict(x_test))
+    y_test = scaler.inverse_transform(y_test)
+
+    # Save predictions as json
+    df_pred = pd.DataFrame(
+        index=df_id_prop.iloc[test_indices]["material_id"].tolist(),
+        data={"predictions": predict_test.ravel().tolist()},
+    )
+    path_results = f"results_{split}.json"
+    if Path(path_results).exists():
+        print(
+            f"Some results are already saved at {path_results}... The current results are thus saved at 'results_{split}_tmp.json' instead."
         )
-    ),
-    metrics=["mean_absolute_error"],  # Note targets are standard scaled.
-)
-
-# Fit model.
-model.fit(
-    x_train,
-    y_train,
-    callbacks=[
-        # We can use schedule instead of scheduler ...
-        # LinearLearningRateScheduler(epo_min=10, epo=1000, learning_rate_start=5e-04, learning_rate_stop=1e-05)
-    ],
-    validation_data=(x_test, y_test),
-    validation_freq=10,
-    shuffle=True,
-    batch_size=64,
-    epochs=200,
-    verbose=2,
-)
-
-# Model prediction
-predict_test = scaler.inverse_transform(model.predict(x_test))
-y_test = scaler.inverse_transform(y_test)
-print("MAE:", np.mean(np.abs(predict_test - y_test)))
-with open("predict_test.pkl", "wb") as f:
-    pickle.dump(predict_test, f)
-with open("test_indices.pkl", "wb") as f:
-    pickle.dump(test_indices, f)
+        path_results = f"results_{split}_tmp.json"
+    df_pred.to_json(path_results)

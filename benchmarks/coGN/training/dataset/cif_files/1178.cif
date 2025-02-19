@@ -1,0 +1,43 @@
+# generated using pymatgen
+data_Ga2Te4O11
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.13414875
+_cell_length_b   6.56750681
+_cell_length_c   8.22333659
+_cell_angle_alpha   105.16607656
+_cell_angle_beta   89.79093157
+_cell_angle_gamma   110.18891104
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ga2Te4O11
+_chemical_formula_sum   'Ga2 Te4 O11'
+_cell_volume   250.02764954
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ga  Ga0  1  0.39179125  0.57716721  0.60941959  1
+  Ga  Ga1  1  0.09202354  0.96923883  0.98136910  1
+  Te  Te2  1  0.36041670  0.59982858  0.18723982  1
+  Te  Te3  1  0.68285950  0.18660612  0.26230232  1
+  Te  Te4  1  0.14447019  0.00603563  0.59740131  1
+  Te  Te5  1  0.81245598  0.43942182  0.80776960  1
+  O  O6  1  0.43642854  0.17969211  0.09173224  1
+  O  O7  1  0.97412331  0.44262731  0.18413775  1
+  O  O8  1  0.82606752  0.97157831  0.13429974  1
+  O  O9  1  0.47564712  0.54175609  0.38460623  1
+  O  O10  1  0.08157029  0.12849985  0.82543387  1
+  O  O11  1  0.01639667  0.40199582  0.61822950  1
+  O  O12  1  0.44589489  0.26835196  0.59410456  1
+  O  O13  1  0.35816821  0.88990298  0.30276065  1
+  O  O14  1  0.37132235  0.87050261  0.66602477  1
+  O  O15  1  0.12735082  0.68780352  0.94590382  1
+  O  O16  1  0.70621009  0.67418926  0.76716614  1

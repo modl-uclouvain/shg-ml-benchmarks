@@ -1,0 +1,32 @@
+# generated using pymatgen
+data_IBrCl
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.36163876
+_cell_length_b   7.07879647
+_cell_length_c   7.82817912
+_cell_angle_alpha   103.23281267
+_cell_angle_beta   91.56880750
+_cell_angle_gamma   106.12197015
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   IBrCl
+_chemical_formula_sum   'I2 Br2 Cl2'
+_cell_volume   224.95455118
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  I  I0  1  0.87785832  0.01194207  0.26635574  1
+  I  I1  1  0.01509664  0.31822966  0.81138267  1
+  Br  Br2  1  0.95128645  0.64149565  0.03397735  1
+  Br  Br3  1  0.08318024  0.92571746  0.54557850  1
+  Cl  Cl4  1  0.63126554  0.08385265  0.98409403  1
+  Cl  Cl5  1  0.33863480  0.51143651  0.63095970  1

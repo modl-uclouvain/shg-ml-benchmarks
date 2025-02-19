@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_ZnSiAsP
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.66322765
+_cell_length_b   6.66322765
+_cell_length_c   6.66322765
+_cell_angle_alpha   131.00854195
+_cell_angle_beta   130.72741862
+_cell_angle_gamma   72.02315195
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   ZnSiAsP
+_chemical_formula_sum   'Zn2 Si2 As2 P2'
+_cell_volume   165.44377634
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Zn  Zn0  1  0.86949400  0.11949400  0.75000000  1
+  Zn  Zn1  1  0.63050600  0.38050600  0.25000000  1
+  Si  Si2  1  0.36950800  0.61950800  0.75000000  1
+  Si  Si3  1  0.13049200  0.88049200  0.25000000  1
+  As  As4  1  0.25000000  0.98729200  0.73729200  1
+  As  As5  1  0.75000000  0.51270800  0.76270800  1
+  P  P6  1  0.48082300  0.75000000  0.23082300  1
+  P  P7  1  0.01917700  0.25000000  0.26917700  1

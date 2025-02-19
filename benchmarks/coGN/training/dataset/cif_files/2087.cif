@@ -1,0 +1,32 @@
+# generated using pymatgen
+data_GaSCl
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   3.69499453
+_cell_length_b   5.38250739
+_cell_length_c   8.14657224
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   GaSCl
+_chemical_formula_sum   'Ga2 S2 Cl2'
+_cell_volume   162.02176077
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ga  Ga0  1  0.00000000  0.83847227  0.61609206  1
+  Ga  Ga1  1  0.50000000  0.33847227  0.38390794  1
+  S  S2  1  0.00000000  0.07246602  0.37534026  1
+  S  S3  1  0.50000000  0.57246602  0.62465974  1
+  Cl  Cl4  1  0.00000000  0.05527172  0.83790334  1
+  Cl  Cl5  1  0.50000000  0.55527172  0.16209666  1

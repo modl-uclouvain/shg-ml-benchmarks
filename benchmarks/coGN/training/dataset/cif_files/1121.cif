@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_Na2GePbSe4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.20551411
+_cell_length_b   6.27665699
+_cell_length_c   6.27665699
+_cell_angle_alpha   107.61920043
+_cell_angle_beta   108.98494681
+_cell_angle_gamma   108.98494681
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Na2GePbSe4
+_chemical_formula_sum   'Na2 Ge1 Pb1 Se4'
+_cell_volume   194.45287775
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ge  Ge0  1  0.01594753  0.57124492  0.57124492  1
+  Na  Na1  1  0.48846080  0.53253058  0.05507902  1
+  Na  Na2  1  0.48846080  0.05507902  0.53253058  1
+  Pb  Pb3  1  0.96436818  0.04709455  0.04709455  1
+  Se  Se4  1  0.62991984  0.56584221  0.56584221  1
+  Se  Se5  1  0.01008360  0.19107234  0.57436348  1
+  Se  Se6  1  0.01008360  0.57436348  0.19107234  1
+  Se  Se7  1  0.38800863  0.93710390  0.93710390  1

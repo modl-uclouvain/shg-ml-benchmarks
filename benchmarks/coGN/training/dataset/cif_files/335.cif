@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Cs4Sb2O5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.33048718
+_cell_length_b   6.33048718
+_cell_length_c   8.11500000
+_cell_angle_alpha   82.75095759
+_cell_angle_beta   82.75095759
+_cell_angle_gamma   66.33636537
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Cs4Sb2O5
+_chemical_formula_sum   'Cs4 Sb2 O5'
+_cell_volume   294.46106679
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cs  Cs0  1  0.99350000  0.99350000  0.00120000  1.0
+  Cs  Cs1  1  0.99810000  0.99810000  0.50240000  1.0
+  Cs  Cs2  1  0.33321000  0.33321000  0.15309000  1.0
+  Cs  Cs3  1  0.66425000  0.66425000  0.84543000  1.0
+  Sb  Sb9  1  0.35278000  0.35278000  0.66874000  1.0
+  Sb  Sb10  1  0.64834000  0.64834000  0.32916000  1.0
+  O  O4  1  0.20090000  0.62290000  0.78550000  1.0
+  O  O5  1  0.83770000  0.40810000  0.19250000  1.0
+  O  O6  1  0.40810000  0.83770000  0.19250000  1.0
+  O  O7  1  0.62290000  0.20090000  0.78550000  1.0
+  O  O8  1  0.48330000  0.48330000  0.47270000  1.0

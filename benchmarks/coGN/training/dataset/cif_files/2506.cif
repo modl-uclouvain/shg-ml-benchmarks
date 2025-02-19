@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_CaHfSc2O6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.81017149
+_cell_length_b   5.81017149
+_cell_length_c   5.81017149
+_cell_angle_alpha   56.44038232
+_cell_angle_beta   56.44038232
+_cell_angle_gamma   56.44038232
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   CaHfSc2O6
+_chemical_formula_sum   'Ca1 Hf1 Sc2 O6'
+_cell_volume   127.27797123
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ca  Ca0  1  0.79931406  0.79931406  0.79931406  1
+  Hf  Hf1  1  0.31312530  0.31312530  0.31312530  1
+  Sc  Sc2  1  0.52202355  0.52202355  0.52202355  1
+  Sc  Sc3  1  0.01860211  0.01860211  0.01860211  1
+  O  O4  1  0.91946032  0.60560597  0.23854098  1
+  O  O5  1  0.60560597  0.23854098  0.91946032  1
+  O  O6  1  0.23854098  0.91946032  0.60560597  1
+  O  O7  1  0.15764412  0.37012591  0.71701039  1
+  O  O8  1  0.37012591  0.71701039  0.15764412  1
+  O  O9  1  0.71701039  0.15764412  0.37012591  1

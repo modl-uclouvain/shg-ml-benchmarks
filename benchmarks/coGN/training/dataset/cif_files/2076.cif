@@ -1,0 +1,33 @@
+# generated using pymatgen
+data_Ba(GaSe2)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.57932022
+_cell_length_b   6.57932022
+_cell_length_c   6.33534153
+_cell_angle_alpha   61.23544720
+_cell_angle_beta   61.23544720
+_cell_angle_gamma   76.61756291
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ba(GaSe2)2
+_chemical_formula_sum   'Ba1 Ga2 Se4'
+_cell_volume   210.73638484
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ba  Ba0  1  0.00007089  0.99992911  0.00000000  1
+  Ga  Ga1  1  0.50001293  0.49998707  0.50000000  1
+  Ga  Ga2  1  0.50008297  0.49991703  0.00000000  1
+  Se  Se3  1  0.82451392  0.49996088  0.58784285  1
+  Se  Se4  1  0.50003912  0.17548608  0.41215715  1
+  Se  Se5  1  0.50004056  0.82441639  0.08785149  1
+  Se  Se6  1  0.17558361  0.49995944  0.91214851  1

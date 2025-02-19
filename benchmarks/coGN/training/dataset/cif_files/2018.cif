@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_ZrCd(BiO3)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.92831736
+_cell_length_b   5.92895825
+_cell_length_c   6.08728592
+_cell_angle_alpha   90.01049360
+_cell_angle_beta   119.13718426
+_cell_angle_gamma   119.98919388
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   ZrCd(BiO3)2
+_chemical_formula_sum   'Zr1 Cd1 Bi2 O6'
+_cell_volume   153.24712044
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Zr  Zr0  1  0.99240697  0.98913467  0.99666653  1
+  Cd  Cd1  1  0.00861776  0.49721297  0.52090134  1
+  Bi  Bi2  1  0.56753875  0.77672373  0.35923494  1
+  Bi  Bi3  1  0.56717425  0.27654186  0.85879839  1
+  O  O4  1  0.04251485  0.16501800  0.68514820  1
+  O  O5  1  0.83348990  0.70234851  0.17040230  1
+  O  O6  1  0.03811770  0.32173737  0.17045292  1
+  O  O7  1  0.45305008  0.11720998  0.17048055  1
+  O  O8  1  0.50493504  0.86348937  0.68521765  1
+  O  O9  1  0.80676369  0.62753254  0.68522519  1

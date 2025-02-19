@@ -1,0 +1,37 @@
+# generated using pymatgen
+data_Ge3PO4F3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.54239651
+_cell_length_b   6.80106155
+_cell_length_c   6.88074553
+_cell_angle_alpha   113.15803242
+_cell_angle_beta   104.42624201
+_cell_angle_gamma   102.93371021
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ge3PO4F3
+_chemical_formula_sum   'Ge3 P1 O4 F3'
+_cell_volume   176.48450590
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ge  Ge0  1  0.30919785  0.68032657  0.67662389  1
+  Ge  Ge1  1  0.59662912  0.98583333  0.35703433  1
+  Ge  Ge2  1  0.61695468  0.38145158  0.03013569  1
+  P  P3  1  0.01860421  0.99636616  0.98917654  1
+  O  O4  1  0.66149589  0.97446127  0.96695366  1
+  O  O5  1  0.99272017  0.78965521  0.77267054  1
+  O  O6  1  0.18801724  0.22622938  0.00181533  1
+  O  O7  1  0.18461634  0.98478191  0.20736794  1
+  F  F8  1  0.80283609  0.44191414  0.32746891  1
+  F  F9  1  0.35362233  0.87178395  0.52712103  1
+  F  F10  1  0.47630506  0.66719749  0.14363313  1

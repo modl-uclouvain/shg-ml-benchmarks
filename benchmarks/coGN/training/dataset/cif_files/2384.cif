@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_Be2ZnSe3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.57507046
+_cell_length_b   6.57507046
+_cell_length_c   6.54384751
+_cell_angle_alpha   80.61773452
+_cell_angle_beta   80.61773452
+_cell_angle_gamma   120.16751809
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Be2ZnSe3
+_chemical_formula_sum   'Be4 Zn2 Se6'
+_cell_volume   231.14943801
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Be  Be0  1  0.42768659  0.59424648  0.99289919  1
+  Be  Be1  1  0.26778501  0.75846882  0.49210996  1
+  Be  Be2  1  0.59424648  0.42768659  0.49289919  1
+  Be  Be3  1  0.75846882  0.26778501  0.99210996  1
+  Zn  Zn4  1  0.92434181  0.09767243  0.49365796  1
+  Zn  Zn5  1  0.09767243  0.92434181  0.99365796  1
+  Se  Se6  1  0.24778880  0.05572863  0.59882305  1
+  Se  Se7  1  0.05572863  0.24778880  0.09882305  1
+  Se  Se8  1  0.40990243  0.88364023  0.12455367  1
+  Se  Se9  1  0.88364023  0.40990243  0.62455367  1
+  Se  Se10  1  0.69542253  0.53234824  0.12667916  1
+  Se  Se11  1  0.53234824  0.69542253  0.62667916  1

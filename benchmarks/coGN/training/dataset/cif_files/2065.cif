@@ -1,0 +1,32 @@
+# generated using pymatgen
+data_ZnIBr
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.12753055
+_cell_length_b   7.12753055
+_cell_length_c   7.12753055
+_cell_angle_alpha   128.01874068
+_cell_angle_beta   125.28116127
+_cell_angle_gamma   78.84239610
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   ZnIBr
+_chemical_formula_sum   'Zn2 I2 Br2'
+_cell_volume   225.33247803
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Zn  Zn0  1  0.37253315  0.62253315  0.75000000  1
+  Zn  Zn1  1  0.12746685  0.87746685  0.25000000  1
+  I  I2  1  0.25000000  0.50826471  0.25826471  1
+  I  I3  1  0.75000000  0.99173529  0.24173529  1
+  Br  Br4  1  0.04270222  0.75000000  0.79270222  1
+  Br  Br5  1  0.45729778  0.25000000  0.70729778  1

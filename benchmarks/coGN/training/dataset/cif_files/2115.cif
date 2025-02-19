@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_NaLi2ScF6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.33164012
+_cell_length_b   5.33236189
+_cell_length_c   5.73838196
+_cell_angle_alpha   62.32537769
+_cell_angle_beta   62.31992848
+_cell_angle_gamma   60.00715754
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   NaLi2ScF6
+_chemical_formula_sum   'Na1 Li2 Sc1 F6'
+_cell_volume   119.25209714
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.19087219  0.19075820  0.42752178  1
+  Li  Li1  1  0.47519606  0.47512415  0.57441330  1
+  Li  Li2  1  0.97793858  0.97797109  0.06635117  1
+  Sc  Sc3  1  0.68222736  0.68224275  0.95327831  1
+  F  F4  1  0.40902434  0.08085440  0.75669486  1
+  F  F5  1  0.75340998  0.40910667  0.75656942  1
+  F  F6  1  0.08095405  0.75328326  0.75655636  1
+  F  F7  1  0.62786396  0.85969311  0.23107234  1
+  F  F8  1  0.28138519  0.62785258  0.23117678  1
+  F  F9  1  0.85953129  0.28151278  0.23116469  1

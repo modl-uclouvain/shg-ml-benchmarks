@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_CsNaGeF6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.74914254
+_cell_length_b   5.74914254
+_cell_length_c   6.18468225
+_cell_angle_alpha   89.97270198
+_cell_angle_beta   89.97270198
+_cell_angle_gamma   120.05936712
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   CsNaGeF6
+_chemical_formula_sum   'Cs1 Na1 Ge1 F6'
+_cell_volume   176.92689768
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cs  Cs0  1  0.00001835  0.99998165  0.00000000  1
+  Na  Na1  1  0.33348209  0.66651791  0.50000000  1
+  Ge  Ge2  1  0.66662463  0.33337537  0.50000000  1
+  F  F3  1  0.93577380  0.34861059  0.67081324  1
+  F  F4  1  0.65138941  0.06422620  0.32918676  1
+  F  F5  1  0.41311291  0.34916938  0.32910070  1
+  F  F6  1  0.93655049  0.58783334  0.32960347  1
+  F  F7  1  0.65083062  0.58688709  0.67089930  1
+  F  F8  1  0.41216666  0.06344951  0.67039653  1

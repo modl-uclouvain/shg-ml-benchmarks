@@ -1,0 +1,40 @@
+# generated using pymatgen
+data_Al2PbSe4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.25879088
+_cell_length_b   6.30157020
+_cell_length_c   10.92146935
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   119.63792216
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Al2PbSe4
+_chemical_formula_sum   'Al4 Pb2 Se8'
+_cell_volume   374.38973050
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.22072855  0.94953306  0.50000000  1
+  Al  Al1  1  0.77224616  0.23071613  0.50000000  1
+  Al  Al2  1  0.76353624  0.24617434  0.00000000  1
+  Al  Al3  1  0.23913092  0.76340367  0.00000000  1
+  Pb  Pb4  1  0.50221165  0.49474956  0.24986728  1
+  Pb  Pb5  1  0.50221165  0.49474956  0.75013272  1
+  Se  Se6  1  0.81041447  0.63138952  0.50000000  1
+  Se  Se7  1  0.18134944  0.31187841  0.50000000  1
+  Se  Se8  1  0.34911993  0.18640594  0.00000000  1
+  Se  Se9  1  0.65269486  0.82482717  0.00000000  1
+  Se  Se10  1  0.00119508  0.50460582  0.16692357  1
+  Se  Se11  1  0.49748248  0.01398000  0.33341484  1
+  Se  Se12  1  0.00119508  0.50460582  0.83307643  1
+  Se  Se13  1  0.49748248  0.01398000  0.66658516  1

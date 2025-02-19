@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_Na2AlGaS4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.32824680
+_cell_length_b   6.32846291
+_cell_length_c   6.45033184
+_cell_angle_alpha   119.34909736
+_cell_angle_beta   119.35666342
+_cell_angle_gamma   90.03699060
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Na2AlGaS4
+_chemical_formula_sum   'Na2 Al1 Ga1 S4'
+_cell_volume   186.12239813
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.51387138  0.01387212  0.02771948  1
+  Na  Na1  1  0.76389573  0.76389719  0.52777363  1
+  Al  Al2  1  0.01411278  0.51417954  0.02833182  1
+  Ga  Ga3  1  0.26419296  0.26408773  0.52828460  1
+  S  S4  1  0.95167381  0.38805887  0.27374235  1
+  S  S5  1  0.64287399  0.57679350  0.78321214  1
+  S  S6  1  0.14031474  0.20642223  0.78320155  1
+  S  S7  1  0.32201560  0.88563883  0.27363242  1

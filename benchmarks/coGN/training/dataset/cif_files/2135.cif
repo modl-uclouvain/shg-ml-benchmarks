@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_NaY2NbO6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.01995083
+_cell_length_b   6.01995083
+_cell_length_c   6.01995083
+_cell_angle_alpha   56.45708484
+_cell_angle_beta   56.45708484
+_cell_angle_gamma   56.45708484
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   NaY2NbO6
+_chemical_formula_sum   'Na1 Y2 Nb1 O6'
+_cell_volume   141.62860627
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.79805819  0.79805819  0.79805819  1
+  Y  Y1  1  0.52292118  0.52292118  0.52292118  1
+  Y  Y2  1  0.02134623  0.02134623  0.02134623  1
+  Nb  Nb3  1  0.31688389  0.31688389  0.31688389  1
+  O  O4  1  0.96180720  0.57666890  0.23091871  1
+  O  O5  1  0.57666890  0.23091871  0.96180720  1
+  O  O6  1  0.23091871  0.96180720  0.57666890  1
+  O  O7  1  0.14904232  0.39220643  0.69156581  1
+  O  O8  1  0.39220643  0.69156581  0.14904232  1
+  O  O9  1  0.69156581  0.14904232  0.39220643  1

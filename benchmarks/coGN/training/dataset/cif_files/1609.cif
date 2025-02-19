@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_LiPbCl3
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.29843006
+_cell_length_b   7.29843006
+_cell_length_c   7.29843006
+_cell_angle_alpha   57.18252387
+_cell_angle_beta   57.18252387
+_cell_angle_gamma   57.18252387
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiPbCl3
+_chemical_formula_sum   'Li2 Pb2 Cl6'
+_cell_volume   257.05668162
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.69327490  0.69327490  0.69327490  1
+  Li  Li1  1  0.19327490  0.19327490  0.19327490  1
+  Pb  Pb2  1  0.98905163  0.98905163  0.98905163  1
+  Pb  Pb3  1  0.48905163  0.48905163  0.48905163  1
+  Cl  Cl4  1  0.42122182  0.83323601  0.03481553  1
+  Cl  Cl5  1  0.83323601  0.03481553  0.42122182  1
+  Cl  Cl6  1  0.03481553  0.42122182  0.83323601  1
+  Cl  Cl7  1  0.33323601  0.92122182  0.53481553  1
+  Cl  Cl8  1  0.53481553  0.33323601  0.92122182  1
+  Cl  Cl9  1  0.92122182  0.53481553  0.33323601  1

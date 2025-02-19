@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Ba2SrBi2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   10.36900679
+_cell_length_b   10.36900679
+_cell_length_c   8.94315251
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   150.50140139
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Ba2SrBi2
+_chemical_formula_sum   'Ba4 Sr2 Bi4'
+_cell_volume   473.46186373
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Ba  Ba0  1  0.95986444  0.04013556  0.73563972  1
+  Ba  Ba1  1  0.79857317  0.20142683  0.38998049  1
+  Ba  Ba2  1  0.20142683  0.79857317  0.88998049  1
+  Ba  Ba3  1  0.04013556  0.95986444  0.23563972  1
+  Sr  Sr4  1  0.40273404  0.59726596  0.08119970  1
+  Sr  Sr5  1  0.59726596  0.40273404  0.58119970  1
+  Bi  Bi6  1  0.43728183  0.56271817  0.44907797  1
+  Bi  Bi7  1  0.81762769  0.18237231  0.97846012  1
+  Bi  Bi8  1  0.18237231  0.81762769  0.47846012  1
+  Bi  Bi9  1  0.56271817  0.43728183  0.94907797  1

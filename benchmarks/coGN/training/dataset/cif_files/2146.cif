@@ -1,0 +1,32 @@
+# generated using pymatgen
+data_LiHI
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   4.61273810
+_cell_length_b   4.78678621
+_cell_length_c   8.55943972
+_cell_angle_alpha   106.22145915
+_cell_angle_beta   90.78045329
+_cell_angle_gamma   89.93128083
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   LiHI
+_chemical_formula_sum   'Li2 H2 I2'
+_cell_volume   181.45254275
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Li  Li0  1  0.90330286  0.91614536  0.25065167  1
+  Li  Li1  1  0.40642924  0.42489644  0.26746435  1
+  H  H2  1  0.69981196  0.59189635  0.75268641  1
+  H  H3  1  0.69784597  0.74728569  0.74941299  1
+  I  I4  1  0.90239066  0.33104437  0.07973155  1
+  I  I5  1  0.40677413  0.01063031  0.43863251  1

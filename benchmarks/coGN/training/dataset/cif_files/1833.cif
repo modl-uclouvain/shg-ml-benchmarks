@@ -1,0 +1,34 @@
+# generated using pymatgen
+data_SiH2Cl
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.48455992
+_cell_length_b   5.60597996
+_cell_length_c   5.62880137
+_cell_angle_alpha   110.38378828
+_cell_angle_beta   93.00588538
+_cell_angle_gamma   92.89787488
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   SiH2Cl
+_chemical_formula_sum   'Si2 H4 Cl2'
+_cell_volume   161.56615497
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Si  Si0  1  0.34574452  0.15959603  0.02150640  1
+  Si  Si1  1  0.21848123  0.79900807  0.66109217  1
+  H  H2  1  0.13375259  0.27029396  0.16581909  1
+  H  H3  1  0.06741692  0.85986045  0.46493431  1
+  H  H4  1  0.43061626  0.65417902  0.55096626  1
+  H  H5  1  0.49707750  0.35669540  0.96191308  1
+  Cl  Cl6  1  0.99549775  0.55889823  0.78396871  1
+  Cl  Cl7  1  0.56847136  0.03439577  0.25990799  1

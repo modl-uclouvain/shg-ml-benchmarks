@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_NaAg(PbCl3)2
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   7.25983572
+_cell_length_b   7.26839734
+_cell_length_c   7.63955575
+_cell_angle_alpha   90.10640287
+_cell_angle_beta   118.27681967
+_cell_angle_gamma   119.86827990
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   NaAg(PbCl3)2
+_chemical_formula_sum   'Na1 Ag1 Pb2 Cl6'
+_cell_volume   292.55647034
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.36760947  0.18378961  0.55176573  1
+  Ag  Ag1  1  0.37857454  0.68897961  0.06657353  1
+  Pb  Pb2  1  0.96900568  0.48451869  0.45376775  1
+  Pb  Pb3  1  0.96528208  0.98291413  0.94775575  1
+  Cl  Cl4  1  0.85656303  0.06151347  0.24921841  1
+  Cl  Cl5  1  0.45253318  0.39161522  0.24778864  1
+  Cl  Cl6  1  0.18787863  0.79468702  0.24749610  1
+  Cl  Cl7  1  0.18533592  0.88971025  0.74994005  1
+  Cl  Cl8  1  0.45424810  0.56519220  0.75156616  1
+  Cl  Cl9  1  0.85976741  0.29547883  0.74932890  1

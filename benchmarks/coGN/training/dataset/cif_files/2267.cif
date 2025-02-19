@@ -1,0 +1,42 @@
+# generated using pymatgen
+data_Mg2TaGaN4
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.28638661
+_cell_length_b   5.88464040
+_cell_length_c   6.67399290
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Mg2TaGaN4
+_chemical_formula_sum   'Mg4 Ta2 Ga2 N8'
+_cell_volume   207.61780278
+_cell_formula_units_Z   2
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Mg  Mg0  1  0.49129156  0.33259689  0.25022712  1
+  Mg  Mg1  1  0.49129156  0.33259689  0.74977288  1
+  Mg  Mg2  1  0.99129156  0.66740311  0.75022712  1
+  Mg  Mg3  1  0.99129156  0.66740311  0.24977288  1
+  Ta  Ta4  1  0.49648884  0.83916920  0.50000000  1
+  Ta  Ta5  1  0.99648884  0.16083080  0.00000000  1
+  Ga  Ga6  1  0.99720274  0.16694120  0.50000000  1
+  Ga  Ga7  1  0.49720274  0.83305880  0.00000000  1
+  N  N8  1  0.36449491  0.14813128  0.00000000  1
+  N  N9  1  0.86449491  0.85186872  0.50000000  1
+  N  N10  1  0.37051657  0.14999888  0.50000000  1
+  N  N11  1  0.87051657  0.85000112  0.00000000  1
+  N  N12  1  0.39432891  0.67927224  0.74806488  1
+  N  N13  1  0.89432891  0.32072776  0.24806488  1
+  N  N14  1  0.89432891  0.32072776  0.75193512  1
+  N  N15  1  0.39432891  0.67927224  0.25193512  1

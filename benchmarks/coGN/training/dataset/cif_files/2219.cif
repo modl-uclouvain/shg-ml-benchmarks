@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_Cs2NaTiOF5
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.28340544
+_cell_length_b   6.28340544
+_cell_length_c   6.28340544
+_cell_angle_alpha   119.88894574
+_cell_angle_beta   119.88894574
+_cell_angle_gamma   90.19245948
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   Cs2NaTiOF5
+_chemical_formula_sum   'Cs2 Na1 Ti1 O1 F5'
+_cell_volume   175.70980138
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cs  Cs0  1  0.75296320  0.25296320  0.50000000  1
+  Cs  Cs1  1  0.25296320  0.75296320  0.50000000  1
+  Na  Na2  1  0.50301381  0.50301381  0.00000000  1
+  Ti  Ti3  1  0.01922429  0.01922429  0.00000000  1
+  O  O4  1  0.21262223  0.21262223  0.00000000  1
+  F  F5  1  0.77557076  0.77557076  0.55821094  1
+  F  F6  1  0.21735983  0.77557076  -0.00000000  1
+  F  F7  1  0.77557076  0.21735983  0.00000000  1
+  F  F8  1  0.21735983  0.21735983  0.44178906  1
+  F  F9  1  0.77337011  0.77337011  0.00000000  1

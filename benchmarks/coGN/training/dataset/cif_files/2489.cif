@@ -1,0 +1,35 @@
+# generated using pymatgen
+data_CsLiGeF6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.29491085
+_cell_length_b   5.29491085
+_cell_length_c   6.49308794
+_cell_angle_alpha   89.98078922
+_cell_angle_beta   89.98078922
+_cell_angle_gamma   120.04089363
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   CsLiGeF6
+_chemical_formula_sum   'Cs1 Li1 Ge1 F6'
+_cell_volume   157.58686489
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Cs  Cs0  1  0.99987105  0.00012895  0.00000000  1
+  Li  Li1  1  0.33342857  0.66657143  0.50000000  1
+  Ge  Ge2  1  0.66664682  0.33335318  0.50000000  1
+  F  F3  1  0.96500976  0.36405669  0.66268541  1
+  F  F4  1  0.63594331  0.03499024  0.33731459  1
+  F  F5  1  0.39908296  0.36413045  0.33728543  1
+  F  F6  1  0.96539839  0.60129428  0.33729917  1
+  F  F7  1  0.63586955  0.60091704  0.66271457  1
+  F  F8  1  0.39870572  0.03460161  0.66270083  1

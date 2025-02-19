@@ -1,0 +1,38 @@
+# generated using pymatgen
+data_AlTeAs
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   6.46805985
+_cell_length_b   6.47387037
+_cell_length_c   6.48110318
+_cell_angle_alpha   90.00000000
+_cell_angle_beta   90.00000000
+_cell_angle_gamma   90.00000000
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   AlTeAs
+_chemical_formula_sum   'Al4 Te4 As4'
+_cell_volume   271.38570285
+_cell_formula_units_Z   4
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Al  Al0  1  0.50990504  0.01805999  0.28295628  1
+  Al  Al1  1  0.50990504  0.51805999  0.71704372  1
+  Al  Al2  1  0.00990504  0.48194001  0.28295628  1
+  Al  Al3  1  0.00990504  0.98194001  0.71704372  1
+  Te  Te4  1  0.61459012  0.61365646  0.13803883  1
+  Te  Te5  1  0.11459012  0.88634354  0.13803883  1
+  Te  Te6  1  0.11459012  0.38634354  0.86196117  1
+  Te  Te7  1  0.61459012  0.11365646  0.86196117  1
+  As  As8  1  0.38250484  0.38141775  0.37076614  1
+  As  As9  1  0.88250484  0.11858225  0.37076614  1
+  As  As10  1  0.38250484  0.88141775  0.62923386  1
+  As  As11  1  0.88250484  0.61858225  0.62923386  1

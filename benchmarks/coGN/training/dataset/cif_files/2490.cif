@@ -1,0 +1,36 @@
+# generated using pymatgen
+data_NaLi2GaF6
+_symmetry_space_group_name_H-M   'P 1'
+_cell_length_a   5.23106499
+_cell_length_b   5.23108378
+_cell_length_c   5.65411614
+_cell_angle_alpha   62.44836282
+_cell_angle_beta   62.46531184
+_cell_angle_gamma   60.00380611
+_symmetry_Int_Tables_number   1
+_chemical_formula_structural   NaLi2GaF6
+_chemical_formula_sum   'Na1 Li2 Ga1 F6'
+_cell_volume   113.29517393
+_cell_formula_units_Z   1
+loop_
+ _symmetry_equiv_pos_site_id
+ _symmetry_equiv_pos_as_xyz
+  1  'x, y, z'
+loop_
+ _atom_site_type_symbol
+ _atom_site_label
+ _atom_site_symmetry_multiplicity
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+  Na  Na0  1  0.81018961  0.81019166  0.56940090  1
+  Li  Li1  1  0.52724462  0.52667041  0.41934248  1
+  Li  Li2  1  0.01968632  0.01969868  0.94078613  1
+  Ga  Ga3  1  0.32212089  0.32215453  0.03355636  1
+  F  F4  1  0.94105618  0.57026387  0.24021923  1
+  F  F5  1  0.57023080  0.24846201  0.24029323  1
+  F  F6  1  0.24855910  0.94099579  0.24035429  1
+  F  F7  1  0.13738112  0.37567962  0.77717716  1
+  F  F8  1  0.37564953  0.70968363  0.77712228  1
+  F  F9  1  0.70948284  0.13779680  0.77694893  1
