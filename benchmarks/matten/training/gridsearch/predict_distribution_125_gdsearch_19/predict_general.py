@@ -15,7 +15,7 @@ if __name__ == "__main__":
     type_sampling = (
         os.path.basename(Path(os.getcwd()))
         .split("predict_")[1]
-        .replace("_gdsearch_26", "")
+        .replace("_gdsearch_19", "")
     )
     # type_sampling = type_sampling.split("_")[0]
     n_sampling = int(type_sampling.split("_")[1])

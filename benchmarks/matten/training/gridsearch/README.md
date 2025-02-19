@@ -1,0 +1,1 @@
+The result of the gridsearch as done via the python "script gridsearch_matten.py" is that the combination number 19 of hparams was the best wrt. the validation loss (see "valscore.txt"). These hparams have thus been reused to retrain matten and predict the different holdout sets in the current folder.
