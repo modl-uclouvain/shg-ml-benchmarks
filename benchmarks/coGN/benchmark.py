@@ -45,7 +45,7 @@ for split in SHG_BENCHMARK_SPLITS:
 
     logging.info("Running benchmark for split %s", split)
 
-    path_pred = split + "/results_distribution_125.json.gz"
+    path_pred = "./training/" + split + "/results_distribution_125.json.gz"
 
     run_benchmark(
         model=model,
