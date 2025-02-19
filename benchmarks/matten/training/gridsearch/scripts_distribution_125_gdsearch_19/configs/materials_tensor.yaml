@@ -6,8 +6,8 @@ data:
   tensor_target_format: irreps
   tensor_target_name: shg_tensor_full
   tensor_target_formula: ijk=ikj=jik
-  trainset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_training_distribution_125.json
-  valset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_validation_distribution_125.json
+  trainset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_training_validation_distribution_125.json
+  valset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_holdout_distribution_125.json
   testset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_holdout_distribution_125.json
   r_cut: 5.0
   reuse: false
@@ -35,10 +35,10 @@ model:
   ##########
   # message passing conv layers
   ##########
-  num_layers: 7
+  num_layers: 9
 
   # radial network
-  invariant_layers: 6 # number of radial layers
+  invariant_layers: 4 # number of radial layers
   invariant_neurons: 32 # number of hidden neurons in radial function
 
   # Average number of neighbors used for normalization. Options:
