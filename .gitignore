@@ -68,3 +68,8 @@ matplotlibrc
 *mod.*
 *.cif*
 #*json*
+
+# figures
+*.pdf
+*.html
+*.png
