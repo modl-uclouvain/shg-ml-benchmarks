@@ -67,3 +67,9 @@ matplotlibrc
 *mdd*
 *mod.*
 #*json*
+
+
+# figures
+*html*
+*pdf*
+*png*
