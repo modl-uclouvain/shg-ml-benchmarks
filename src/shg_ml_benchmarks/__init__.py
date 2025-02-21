@@ -156,15 +156,14 @@ def run_benchmark(
     metrics = evaluate_predictions(predictions, holdout_df, target)
 
     # Compile results
-    if uncertainties != {}:
-        results = {
-            "predictions": predictions,
-            "uncertainties": uncertainties,
-            "metrics": metrics,
-        }
-    else:
-        results = {"predictions": predictions, "metrics": metrics}
+    if not uncertainties:
+        uncertainties = None  # type: ignore
 
+    results = {
+        "predictions": predictions,
+        "uncertainties": uncertainties,
+        "metrics": metrics,
+    }
     if getattr(model, "meta", None) is not None:
         results["meta"] = model.meta
 
