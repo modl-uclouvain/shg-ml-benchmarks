@@ -6,8 +6,8 @@ data:
   tensor_target_format: irreps
   tensor_target_name: shg_tensor_full
   tensor_target_formula: ijk=ikj=jik
-  trainset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_training_random_250.json
-  valset_filename:   /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_validation_random_250.json
+  trainset_filename: /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_training_validation_random_250.json
+  valset_filename:   /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_holdout_random_250.json
   testset_filename:  /globalscratch/ucl/modl/vtrinque/NLO/grah_models/matten/prod_shg/datasets/dataset_holdout_random_250.json
   r_cut: 5.0
   reuse: false
