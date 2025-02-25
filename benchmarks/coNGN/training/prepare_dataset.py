@@ -35,6 +35,7 @@ if not Path(path_id_prop).exists():
             "file": [f"{i}.cif" for i in range(len(df_full))],
             "dKP_full_neum": [d for d in df_full["dKP_full_neum"]],
             "material_id": [i for i in df_full.index],
+            "structure": df_full["structure_rot"].tolist(),
         }
     )
 
