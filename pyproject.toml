@@ -12,6 +12,9 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+[project.scripts]
+shg-ml-benchmarks-gather = "shg_ml_benchmarks.analysis:gather_results"
+
 [project.optional-dependencies]
 dev = [
     "pre-commit",
