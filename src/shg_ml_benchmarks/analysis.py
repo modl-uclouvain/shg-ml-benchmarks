@@ -1,6 +1,7 @@
 """This module defines functions for the analysis of the benchmark results."""
 
 import json
+import os
 import warnings
 from pathlib import Path
 
@@ -207,7 +208,7 @@ def visualize_predictions(
         import plotly.io as pio
 
         pio.kaleido.scope.mathjax = None  # To remove MathJax box in pdf
-        path.parent.mkdir(parents=True, exist_ok=True)
+        os.makedirs(path, exist_ok=True)
         figs_path = path / "parity_plot_pred_true"
 
         fig.write_image(f"{str(figs_path)}.pdf")

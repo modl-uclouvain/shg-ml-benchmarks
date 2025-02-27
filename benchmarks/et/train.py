@@ -243,17 +243,19 @@ def train_fn(
 
 def main():
     n_jobs = 4
-    # dflt
-    kwargs_model = {"random_state": 42}
-    end_model_name = "_dflt"
-    # hparams from An et al.
-    kwargs_model = {
-        "max_depth": 10,
-        "min_samples_split": 0.0005305243509158821,
-        "min_samples_leaf": 0.00046202528982998404,
-        "random_state": 42,
-    }
-    end_model_name = "_An"
+    # # dflt
+    # kwargs_model = {"random_state": 42}
+    # end_model_name = "_dflt"
+    # # hparams from An et al.
+    # kwargs_model = {
+    #     "max_depth": 10,
+    #     "min_samples_split": 0.0005305243509158821,
+    #     "min_samples_leaf": 0.00046202528982998404,
+    #     "random_state": 42,
+    # }
+    # end_model_name = "_An"
+    # hparams optimized with the gdsearch
+    end_model_name = "_opti"
 
     # ====================================================================
     task = "distribution_125"
@@ -270,6 +272,11 @@ def main():
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf_pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -289,13 +296,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -315,13 +327,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -341,7 +358,7 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
@@ -360,6 +377,11 @@ def main():
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf_pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -379,13 +401,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -405,13 +432,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -431,7 +463,7 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
@@ -450,6 +482,11 @@ def main():
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf_pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -469,13 +506,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -495,13 +537,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -521,7 +568,7 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
@@ -540,6 +587,11 @@ def main():
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf_pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -559,13 +611,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/mmf"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -585,13 +642,18 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 
     # --------------------------------------------------------------------
     # To specify which features are considered
     task_feat = "training/" + task + "/pgnn"
+    if end_model_name == "_opti":
+        path_hparams_opti = f"{task_feat}/gridsearch/hparams_opti.json"
+        kwargs_model = pd.read_json(path_hparams_opti).to_dict()[0]
+        for feat in ["max_depth", "n_estimators", "random_state"]:
+            kwargs_model[feat] = int(kwargs_model[feat])
 
     df_featurized = get_features(
         ids=ids,
@@ -611,7 +673,7 @@ def main():
         df_featurized=df_featurized,
         n_jobs=n_jobs,
         path_model=f"{task_feat}/models/model_et{end_model_name}.pkl",
-        do_training=False,
+        do_training=True,
         kwargs_model=kwargs_model,
     )
 

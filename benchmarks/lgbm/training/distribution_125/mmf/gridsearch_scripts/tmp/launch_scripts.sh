@@ -1,0 +1,43 @@
+sbatch 0_job.sh
+sbatch 1_job.sh
+sbatch 2_job.sh
+sbatch 3_job.sh
+sbatch 4_job.sh
+sbatch 5_job.sh
+sbatch 6_job.sh
+sbatch 7_job.sh
+sbatch 8_job.sh
+sbatch 9_job.sh
+
+sbatch 10_job.sh
+sbatch 11_job.sh
+sbatch 12_job.sh
+sbatch 13_job.sh
+sbatch 14_job.sh
+sbatch 15_job.sh
+sbatch 16_job.sh
+sbatch 17_job.sh
+sbatch 18_job.sh
+sbatch 19_job.sh
+
+sbatch 20_job.sh
+sbatch 21_job.sh
+sbatch 22_job.sh
+sbatch 23_job.sh
+sbatch 24_job.sh
+sbatch 25_job.sh
+sbatch 26_job.sh
+sbatch 27_job.sh
+sbatch 28_job.sh
+sbatch 29_job.sh
+
+sbatch 30_job.sh
+sbatch 31_job.sh
+sbatch 32_job.sh
+sbatch 33_job.sh
+sbatch 34_job.sh
+sbatch 35_job.sh
+sbatch 36_job.sh
+sbatch 37_job.sh
+sbatch 38_job.sh
+sbatch 39_job.sh
