@@ -13,6 +13,7 @@ _DATA_PATH_DFLT = str(
 )
 
 BENCHMARKS_DIR = Path(__file__).parent.parent.parent / "benchmarks"
+RESULTS_DIR = Path(__file__).parent.parent.parent / "results"
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 SHG_BENCHMARK_SPLITS = (
     "random_125",

@@ -1,5 +1,6 @@
 campaigns/
 
+*.ipynb_checkpoints
 *.sublime-workspace
 *.sublime-project
 *.tmlanguage.cache
@@ -22,6 +23,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 .mypy_cache
+*_train_gdsearch.py.gz
 
 # Ignore any *additional* pipfile/pyprojects that get updated
 pydatalab/pyproject.toml
@@ -67,10 +69,16 @@ matplotlibrc
 *mdd*
 *mod.*
 *.cif*
-#*json*
+*json*
 *h5*
+*_job.log.gz
+1*_job.sh.gz
+2*_job.sh.gz
+3*_job.sh.gz
+*_train.csv.gz
+*_val.csv.gz
 
 # figures
-*.pdf
-*.html
-*.png
+*html*
+*pdf*
+*png*

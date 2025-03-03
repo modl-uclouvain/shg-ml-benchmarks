@@ -42,13 +42,8 @@ class Object:
 model = Object()
 model.label = "matten"
 
-for hparam in ["dflt", "_gdsearch_26"]:
+for hparam in ["dflt", "_gdsearch_19"]:
     for split in SHG_BENCHMARK_SPLITS:
-        if (
-            split != "distribution_125"
-        ):  # TODO: REMOVE ONCE THE OTHER TEST SETS HAVE BEEN RUN
-            continue
-
         logging.info("Running benchmark for split %s and hparams %s", split, hparam)
 
         if hparam != "dflt":
