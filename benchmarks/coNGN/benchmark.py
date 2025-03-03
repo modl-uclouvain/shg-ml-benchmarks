@@ -38,14 +38,9 @@ model = Object()
 model.label = "coNGN"
 
 for split in SHG_BENCHMARK_SPLITS:
-    if (
-        split != "distribution_125"
-    ):  # TODO: REMOVE ONCE THE OTHER TEST SETS HAVE BEEN RUN
-        continue
-
     logging.info("Running benchmark for split %s", split)
 
-    path_pred = "./training/" + split + "/results_distribution_125.json.gz"
+    path_pred = "./training/" + split + f"/hparams_matbench/results_{split}.json.gz"
 
     run_benchmark(
         model=model,
