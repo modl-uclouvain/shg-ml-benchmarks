@@ -122,10 +122,11 @@ def run_benchmark(
     uncertainties: dict[str, float] = {}
     if predict_individually:
         for structure_id, entry in holdout_df.iterrows():
-            try:
-                pred, unc = predict_fn(model, Structure.from_dict(entry["structure"]))
-            except ValueError:
-                pred = predict_fn(model, Structure.from_dict(entry["structure"]))
+            results = predict_fn(model, Structure.from_dict(entry["structure"]))
+            if isinstance(results, tuple):
+                pred, unc = results 
+            else:
+                pred = results
                 unc = None
             # Convert numpy types to Python native types for JSON serialization
             if isinstance(pred, np.ndarray):
@@ -175,7 +176,10 @@ def run_benchmark(
             json.dump(results, f, indent=2)
 
         # Save figure
-        figs_path = results_path.parent / f"{model_tags}_figures"
+        if not model_tags:
+            figs_path = results_path.parent / f"figures"
+        else:
+            figs_path = results_path.parent / f"{model_tags}_figures"
         visualize_predictions(predictions, holdout_df, target, path=figs_path)
 
         logging.info(f"The results have been saved at {results_path}.")
