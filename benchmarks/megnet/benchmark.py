@@ -5,8 +5,8 @@ import warnings
 import lightning
 import torch
 
-from pymatgen.core import Structure
-from matgl.ext.pymatgen import Structure2Graph, get_element_list
+from pymatgen.core import Structure, Element
+from matgl.ext.pymatgen import Structure2Graph 
 from matgl.graph.data import MGLDataset, MGLDataLoader, collate_fn_graph
 from matgl.layers import BondExpansion
 from matgl.models import MEGNet
@@ -25,10 +25,9 @@ def train_fn(train_df, target, model=None):
 
     structures = [Structure.from_dict(s) for s in train_df["structure"]]
     targets = train_df[target].values
-    element_list = get_element_list(structures)
+    element_list = [str(Element.from_Z(Z)) for Z in range(1, 92)]
 
     # structures_train, structures_test, targets_train, targets_test =  train_test_split(structures, targets, test_size=0.1, random_state=42)
-
     converter = Structure2Graph(element_types=element_list, cutoff=4.0)
 
     # convert the raw dataset into MEGNetDataset
@@ -59,7 +58,7 @@ def train_fn(train_df, target, model=None):
     lit_module = ModelLightningModule(model=model)
 
     logger = lightning.pytorch.loggers.CSVLogger("logs", name=f"MEGNet_training-{split}")
-    trainer = lightning.Trainer(max_epochs=500, accelerator="gpu", logger=logger)
+    trainer = lightning.Trainer(max_epochs=1000, accelerator="gpu", logger=logger)
     trainer.fit(model=lit_module, train_dataloaders=train_loader, val_dataloaders=val_loader)  # type: ignore
 
     return lit_module.model
@@ -68,7 +67,7 @@ def predict_fn(model, structure) -> float:
     return float(model.predict_structure(structure))
 
 # setup the embedding layer for node attributes
-node_embed = torch.nn.Embedding(85, 16)
+node_embed = torch.nn.Embedding(92, 16)
 # define the bond expansion
 bond_expansion = BondExpansion(rbf_type="Gaussian", initial=0.0, final=5.0, num_centers=100, width=0.5)
 
