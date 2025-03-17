@@ -14,6 +14,7 @@ dynamic = ["version"]
 
 [project.scripts]
 shg-ml-benchmarks-gather = "shg_ml_benchmarks.analysis:gather_results"
+shg-ml-plots = "shg_ml_benchmarks.analysis:global_bar_plot"
 
 [project.optional-dependencies]
 dev = [
