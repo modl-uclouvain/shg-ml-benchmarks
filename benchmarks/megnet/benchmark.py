@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-from functools import partial
 import warnings
+from functools import partial
+
 import lightning
 import torch
-
-from pymatgen.core import Structure, Element
-from matgl.ext.pymatgen import Structure2Graph 
-from matgl.graph.data import MGLDataset, MGLDataLoader, collate_fn_graph
+from matgl.ext.pymatgen import Structure2Graph
+from matgl.graph.data import MGLDataLoader, MGLDataset, collate_fn_graph
 from matgl.layers import BondExpansion
 from matgl.models import MEGNet
 from matgl.utils.training import ModelLightningModule
+from pymatgen.core import Element, Structure
 
-from sklearn.model_selection import train_test_split
 from shg_ml_benchmarks import run_benchmark
 from shg_ml_benchmarks.utils import SHG_BENCHMARK_SPLITS
 
@@ -21,8 +20,6 @@ warnings.simplefilter("ignore")
 
 
 def train_fn(train_df, target, model=None):
-
-
     structures = [Structure.from_dict(s) for s in train_df["structure"]]
     targets = train_df[target].values
     element_list = [str(Element.from_Z(Z)) for Z in range(1, 92)]
@@ -37,7 +34,7 @@ def train_fn(train_df, target, model=None):
         converter=converter,
     )
 
-    # Note, we're using the same data for validation as well! 
+    # Note, we're using the same data for validation as well!
     # Slightly wasteful, but we're not doing any hyperparameter opt,
     # and Matgl does not let you run without a validation set
     val_data = MGLDataset(
@@ -57,19 +54,27 @@ def train_fn(train_df, target, model=None):
     # setup the MEGNetTrainer
     lit_module = ModelLightningModule(model=model)
 
-    logger = lightning.pytorch.loggers.CSVLogger("logs", name=f"MEGNet_training-{split}")
+    logger = lightning.pytorch.loggers.CSVLogger(
+        "logs", name=f"MEGNet_training-{split}"
+    )
     trainer = lightning.Trainer(max_epochs=1000, accelerator="gpu", logger=logger)
-    trainer.fit(model=lit_module, train_dataloaders=train_loader, val_dataloaders=val_loader)  # type: ignore
+    trainer.fit(
+        model=lit_module, train_dataloaders=train_loader, val_dataloaders=val_loader
+    )  # type: ignore
 
     return lit_module.model
+
 
 def predict_fn(model, structure) -> float:
     return float(model.predict_structure(structure))
 
+
 # setup the embedding layer for node attributes
 node_embed = torch.nn.Embedding(92, 16)
 # define the bond expansion
-bond_expansion = BondExpansion(rbf_type="Gaussian", initial=0.0, final=5.0, num_centers=100, width=0.5)
+bond_expansion = BondExpansion(
+    rbf_type="Gaussian", initial=0.0, final=5.0, num_centers=100, width=0.5
+)
 
 # setup the architecture of MEGNet model
 model = MEGNet(
@@ -90,4 +95,10 @@ model = MEGNet(
 )
 
 for split in SHG_BENCHMARK_SPLITS:
-    run_benchmark(task=split, model=model, train_fn=partial(train_fn, model=model), predict_fn=predict_fn, model_label="megnet")
+    run_benchmark(
+        task=split,
+        model=model,
+        train_fn=partial(train_fn, model=model),
+        predict_fn=predict_fn,
+        model_label="megnet",
+    )
