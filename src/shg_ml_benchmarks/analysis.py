@@ -205,10 +205,10 @@ def visualize_predictions(
     )
     if path:
         import plotly.io as pio
-        
+
         try:
             pio.kaleido.scope.mathjax = None  # To remove MathJax box in pdf
-        except:
+        except Exception:
             pass
         path.parent.mkdir(parents=True, exist_ok=True)
         figs_path = path / "parity_plot_pred_true"

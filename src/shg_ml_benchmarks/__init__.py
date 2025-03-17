@@ -124,7 +124,7 @@ def run_benchmark(
         for structure_id, entry in holdout_df.iterrows():
             results = predict_fn(model, Structure.from_dict(entry["structure"]))
             if isinstance(results, tuple):
-                pred, unc = results 
+                pred, unc = results
             else:
                 pred = results
                 unc = None
@@ -177,7 +177,7 @@ def run_benchmark(
 
         # Save figure
         if not model_tags:
-            figs_path = results_path.parent / f"figures"
+            figs_path = results_path.parent / "figures"
         else:
             figs_path = results_path.parent / f"{model_tags}_figures"
         visualize_predictions(predictions, holdout_df, target, path=figs_path)
