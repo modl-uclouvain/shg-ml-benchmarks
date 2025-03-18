@@ -1,6 +1,7 @@
 """This module defines functions for the analysis of the benchmark results."""
 
 import json
+import typing
 import warnings
 from pathlib import Path
 
@@ -34,7 +35,7 @@ def compute_metrics(true_values, pred_values):
 
 def evaluate_predictions(
     predictions: dict[str, float | np.ndarray], holdout_df: pd.DataFrame, target: str
-) -> dict[str, float]:
+) -> dict[str, typing.Any]:
     """Calculate evaluation metrics.
 
     Args:
@@ -117,6 +118,10 @@ def gather_results() -> dict:
 
                     metrics = evaluate_predictions(
                         pred_dict, true_df, target="dKP_full_neum"
+                    )
+
+                    metrics["source"] = str(
+                        results.relative_to(Path(__file__).parent.parent.parent)
                     )
                     benchmark_results[benchmark_name][task_name][results_label] = (
                         metrics

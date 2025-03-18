@@ -21,7 +21,7 @@ STRUCTURE_DESCRIBER = StructureDescriber(
 
 class LLMInputStructureRepresentation(str, Enum):
     composition = "composition"
-    composition_spacegroup = "composition_spacegroup"
+    composition_spacegroup = "composition-spacegroup"
     robocrystallographer = "robocrystallographer"
 
 
