@@ -6,7 +6,8 @@
                     "mae": 11.686031564701889,
                     "rmse": 26.548247525247263,
                     "spearman": 0.5331600030057635,
-                    "r2_score": 0.10613001874422878
+                    "r2_score": 0.10613001874422878,
+                    "source": "benchmarks/claude-3.5-sonnet/tasks/random_250/claude-3.5-sonnet-composition-icl_results.json"
                 }
             }
         },
@@ -16,19 +17,29 @@
                     "mae": 14.822624613421544,
                     "rmse": 31.370870669123047,
                     "spearman": -0.23710041093865342,
-                    "r2_score": -0.24811838624888272
+                    "r2_score": -0.24811838624888272,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition-no-icl_results.json"
                 },
-                "darwin-1.5-composition": {
-                    "mae": 14.888488459264828,
-                    "rmse": 31.412218024125252,
-                    "spearman": -0.19624058469744787,
-                    "r2_score": -0.25141063807125774
+                "darwin-1.5-composition-spacegroup-no-icl": {
+                    "mae": 13.611006480461068,
+                    "rmse": 30.24368187812521,
+                    "spearman": -0.10677763804388125,
+                    "r2_score": -0.20845013767188236,
+                    "source": "benchmarks/darwin-1.5/tasks/distribution_125/darwin-1.5-composition-spacegroup-no-icl_results.json"
                 },
                 "darwin-1.5-robocrystallographer-no-icl": {
                     "mae": 15.682899562750336,
                     "rmse": 34.26775677259005,
                     "spearman": 0.058295117482401376,
-                    "r2_score": -0.24362128807635797
+                    "r2_score": -0.24362128807635797,
+                    "source": "benchmarks/darwin-1.5/tasks/random_125/darwin-1.5-robocrystallographer-no-icl_results.json"
+                },
+                "darwin-1.5-composition": {
+                    "mae": 14.888488459264828,
+                    "rmse": 31.412218024125252,
+                    "spearman": -0.19624058469744787,
+                    "r2_score": -0.25141063807125774,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition_spacegroup-no-icl_results.json"
                 }
             }
         },
@@ -38,13 +49,15 @@
                     "mae": 8.7752363285246,
                     "rmse": 19.22384087757017,
                     "spearman": 0.8639527672442758,
-                    "r2_score": 0.5313129409956334
+                    "r2_score": 0.5313129409956334,
+                    "source": "benchmarks/et/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 7.54574111887115,
                     "rmse": 18.00191762697794,
                     "spearman": 0.8881006096097538,
-                    "r2_score": 0.5890015570637457
+                    "r2_score": 0.5890015570637457,
+                    "source": "benchmarks/et/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -52,13 +65,15 @@
                     "mae": 8.91248422794541,
                     "rmse": 19.565745609379626,
                     "spearman": 0.8552888206211299,
-                    "r2_score": 0.514493060824768
+                    "r2_score": 0.514493060824768,
+                    "source": "benchmarks/et/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.082588060043696,
                     "rmse": 18.11784056165338,
                     "spearman": 0.8597238726489617,
-                    "r2_score": 0.5836912841991655
+                    "r2_score": 0.5836912841991655,
+                    "source": "benchmarks/et/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -68,13 +83,15 @@
                     "mae": 8.96419557948932,
                     "rmse": 19.64223209382186,
                     "spearman": 0.8532251716027456,
-                    "r2_score": 0.5106897503573464
+                    "r2_score": 0.5106897503573464,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.071110978824908,
                     "rmse": 18.42845506467069,
                     "spearman": 0.8432008531082289,
-                    "r2_score": 0.5692944259403605
+                    "r2_score": 0.5692944259403605,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -82,13 +99,15 @@
                     "mae": 9.420130635220128,
                     "rmse": 20.438575673361637,
                     "spearman": 0.8424315269044304,
-                    "r2_score": 0.4702098360252974
+                    "r2_score": 0.4702098360252974,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.016117640507261,
                     "rmse": 18.09216041889359,
                     "spearman": 0.8250537128594057,
-                    "r2_score": 0.5848705958974716
+                    "r2_score": 0.5848705958974716,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -98,13 +117,15 @@
                     "mae": 9.621557066143797,
                     "rmse": 23.023644809590564,
                     "spearman": 0.7925376086017375,
-                    "r2_score": 0.3277190738519007
+                    "r2_score": 0.3277190738519007,
+                    "source": "benchmarks/matten/tasks/random_250/gdsearch_results.json"
                 },
                 "default": {
                     "mae": 9.34025654667141,
                     "rmse": 22.75051064748195,
                     "spearman": 0.766770028320453,
-                    "r2_score": 0.34357526962108265
+                    "r2_score": 0.34357526962108265,
+                    "source": "benchmarks/matten/tasks/random_250/results.json"
                 }
             }
         },
@@ -114,7 +135,8 @@
                     "mae": 14.051065924057111,
                     "rmse": 30.832614782104272,
                     "spearman": NaN,
-                    "r2_score": -0.20565582903822066
+                    "r2_score": -0.20565582903822066,
+                    "source": "benchmarks/median_value/tasks/random_250/results.json"
                 }
             }
         },
@@ -124,7 +146,8 @@
                     "mae": 15.501963080442614,
                     "rmse": 31.630346033784893,
                     "spearman": 0.4618576297220755,
-                    "r2_score": -0.2688506967290549
+                    "r2_score": -0.2688506967290549,
+                    "source": "benchmarks/megnet/tasks/random_250/results.json"
                 }
             }
         },
@@ -134,13 +157,15 @@
                     "mae": 7.761427857702375,
                     "rmse": 18.94334174376321,
                     "spearman": 0.891699515192243,
-                    "r2_score": 0.5448905801877115
+                    "r2_score": 0.5448905801877115,
+                    "source": "benchmarks/modnet/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.180140435822736,
                     "rmse": 19.81161355247092,
                     "spearman": 0.9052165314645034,
-                    "r2_score": 0.5022143963756631
+                    "r2_score": 0.5022143963756631,
+                    "source": "benchmarks/modnet/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -150,13 +175,15 @@
                     "mae": 7.931115676572388,
                     "rmse": 18.978912522093346,
                     "spearman": 0.8917164114625833,
-                    "r2_score": 0.543179816000406
+                    "r2_score": 0.543179816000406,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.079505029610482,
                     "rmse": 19.572425617541917,
                     "spearman": 0.9026989871837948,
-                    "r2_score": 0.5141614870615542
+                    "r2_score": 0.5141614870615542,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -166,7 +193,8 @@
                     "mae": 12.953210623194881,
                     "rmse": 29.45780587724117,
                     "spearman": 0.4828024721037315,
-                    "r2_score": -0.10053390846879418
+                    "r2_score": -0.10053390846879418,
+                    "source": "benchmarks/openai-gpt-4o/tasks/random_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
         }
@@ -178,7 +206,8 @@
                     "mae": 11.686031564701889,
                     "rmse": 26.548247525247263,
                     "spearman": 0.5331600030057635,
-                    "r2_score": 0.10613001874422878
+                    "r2_score": 0.10613001874422878,
+                    "source": "benchmarks/claude-3.5-sonnet/tasks/random_250/claude-3.5-sonnet-composition-icl_results.json"
                 }
             }
         },
@@ -188,19 +217,29 @@
                     "mae": 14.822624613421544,
                     "rmse": 31.370870669123047,
                     "spearman": -0.23710041093865342,
-                    "r2_score": -0.24811838624888272
+                    "r2_score": -0.24811838624888272,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition-no-icl_results.json"
                 },
-                "darwin-1.5-composition": {
-                    "mae": 14.888488459264828,
-                    "rmse": 31.412218024125252,
-                    "spearman": -0.19624058469744787,
-                    "r2_score": -0.25141063807125774
+                "darwin-1.5-composition-spacegroup-no-icl": {
+                    "mae": 13.611006480461068,
+                    "rmse": 30.24368187812521,
+                    "spearman": -0.10677763804388125,
+                    "r2_score": -0.20845013767188236,
+                    "source": "benchmarks/darwin-1.5/tasks/distribution_125/darwin-1.5-composition-spacegroup-no-icl_results.json"
                 },
                 "darwin-1.5-robocrystallographer-no-icl": {
                     "mae": 15.682899562750336,
                     "rmse": 34.26775677259005,
                     "spearman": 0.058295117482401376,
-                    "r2_score": -0.24362128807635797
+                    "r2_score": -0.24362128807635797,
+                    "source": "benchmarks/darwin-1.5/tasks/random_125/darwin-1.5-robocrystallographer-no-icl_results.json"
+                },
+                "darwin-1.5-composition": {
+                    "mae": 14.888488459264828,
+                    "rmse": 31.412218024125252,
+                    "spearman": -0.19624058469744787,
+                    "r2_score": -0.25141063807125774,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition_spacegroup-no-icl_results.json"
                 }
             }
         },
@@ -210,13 +249,15 @@
                     "mae": 8.7752363285246,
                     "rmse": 19.22384087757017,
                     "spearman": 0.8639527672442758,
-                    "r2_score": 0.5313129409956334
+                    "r2_score": 0.5313129409956334,
+                    "source": "benchmarks/et/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 7.54574111887115,
                     "rmse": 18.00191762697794,
                     "spearman": 0.8881006096097538,
-                    "r2_score": 0.5890015570637457
+                    "r2_score": 0.5890015570637457,
+                    "source": "benchmarks/et/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -224,13 +265,15 @@
                     "mae": 8.91248422794541,
                     "rmse": 19.565745609379626,
                     "spearman": 0.8552888206211299,
-                    "r2_score": 0.514493060824768
+                    "r2_score": 0.514493060824768,
+                    "source": "benchmarks/et/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.082588060043696,
                     "rmse": 18.11784056165338,
                     "spearman": 0.8597238726489617,
-                    "r2_score": 0.5836912841991655
+                    "r2_score": 0.5836912841991655,
+                    "source": "benchmarks/et/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -240,13 +283,15 @@
                     "mae": 8.96419557948932,
                     "rmse": 19.64223209382186,
                     "spearman": 0.8532251716027456,
-                    "r2_score": 0.5106897503573464
+                    "r2_score": 0.5106897503573464,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.071110978824908,
                     "rmse": 18.42845506467069,
                     "spearman": 0.8432008531082289,
-                    "r2_score": 0.5692944259403605
+                    "r2_score": 0.5692944259403605,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -254,13 +299,15 @@
                     "mae": 9.420130635220128,
                     "rmse": 20.438575673361637,
                     "spearman": 0.8424315269044304,
-                    "r2_score": 0.4702098360252974
+                    "r2_score": 0.4702098360252974,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.016117640507261,
                     "rmse": 18.09216041889359,
                     "spearman": 0.8250537128594057,
-                    "r2_score": 0.5848705958974716
+                    "r2_score": 0.5848705958974716,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -270,13 +317,15 @@
                     "mae": 9.621557066143797,
                     "rmse": 23.023644809590564,
                     "spearman": 0.7925376086017375,
-                    "r2_score": 0.3277190738519007
+                    "r2_score": 0.3277190738519007,
+                    "source": "benchmarks/matten/tasks/random_250/gdsearch_results.json"
                 },
                 "default": {
                     "mae": 9.34025654667141,
                     "rmse": 22.75051064748195,
                     "spearman": 0.766770028320453,
-                    "r2_score": 0.34357526962108265
+                    "r2_score": 0.34357526962108265,
+                    "source": "benchmarks/matten/tasks/random_250/results.json"
                 }
             }
         },
@@ -286,7 +335,8 @@
                     "mae": 16.95347618863988,
                     "rmse": 28.11559791597886,
                     "spearman": NaN,
-                    "r2_score": -0.0025297840689229023
+                    "r2_score": -0.0025297840689229023,
+                    "source": "benchmarks/mean_value/tasks/random_250/results.json"
                 }
             }
         },
@@ -296,7 +346,8 @@
                     "mae": 14.051065924057111,
                     "rmse": 30.832614782104272,
                     "spearman": NaN,
-                    "r2_score": -0.20565582903822066
+                    "r2_score": -0.20565582903822066,
+                    "source": "benchmarks/median_value/tasks/random_250/results.json"
                 }
             }
         },
@@ -306,7 +357,8 @@
                     "mae": 15.501963080442614,
                     "rmse": 31.630346033784893,
                     "spearman": 0.4618576297220755,
-                    "r2_score": -0.2688506967290549
+                    "r2_score": -0.2688506967290549,
+                    "source": "benchmarks/megnet/tasks/random_250/results.json"
                 }
             }
         },
@@ -316,13 +368,15 @@
                     "mae": 7.761427857702375,
                     "rmse": 18.94334174376321,
                     "spearman": 0.891699515192243,
-                    "r2_score": 0.5448905801877115
+                    "r2_score": 0.5448905801877115,
+                    "source": "benchmarks/modnet/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.180140435822736,
                     "rmse": 19.81161355247092,
                     "spearman": 0.9052165314645034,
-                    "r2_score": 0.5022143963756631
+                    "r2_score": 0.5022143963756631,
+                    "source": "benchmarks/modnet/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -332,13 +386,15 @@
                     "mae": 7.931115676572388,
                     "rmse": 18.978912522093346,
                     "spearman": 0.8917164114625833,
-                    "r2_score": 0.543179816000406
+                    "r2_score": 0.543179816000406,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.079505029610482,
                     "rmse": 19.572425617541917,
                     "spearman": 0.9026989871837948,
-                    "r2_score": 0.5141614870615542
+                    "r2_score": 0.5141614870615542,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -348,7 +404,8 @@
                     "mae": 12.953210623194881,
                     "rmse": 29.45780587724117,
                     "spearman": 0.4828024721037315,
-                    "r2_score": -0.10053390846879418
+                    "r2_score": -0.10053390846879418,
+                    "source": "benchmarks/openai-gpt-4o/tasks/random_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
         }
@@ -360,7 +417,8 @@
                     "mae": 11.686031564701889,
                     "rmse": 26.548247525247263,
                     "spearman": 0.5331600030057635,
-                    "r2_score": 0.10613001874422878
+                    "r2_score": 0.10613001874422878,
+                    "source": "benchmarks/claude-3.5-sonnet/tasks/random_250/claude-3.5-sonnet-composition-icl_results.json"
                 }
             }
         },
@@ -370,19 +428,29 @@
                     "mae": 14.822624613421544,
                     "rmse": 31.370870669123047,
                     "spearman": -0.23710041093865342,
-                    "r2_score": -0.24811838624888272
+                    "r2_score": -0.24811838624888272,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition-no-icl_results.json"
                 },
-                "darwin-1.5-composition": {
-                    "mae": 14.888488459264828,
-                    "rmse": 31.412218024125252,
-                    "spearman": -0.19624058469744787,
-                    "r2_score": -0.25141063807125774
+                "darwin-1.5-composition-spacegroup-no-icl": {
+                    "mae": 13.611006480461068,
+                    "rmse": 30.24368187812521,
+                    "spearman": -0.10677763804388125,
+                    "r2_score": -0.20845013767188236,
+                    "source": "benchmarks/darwin-1.5/tasks/distribution_125/darwin-1.5-composition-spacegroup-no-icl_results.json"
                 },
                 "darwin-1.5-robocrystallographer-no-icl": {
                     "mae": 15.682899562750336,
                     "rmse": 34.26775677259005,
                     "spearman": 0.058295117482401376,
-                    "r2_score": -0.24362128807635797
+                    "r2_score": -0.24362128807635797,
+                    "source": "benchmarks/darwin-1.5/tasks/random_125/darwin-1.5-robocrystallographer-no-icl_results.json"
+                },
+                "darwin-1.5-composition": {
+                    "mae": 14.888488459264828,
+                    "rmse": 31.412218024125252,
+                    "spearman": -0.19624058469744787,
+                    "r2_score": -0.25141063807125774,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition_spacegroup-no-icl_results.json"
                 }
             }
         },
@@ -392,13 +460,15 @@
                     "mae": 8.7752363285246,
                     "rmse": 19.22384087757017,
                     "spearman": 0.8639527672442758,
-                    "r2_score": 0.5313129409956334
+                    "r2_score": 0.5313129409956334,
+                    "source": "benchmarks/et/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 7.54574111887115,
                     "rmse": 18.00191762697794,
                     "spearman": 0.8881006096097538,
-                    "r2_score": 0.5890015570637457
+                    "r2_score": 0.5890015570637457,
+                    "source": "benchmarks/et/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -406,13 +476,15 @@
                     "mae": 8.91248422794541,
                     "rmse": 19.565745609379626,
                     "spearman": 0.8552888206211299,
-                    "r2_score": 0.514493060824768
+                    "r2_score": 0.514493060824768,
+                    "source": "benchmarks/et/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.082588060043696,
                     "rmse": 18.11784056165338,
                     "spearman": 0.8597238726489617,
-                    "r2_score": 0.5836912841991655
+                    "r2_score": 0.5836912841991655,
+                    "source": "benchmarks/et/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -422,13 +494,15 @@
                     "mae": 8.96419557948932,
                     "rmse": 19.64223209382186,
                     "spearman": 0.8532251716027456,
-                    "r2_score": 0.5106897503573464
+                    "r2_score": 0.5106897503573464,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.071110978824908,
                     "rmse": 18.42845506467069,
                     "spearman": 0.8432008531082289,
-                    "r2_score": 0.5692944259403605
+                    "r2_score": 0.5692944259403605,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -436,13 +510,15 @@
                     "mae": 9.420130635220128,
                     "rmse": 20.438575673361637,
                     "spearman": 0.8424315269044304,
-                    "r2_score": 0.4702098360252974
+                    "r2_score": 0.4702098360252974,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.016117640507261,
                     "rmse": 18.09216041889359,
                     "spearman": 0.8250537128594057,
-                    "r2_score": 0.5848705958974716
+                    "r2_score": 0.5848705958974716,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -452,13 +528,15 @@
                     "mae": 9.621557066143797,
                     "rmse": 23.023644809590564,
                     "spearman": 0.7925376086017375,
-                    "r2_score": 0.3277190738519007
+                    "r2_score": 0.3277190738519007,
+                    "source": "benchmarks/matten/tasks/random_250/gdsearch_results.json"
                 },
                 "default": {
                     "mae": 9.34025654667141,
                     "rmse": 22.75051064748195,
                     "spearman": 0.766770028320453,
-                    "r2_score": 0.34357526962108265
+                    "r2_score": 0.34357526962108265,
+                    "source": "benchmarks/matten/tasks/random_250/results.json"
                 }
             }
         },
@@ -468,7 +546,8 @@
                     "mae": 14.051065924057111,
                     "rmse": 30.832614782104272,
                     "spearman": NaN,
-                    "r2_score": -0.20565582903822066
+                    "r2_score": -0.20565582903822066,
+                    "source": "benchmarks/median_value/tasks/random_250/results.json"
                 }
             }
         },
@@ -478,7 +557,8 @@
                     "mae": 15.501963080442614,
                     "rmse": 31.630346033784893,
                     "spearman": 0.4618576297220755,
-                    "r2_score": -0.2688506967290549
+                    "r2_score": -0.2688506967290549,
+                    "source": "benchmarks/megnet/tasks/random_250/results.json"
                 }
             }
         },
@@ -488,13 +568,15 @@
                     "mae": 7.761427857702375,
                     "rmse": 18.94334174376321,
                     "spearman": 0.891699515192243,
-                    "r2_score": 0.5448905801877115
+                    "r2_score": 0.5448905801877115,
+                    "source": "benchmarks/modnet/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.180140435822736,
                     "rmse": 19.81161355247092,
                     "spearman": 0.9052165314645034,
-                    "r2_score": 0.5022143963756631
+                    "r2_score": 0.5022143963756631,
+                    "source": "benchmarks/modnet/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -504,13 +586,15 @@
                     "mae": 7.931115676572388,
                     "rmse": 18.978912522093346,
                     "spearman": 0.8917164114625833,
-                    "r2_score": 0.543179816000406
+                    "r2_score": 0.543179816000406,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.079505029610482,
                     "rmse": 19.572425617541917,
                     "spearman": 0.9026989871837948,
-                    "r2_score": 0.5141614870615542
+                    "r2_score": 0.5141614870615542,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -520,7 +604,8 @@
                     "mae": 12.953210623194881,
                     "rmse": 29.45780587724117,
                     "spearman": 0.4828024721037315,
-                    "r2_score": -0.10053390846879418
+                    "r2_score": -0.10053390846879418,
+                    "source": "benchmarks/openai-gpt-4o/tasks/random_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
         }
@@ -532,19 +617,29 @@
                     "mae": 14.822624613421544,
                     "rmse": 31.370870669123047,
                     "spearman": -0.23710041093865342,
-                    "r2_score": -0.24811838624888272
+                    "r2_score": -0.24811838624888272,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition-no-icl_results.json"
                 },
-                "darwin-1.5-composition": {
-                    "mae": 14.888488459264828,
-                    "rmse": 31.412218024125252,
-                    "spearman": -0.19624058469744787,
-                    "r2_score": -0.25141063807125774
+                "darwin-1.5-composition-spacegroup-no-icl": {
+                    "mae": 13.611006480461068,
+                    "rmse": 30.24368187812521,
+                    "spearman": -0.10677763804388125,
+                    "r2_score": -0.20845013767188236,
+                    "source": "benchmarks/darwin-1.5/tasks/distribution_125/darwin-1.5-composition-spacegroup-no-icl_results.json"
                 },
                 "darwin-1.5-robocrystallographer-no-icl": {
                     "mae": 15.682899562750336,
                     "rmse": 34.26775677259005,
                     "spearman": 0.058295117482401376,
-                    "r2_score": -0.24362128807635797
+                    "r2_score": -0.24362128807635797,
+                    "source": "benchmarks/darwin-1.5/tasks/random_125/darwin-1.5-robocrystallographer-no-icl_results.json"
+                },
+                "darwin-1.5-composition": {
+                    "mae": 14.888488459264828,
+                    "rmse": 31.412218024125252,
+                    "spearman": -0.19624058469744787,
+                    "r2_score": -0.25141063807125774,
+                    "source": "benchmarks/darwin-1.5/tasks/random_250/darwin-1.5-composition_spacegroup-no-icl_results.json"
                 }
             }
         },
@@ -554,13 +649,15 @@
                     "mae": 8.7752363285246,
                     "rmse": 19.22384087757017,
                     "spearman": 0.8639527672442758,
-                    "r2_score": 0.5313129409956334
+                    "r2_score": 0.5313129409956334,
+                    "source": "benchmarks/et/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 7.54574111887115,
                     "rmse": 18.00191762697794,
                     "spearman": 0.8881006096097538,
-                    "r2_score": 0.5890015570637457
+                    "r2_score": 0.5890015570637457,
+                    "source": "benchmarks/et/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -568,13 +665,15 @@
                     "mae": 8.91248422794541,
                     "rmse": 19.565745609379626,
                     "spearman": 0.8552888206211299,
-                    "r2_score": 0.514493060824768
+                    "r2_score": 0.514493060824768,
+                    "source": "benchmarks/et/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.082588060043696,
                     "rmse": 18.11784056165338,
                     "spearman": 0.8597238726489617,
-                    "r2_score": 0.5836912841991655
+                    "r2_score": 0.5836912841991655,
+                    "source": "benchmarks/et/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -584,13 +683,15 @@
                     "mae": 8.96419557948932,
                     "rmse": 19.64223209382186,
                     "spearman": 0.8532251716027456,
-                    "r2_score": 0.5106897503573464
+                    "r2_score": 0.5106897503573464,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.071110978824908,
                     "rmse": 18.42845506467069,
                     "spearman": 0.8432008531082289,
-                    "r2_score": 0.5692944259403605
+                    "r2_score": 0.5692944259403605,
+                    "source": "benchmarks/lgbm/tasks_dflt/random_250/mmf_results.json"
                 }
             },
             "An": {
@@ -598,13 +699,15 @@
                     "mae": 9.420130635220128,
                     "rmse": 20.438575673361637,
                     "spearman": 0.8424315269044304,
-                    "r2_score": 0.4702098360252974
+                    "r2_score": 0.4702098360252974,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.016117640507261,
                     "rmse": 18.09216041889359,
                     "spearman": 0.8250537128594057,
-                    "r2_score": 0.5848705958974716
+                    "r2_score": 0.5848705958974716,
+                    "source": "benchmarks/lgbm/tasks_An/random_250/mmf_results.json"
                 }
             }
         },
@@ -614,13 +717,15 @@
                     "mae": 9.621557066143797,
                     "rmse": 23.023644809590564,
                     "spearman": 0.7925376086017375,
-                    "r2_score": 0.3277190738519007
+                    "r2_score": 0.3277190738519007,
+                    "source": "benchmarks/matten/tasks/random_250/gdsearch_results.json"
                 },
                 "default": {
                     "mae": 9.34025654667141,
                     "rmse": 22.75051064748195,
                     "spearman": 0.766770028320453,
-                    "r2_score": 0.34357526962108265
+                    "r2_score": 0.34357526962108265,
+                    "source": "benchmarks/matten/tasks/random_250/results.json"
                 }
             }
         },
@@ -630,7 +735,8 @@
                     "mae": 14.051065924057111,
                     "rmse": 30.832614782104272,
                     "spearman": NaN,
-                    "r2_score": -0.20565582903822066
+                    "r2_score": -0.20565582903822066,
+                    "source": "benchmarks/median_value/tasks/random_250/results.json"
                 }
             }
         },
@@ -640,7 +746,8 @@
                     "mae": 15.501963080442614,
                     "rmse": 31.630346033784893,
                     "spearman": 0.4618576297220755,
-                    "r2_score": -0.2688506967290549
+                    "r2_score": -0.2688506967290549,
+                    "source": "benchmarks/megnet/tasks/random_250/results.json"
                 }
             }
         },
@@ -650,13 +757,15 @@
                     "mae": 7.761427857702375,
                     "rmse": 18.94334174376321,
                     "spearman": 0.891699515192243,
-                    "r2_score": 0.5448905801877115
+                    "r2_score": 0.5448905801877115,
+                    "source": "benchmarks/modnet/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.180140435822736,
                     "rmse": 19.81161355247092,
                     "spearman": 0.9052165314645034,
-                    "r2_score": 0.5022143963756631
+                    "r2_score": 0.5022143963756631,
+                    "source": "benchmarks/modnet/tasks/random_250/mmf_results.json"
                 }
             }
         },
@@ -666,13 +775,15 @@
                     "mae": 7.931115676572388,
                     "rmse": 18.978912522093346,
                     "spearman": 0.8917164114625833,
-                    "r2_score": 0.543179816000406
+                    "r2_score": 0.543179816000406,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/pgnn_results.json"
                 },
                 "mmf": {
                     "mae": 8.079505029610482,
                     "rmse": 19.572425617541917,
                     "spearman": 0.9026989871837948,
-                    "r2_score": 0.5141614870615542
+                    "r2_score": 0.5141614870615542,
+                    "source": "benchmarks/modnet_nan/tasks/random_250/mmf_results.json"
                 }
             }
         }
