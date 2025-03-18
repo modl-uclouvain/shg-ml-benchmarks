@@ -197,6 +197,26 @@
                     "source": "benchmarks/openai-gpt-4o/tasks/random_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
+        },
+        "tensornet": {
+            "O(3)": {
+                "default": {
+                    "mae": 10.101850165535728,
+                    "rmse": 22.6520346219118,
+                    "spearman": 0.791621369941919,
+                    "r2_score": 0.3492456650900856,
+                    "source": "benchmarks/tensornet/tasks_O(3)/random_250/results.json"
+                }
+            },
+            "SO(3)": {
+                "default": {
+                    "mae": 9.5337439438908,
+                    "rmse": 20.67690504496076,
+                    "spearman": 0.7605452887246196,
+                    "r2_score": 0.45778228438196966,
+                    "source": "benchmarks/tensornet/tasks_SO(3)/random_250/results.json"
+                }
+            }
         }
     },
     "random_250": {
@@ -408,6 +428,26 @@
                     "source": "benchmarks/openai-gpt-4o/tasks/random_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
+        },
+        "tensornet": {
+            "O(3)": {
+                "default": {
+                    "mae": 10.101850165535728,
+                    "rmse": 22.6520346219118,
+                    "spearman": 0.791621369941919,
+                    "r2_score": 0.3492456650900856,
+                    "source": "benchmarks/tensornet/tasks_O(3)/random_250/results.json"
+                }
+            },
+            "SO(3)": {
+                "default": {
+                    "mae": 9.5337439438908,
+                    "rmse": 20.67690504496076,
+                    "spearman": 0.7605452887246196,
+                    "r2_score": 0.45778228438196966,
+                    "source": "benchmarks/tensornet/tasks_SO(3)/random_250/results.json"
+                }
+            }
         }
     },
     "distribution_125": {
@@ -608,6 +648,26 @@
                     "source": "benchmarks/openai-gpt-4o/tasks/random_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
+        },
+        "tensornet": {
+            "O(3)": {
+                "default": {
+                    "mae": 10.101850165535728,
+                    "rmse": 22.6520346219118,
+                    "spearman": 0.791621369941919,
+                    "r2_score": 0.3492456650900856,
+                    "source": "benchmarks/tensornet/tasks_O(3)/random_250/results.json"
+                }
+            },
+            "SO(3)": {
+                "default": {
+                    "mae": 9.5337439438908,
+                    "rmse": 20.67690504496076,
+                    "spearman": 0.7605452887246196,
+                    "r2_score": 0.45778228438196966,
+                    "source": "benchmarks/tensornet/tasks_SO(3)/random_250/results.json"
+                }
+            }
         }
     },
     "distribution_250": {
@@ -784,6 +844,26 @@
                     "spearman": 0.9026989871837948,
                     "r2_score": 0.5141614870615542,
                     "source": "benchmarks/modnet_nan/tasks/random_250/mmf_results.json"
+                }
+            }
+        },
+        "tensornet": {
+            "O(3)": {
+                "default": {
+                    "mae": 10.101850165535728,
+                    "rmse": 22.6520346219118,
+                    "spearman": 0.791621369941919,
+                    "r2_score": 0.3492456650900856,
+                    "source": "benchmarks/tensornet/tasks_O(3)/random_250/results.json"
+                }
+            },
+            "SO(3)": {
+                "default": {
+                    "mae": 9.5337439438908,
+                    "rmse": 20.67690504496076,
+                    "spearman": 0.7605452887246196,
+                    "r2_score": 0.45778228438196966,
+                    "source": "benchmarks/tensornet/tasks_SO(3)/random_250/results.json"
                 }
             }
         }
