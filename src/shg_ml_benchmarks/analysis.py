@@ -67,7 +67,7 @@ def gather_results() -> dict:
         split: {} for split in SHG_BENCHMARK_SPLITS
     }
 
-    benchmarks = BENCHMARKS_DIR.glob("*")
+    benchmarks = sorted(BENCHMARKS_DIR.glob("*"))
 
     for b in benchmarks:
         benchmark_results: dict[str, dict] = {}
@@ -87,10 +87,13 @@ def gather_results() -> dict:
             else:
                 task_name = t.name.split("_")[-1]
             print("\t" + task_name)
+            if not task_name:
+                print(f"Ignoring empty task name in {t}")
+                continue
 
             benchmark_results[benchmark_name][task_name] = {}
 
-            for split in t.glob("*"):
+            for split in sorted(t.glob("*")):
                 if split.name not in SHG_BENCHMARK_SPLITS:
                     warnings.warn(f"Found unknown split: {split.name}, skipping")
                     continue
