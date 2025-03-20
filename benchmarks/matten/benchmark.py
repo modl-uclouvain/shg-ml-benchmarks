@@ -42,15 +42,27 @@ class Object:
 model = Object()
 model.label = "matten"
 
-for split in SHG_BENCHMARK_SPLITS:
-    logging.info("Running benchmark for split %s", split)
+for hparam in ["dflt", "_gdsearch_19"]:
+    for split in SHG_BENCHMARK_SPLITS:
+        logging.info("Running benchmark for split %s and hparams %s", split, hparam)
 
-    path_pred = "./training/predict_" + split + "/df_pred_matten_holdout.json.gz"
+        if hparam != "dflt":
+            path_pred = (
+                "./training/gridsearch/predict_"
+                + split
+                + hparam
+                + "/df_pred_matten_holdout.json.gz"
+            )
+            model.tags = "gdsearch"
+        else:
+            path_pred = (
+                "./training/predict_" + split + "/df_pred_matten_holdout.json.gz"
+            )
 
-    run_benchmark(
-        model=model,
-        predict_fn=partial(predict_fn, path_pred=path_pred),
-        task=split,
-        train_fn=None,
-        predict_individually=False,
-    )
+        run_benchmark(
+            model=model,
+            predict_fn=partial(predict_fn, path_pred=path_pred),
+            task=split,
+            train_fn=None,
+            predict_individually=False,
+        )

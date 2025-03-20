@@ -8,13 +8,21 @@ dependencies = [
     "numpy>=2,<3",
     "pymatgen>=2024",
     "scikit-learn~=1.6",
+    "plotly~=5.24",
 ]
 dynamic = ["version"]
+
+[project.scripts]
+shg-ml-benchmarks-gather = "shg_ml_benchmarks.analysis:gather_results"
 
 [project.optional-dependencies]
 dev = [
     "pre-commit",
     "pytest",
+]
+
+llm = [
+    "pydantic_ai"
 ]
 
 [build-system]
@@ -47,6 +55,7 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 [tool.mypy]
 ignore_missing_imports = true
 follow_imports = "skip"
+explicit_package_bases = true
 
 [tool.pytest.ini_options]
 testpaths = "tests"

@@ -1,13 +1,16 @@
 import importlib.metadata
 import json
+import logging
 from collections.abc import Callable
 from typing import Any
 
 import numpy as np
-import pandas as pd
 from pymatgen.core import Structure
 
+from shg_ml_benchmarks.analysis import evaluate_predictions, visualize_predictions
 from shg_ml_benchmarks.utils import BENCHMARKS_DIR, load_holdout, load_train
+
+logging.basicConfig(level=logging.INFO)
 
 __version__ = importlib.metadata.version("shg-ml-benchmarks")
 
@@ -49,31 +52,6 @@ def load_and_split_data(
     return train_data, test_data
 
 
-def evaluate_predictions(
-    predictions: dict[str, float | np.ndarray], holdout_df: pd.DataFrame, target: str
-) -> dict[str, float]:
-    """Calculate evaluation metrics.
-
-    Args:
-        predictions: Dictionary mapping structure IDs to predictions
-        test_data: Test dataset dictionary
-
-    Returns:
-        Dictionary with evaluation metrics
-    """
-    true_values = []
-    pred_values = []
-    for structure_id, pred in predictions.items():
-        true_values.append(holdout_df.loc[structure_id][target])
-        pred_values.append(pred)
-
-    # Calculate metrics
-    mae = np.mean(np.abs(np.array(true_values) - np.array(pred_values)))
-    rmse = np.sqrt(np.mean((np.array(true_values) - np.array(pred_values)) ** 2))
-
-    return {"mae": float(mae), "rmse": float(rmse)}
-
-
 def run_benchmark(
     model: Any,
     predict_fn: Callable,
@@ -81,7 +59,10 @@ def run_benchmark(
     task: str = "random_250",
     target: str = "dKP_full_neum",
     write_results: bool = True,
+    model_label: str | None = None,
+    model_tags: str | None = None,
     predict_individually: bool = True,
+    tasks_tag: str = "",
 ) -> dict | None:
     """Run benchmark using provided training and prediction functions.
 
@@ -92,16 +73,36 @@ def run_benchmark(
         task: the task to run; corresponds to the filenames of pre-defined holdout sets found in `./data`.
         target: the target property to predict
         write_results: whether to write the results to disk
+        predict_individually: whether to predict each structure individually or batch predict,
 
     Returns:
         Dictionary with benchmark results and metrics
     """
     if write_results:
         # Check if the benchmark has already been run
-        results_fname = "results.json"
         if getattr(model, "tags", None) is not None:
             results_fname = f"{model.tags}_results.json"
-        results_path = BENCHMARKS_DIR / model.label / "tasks" / task / results_fname
+            model_tags = model.tags
+        elif model_tags is not None:
+            results_fname = f"{model_tags}_results.json"
+        else:
+            results_fname = "results.json"
+        if getattr(model, "label", None) is not None:
+            results_path = (
+                BENCHMARKS_DIR
+                / model.label
+                / f"tasks{tasks_tag}"
+                / task
+                / results_fname
+            )
+        elif model_label:
+            results_path = (
+                BENCHMARKS_DIR
+                / model_label
+                / f"tasks{tasks_tag}"
+                / task
+                / results_fname
+            )
 
         if results_path.exists():
             print(
@@ -117,31 +118,55 @@ def run_benchmark(
         model = train_fn(train_df, target=target)
 
     # Get predictions
-    predictions = {}
+    predictions: dict[str, float] = {}
+    uncertainties: dict[str, float] = {}
     if predict_individually:
         for structure_id, entry in holdout_df.iterrows():
-            pred = predict_fn(
-                model=model, structures=Structure.from_dict(entry["structure"])
-            )
+            results = predict_fn(model, Structure.from_dict(entry["structure"]))
+            if isinstance(results, tuple):
+                pred, unc = results
+            else:
+                pred = results
+                unc = None
             # Convert numpy types to Python native types for JSON serialization
             if isinstance(pred, np.ndarray):
                 pred = pred.tolist()
             elif isinstance(pred, np.generic):
                 pred = pred.item()
             predictions[structure_id] = pred
+            if unc:
+                uncertainties[structure_id] = unc
     else:
-        df_pred = predict_fn(
-            model=model,
-            structures=[Structure.from_dict(s) for s in holdout_df["structure"]],
-            ids=holdout_df.index.tolist(),
-        )
+        try:
+            df_pred, df_unc = predict_fn(
+                model,
+                structures=[Structure.from_dict(s) for s in holdout_df["structure"]],
+                ids=holdout_df.index.tolist(),
+            )
+            uncertainties = df_unc[df_unc.columns[0]].to_dict()
+        except ValueError:
+            df_pred = predict_fn(
+                model,
+                structures=[Structure.from_dict(s) for s in holdout_df["structure"]],
+                ids=holdout_df.index.tolist(),
+            )
+            df_unc = None
         predictions = df_pred[df_pred.columns[0]].to_dict()
 
     # Calculate metrics
     metrics = evaluate_predictions(predictions, holdout_df, target)
 
     # Compile results
-    results = {"predictions": predictions, "metrics": metrics}
+    if not uncertainties:
+        uncertainties = None  # type: ignore
+
+    results = {
+        "predictions": predictions,
+        "uncertainties": uncertainties,
+        "metrics": metrics,
+    }
+    if getattr(model, "meta", None) is not None:
+        results["meta"] = model.meta
 
     if write_results:
         results_path.parent.mkdir(parents=True, exist_ok=True)
@@ -149,5 +174,14 @@ def run_benchmark(
         # Save results
         with open(results_path, "w") as f:
             json.dump(results, f, indent=2)
+
+        # Save figure
+        if not model_tags:
+            figs_path = results_path.parent / "figures"
+        else:
+            figs_path = results_path.parent / f"{model_tags}_figures"
+        visualize_predictions(predictions, holdout_df, target, path=figs_path)
+
+        logging.info(f"The results have been saved at {results_path}.")
 
     return results

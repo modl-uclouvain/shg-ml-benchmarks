@@ -13,6 +13,7 @@ _DATA_PATH_DFLT = str(
 )
 
 BENCHMARKS_DIR = Path(__file__).parent.parent.parent / "benchmarks"
+RESULTS_DIR = Path(__file__).parent.parent.parent / "results"
 DATA_DIR = Path(__file__).parent.parent.parent / "data"
 SHG_BENCHMARK_SPLITS = (
     "random_125",
@@ -167,23 +168,39 @@ def load_full(only_unique=True):
 
 
 class DummyModel:
-    """Simple baseline model that predicts the mean of training data."""
+    """Simple baseline model that predicts averages of the training data."""
 
     from pymatgen.core import Structure
 
-    label: str = "mean_value"
+    label: str
+    mode: str = "mean"
+    meta: None = None
 
-    def __init__(self):
+    def __init__(self, mode="mean"):
+        self.mode = mode
         self.mean_value: float | None = None
+        self.median_value: float | None = None
+        self.label = "mean_value"
+        if self.mode == "median":
+            self.label = "median_value"
 
     def train(self, train_df: pd.DataFrame, target: str) -> "DummyModel":
         """Compute mean of training targets."""
         targets = train_df[target].values
         self.mean_value = np.mean(targets)  # type: ignore
+        self.median_value = np.median(targets)  # type: ignore
         return self
 
     def predict(self, structure: Structure) -> float | np.ndarray:
         """Return mean value for all predictions."""
-        if self.mean_value is None:
+        if self.mode == "mean":
+            value = self.mean_value
+        elif self.mode == "median":
+            value = self.median_value
+        else:
+            raise NotImplementedError(f"Mode {self.mode} not implemented.")
+
+        if value is None:
             raise RuntimeError("Model must be trained before prediction")
-        return self.mean_value
+
+        return value

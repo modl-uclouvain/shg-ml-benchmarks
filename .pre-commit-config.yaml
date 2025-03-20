@@ -14,7 +14,11 @@ repos:
     rev: v5.0.0
     hooks:
     - id: check-symlinks
-      exclude: "benchmarks/matten/training/predict_.*/model_final.ckpt"
+      exclude: |
+          (?x)^(
+              benchmarks/matten/training/predict_.*/model_final.ckpt|
+              benchmarks/matten/training/gridsearch/predict_.*/model_final.ckpt
+          )$
     - id: check-yaml
       name: Check YAML
     - id: check-json
