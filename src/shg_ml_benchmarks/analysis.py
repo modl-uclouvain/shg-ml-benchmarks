@@ -1,6 +1,7 @@
 """This module defines functions for the analysis of the benchmark results."""
 
 import json
+import typing
 import warnings
 from pathlib import Path
 
@@ -35,7 +36,7 @@ def compute_metrics(true_values, pred_values):
 
 def evaluate_predictions(
     predictions: dict[str, float | np.ndarray], holdout_df: pd.DataFrame, target: str
-) -> dict[str, float]:
+) -> dict[str, typing.Any]:
     """Calculate evaluation metrics.
 
     Args:
@@ -68,7 +69,7 @@ def gather_results() -> dict:
         split: {} for split in SHG_BENCHMARK_SPLITS
     }
 
-    benchmarks = BENCHMARKS_DIR.glob("*")
+    benchmarks = sorted(BENCHMARKS_DIR.glob("*"))
 
     for b in benchmarks:
         benchmark_results: dict[str, dict] = {}
@@ -88,10 +89,13 @@ def gather_results() -> dict:
             else:
                 task_name = t.name.split("_")[-1]
             print("\t" + task_name)
+            if not task_name:
+                print(f"Ignoring empty task name in {t}")
+                continue
 
             benchmark_results[benchmark_name][task_name] = {}
 
-            for split in t.glob("*"):
+            for split in sorted(t.glob("*")):
                 if split.name not in SHG_BENCHMARK_SPLITS:
                     warnings.warn(f"Found unknown split: {split.name}, skipping")
                     continue
@@ -115,6 +119,10 @@ def gather_results() -> dict:
 
                     metrics = evaluate_predictions(
                         pred_dict, true_df, target="dKP_full_neum"
+                    )
+
+                    metrics["source"] = str(
+                        results.relative_to(Path(__file__).parent.parent.parent)
                     )
                     benchmark_results[benchmark_name][task_name][results_label] = (
                         metrics
@@ -321,9 +329,12 @@ def visualize_predictions(
     if path:
         import plotly.io as pio
 
-        pio.kaleido.scope.mathjax = None  # To remove MathJax box in pdf
-        path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            pio.kaleido.scope.mathjax = None  # To remove MathJax box in pdf
+        except Exception:
+            pass
         figs_path = path / "parity_plot_pred_true"
+        figs_path.parent.mkdir(parents=True, exist_ok=True)
 
         fig.write_image(f"{str(figs_path)}.pdf")
         fig.write_image(f"{str(figs_path)}.svg")
