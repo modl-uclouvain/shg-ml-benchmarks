@@ -237,7 +237,22 @@ class GNome2025Dataset(OptimadeDataset):
     properties = {"band_gap": "_gnome_bandgap", "hull_distance": "_gnome_hull_distance"}
     id = "GNome2025"
     base_url: str = "https://optimade-gnome.odbx.science"
-    filter = '_gnome_bandgap > 0.05 AND _gnome_space_group_it_number HAS ANY 2,10,11,12,13,14,15,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,83,84,85,86,87,88,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,147,148,162,163,164,165,166,167,175,176,191,192,193,194,200,201,202,203,204,205,206,221,222,223,224,225,226,227,228,229,230 AND nperiodic_dimensions = 3 AND NOT elements HAS ANY "La","Ce","Pr","Nd","Pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr"'
+    filter = '_gnome_bandgap > 0.05 AND NOT _gnome_space_group_it_number HAS ANY 2,10,11,12,13,14,15,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,83,84,85,86,87,88,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,147,148,162,163,164,165,166,167,175,176,191,192,193,194,200,201,202,203,204,205,206,221,222,223,224,225,226,227,228,229,230 AND nperiodic_dimensions = 3 AND NOT elements HAS ANY "La","Ce","Pr","Nd","Pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr"'
+    response_fields = [
+        "id",
+        "cartesian_site_positions",
+        "_gnome_bandgap",
+        "_gnome_space_group_it_number",
+        "species",
+        "species_at_sites",
+        "lattice_vectors",
+        "chemical_formula_reduced",
+        "nperiodic_dimensions",
+        "nsites",
+        "structure_features",
+        "last_modified",
+        "dimension_types",
+    ]
 
 
 class Alexandria2025(OptimadeDataset):
@@ -262,6 +277,7 @@ class Alexandria2025(OptimadeDataset):
         "nsites",
         "structure_features",
         "last_modified",
+        "dimension_types",
     ]
 
 
