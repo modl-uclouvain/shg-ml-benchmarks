@@ -39,7 +39,7 @@ def check_need_to_featurize(
 
 def get_features(
     ids: list[str],
-    structures: list[Structure] | None = None,
+    structures: list[Structure],
     type_features: list[str] | None = ["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
     path_features: str | Path | None = None,
     features: pd.DataFrame | None = None,
