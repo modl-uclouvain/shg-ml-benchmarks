@@ -5,6 +5,7 @@ import typing
 import warnings
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
@@ -135,6 +136,120 @@ def gather_results() -> dict:
         json.dump(split_results_nested, f, indent=4, allow_nan=True)
 
     return split_results_nested
+
+
+def load_summary():
+    with open(RESULTS_DIR / "summary.json") as f:
+        summary = json.load(f)
+
+    return summary
+
+
+def global_bar_plot():
+    summary = load_summary()
+
+    grouping = {
+        "Dummy": ["median_value", "mean_value"],
+        "LLMs": ["openai-gpt-4o", "claude-3.5-sonnet", "darwin-1.5", "deepseek-chat"],
+        "GNNs": ["megnet", "coGN", "coNGN"],
+        "Tensor network": ["matten"],
+        "Tree-based": ["et", "lgbm"],
+        "Neural networks": ["modnet", "modnet_nan"],
+    }
+
+    dark2 = plt.get_cmap("Dark2")
+
+    group_colours = {
+        "LLMs": dark2(0),
+        "Tree-based": dark2(1),
+        "Neural networks": dark2(2),
+        "GNNs": dark2(3),
+        "Tensor network": dark2(4),
+        "Dummy": "gray",
+    }
+
+    group_patterns = {
+        "LLMs": "/",
+        "Tree-based": "\\",
+        "Neural networks": "o",
+        "GNNs": "O",
+        "Tensor network": "+",
+        "Dummy": "x",
+    }
+
+    main_metric = "spearman"
+
+    metrics = {"mae": "min", "spearman": "max"}
+
+    metric_labels = {"mae": "MAE (pm/V)", "spearman": "Spearman correlation"}
+
+    metric_limits = {"mae": [0, 20], "spearman": [-0.3, 1]}
+
+    plt.rcParams["font.family"] = "Liberation Sans"
+
+    for split, split_data in summary.items():
+        group_data = {}
+        fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+        for group, group_models in grouping.items():
+            group_data[group] = {}
+            for model, model_data in split_data.items():
+                if model not in group_models:
+                    continue
+                best_run = None
+                best_metric = None
+                best_tag = None
+                for run, runs in model_data.items():
+                    for tag, metrics in runs.items():
+                        if (
+                            best_run is None
+                            or (
+                                metrics[main_metric] < best_metric
+                                and metrics[main_metric] == "min"
+                            )
+                            or (
+                                metrics[main_metric] > best_metric
+                                and metrics[main_metric] == "max"
+                            )
+                        ):
+                            best_run = run
+                            best_tag = tag
+                            best_metric = metrics[main_metric]
+
+                group_data[group][model] = model_data[best_run][best_tag]
+
+        bar_count = 0
+        for group in group_data:
+            bars = []
+            label = group
+            for ind, model in enumerate(group_data[group]):
+                position = bar_count
+                bars.append((model, group_data[group][model]["mae"]))
+                ax.bar(
+                    position,
+                    group_data[group][model][main_metric] or 0,
+                    label=label if ind == 0 else None,
+                    edgecolor=group_colours[group],
+                    lw=2,
+                    color="white",
+                    hatch=group_patterns[group],
+                )
+                ax.text(
+                    position,
+                    min(metric_limits[main_metric]) - 0.01,
+                    model,
+                    ha="center",
+                    va="top",
+                    rotation=45,
+                    fontsize=8,
+                )
+                ax.set_xticks([])
+                bar_count += 1
+
+        ax.legend()
+        ax.set_ylabel(metric_labels[main_metric])
+        ax.set_ylim(metric_limits[main_metric])
+
+        plt.savefig(RESULTS_DIR / f"{split}_bar_plot.png")
 
 
 def visualize_predictions(
