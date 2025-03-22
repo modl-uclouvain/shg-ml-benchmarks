@@ -14,11 +14,15 @@ def transform_to_df(fname):
             if line:
                 optimade = OptimadeStructure(json.loads(line))
                 pmg = optimade.as_pymatgen
+                try:
+                    gap = optimade.attributes._gnome_bandgap
+                except Exception:
+                    gap = optimade.attributes._alexandria_band_gap
                 data.append(
                     {
                         "id": optimade.id,
                         "structure": json.dumps(pmg, cls=monty.json.MontyEncoder),
-                        "src_bandgap": optimade.attributes._gnome_bandgap,
+                        "src_bandgap": gap,
                         "formula_reduced": pmg.composition.reduced_formula,
                     }
                 )
