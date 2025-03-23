@@ -153,19 +153,16 @@ def pareto_fit(x, a=245.338, b=-0.7378):
 
 
 def compute_enrichment(
-    model, split, tag=None, discovery_thresholds=None, top_percent: float = 5
+    model, split, results_fname, discovery_thresholds=None, top_percent: float = 5
 ):
-    results_name = f"{tag}_results.json" if tag else "results.json"
-
     holdout = load_holdout(split)
 
     if not discovery_thresholds:
         discovery_thresholds = [0.5, 0.7, 0.9, 0.95]
 
-    results_file = BENCHMARKS_DIR / model / "tasks" / split / results_name
-    if not results_file.exists():
+    if not results_fname.exists():
         return None
-    with open(results_file) as f:
+    with open(results_fname) as f:
         results = json.load(f)
 
     predictions = pd.DataFrame.from_dict(
@@ -238,17 +235,17 @@ def plot_discovery_curves(split, top_percent=10.0):
     for model in models:
         if model.name.startswith("."):
             continue
-        results_files = model.glob(f"tasks/{split}/*results.json")
-        tags = [f.name.split("_")[0] for f in results_files]
-        for tag in tags:
+        results_files = model.glob(f"task*/{split}/*results.json")
+        # breakpoint()
+        # tags = [f.name.split("_")[0] for f in results_files]
+        for results_fname in results_files:
+            tag = results_fname.name.split("_")[0]
             if tag == "results.json":
                 tag = None
             result = compute_enrichment(
-                model.name, split, tag=tag, top_percent=top_percent
+                model.name, split, results_fname, top_percent=top_percent
             )
             if result is not None:
-                if len(tags) == 1:
-                    tag = None
                 enrichment_metrics[
                     f"{model.name}-{tag}" if tag is not None else model.name
                 ] = result
