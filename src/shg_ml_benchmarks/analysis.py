@@ -6,11 +6,13 @@ import warnings
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+
+plt.rcParams["font.family"] = "Liberation Sans"
 import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
 from scipy.stats import spearmanr
-from sklearn.metrics import r2_score
+from sklearn.metrics import auc, r2_score
 
 from shg_ml_benchmarks.utils import (
     BENCHMARKS_DIR,
@@ -145,6 +147,155 @@ def load_summary():
     return summary
 
 
+def pareto_fit(x, a=160, b=-1.0):
+    return a * np.exp(b * x)
+
+
+def compute_enrichment(
+    model, split, tag=None, discovery_thresholds=None, top_percent: float = 5
+):
+    results_name = f"{tag}_results.json" if tag else "results.json"
+
+    holdout = load_holdout(split)
+
+    if not discovery_thresholds:
+        discovery_thresholds = [0.5, 0.7, 0.9, 0.95]
+
+    results_file = BENCHMARKS_DIR / model / "tasks" / split / results_name
+    if not results_file.exists():
+        return None
+    with open(results_file) as f:
+        results = json.load(f)
+
+    predictions = pd.DataFrame.from_dict(
+        results["predictions"], orient="index", columns=["dKP_pred"]
+    )
+    if not all(predictions.index == holdout.index):
+        raise ValueError("Mismatching indices between predictions and holdout")
+
+    # Compute FOM as y-distance relative to fitted Pareto
+    holdout["FOM"] = holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
+    predictions["FOM"] = predictions["dKP_pred"] - pareto_fit(holdout["src_bandgap"])
+
+    pred_fom = np.array(predictions["FOM"])
+    real_fom = np.array(holdout["FOM"])
+
+    # Determine actual top materials
+    n_materials = len(real_fom)
+    n_top = int(n_materials * top_percent / 100)
+    top_indices = np.argsort(-real_fom)[:n_top]
+    top_mask = np.zeros(n_materials, dtype=bool)
+    top_mask[top_indices] = True
+
+    # Rank materials by predicted values
+    rank_indices = np.argsort(-pred_fom)
+
+    # Calculate discovery curve
+    discovery_curve_x = []  # % of materials evaluated
+    discovery_curve_y = []  # % of top materials discovered
+
+    materials_needed = {}  # % materials needed to discover X% of top materials
+
+    found_top = 0
+    for i, idx in enumerate(rank_indices):
+        if top_mask[idx]:
+            found_top += 1
+
+        percent_evaluated = ((i + 1) / n_materials) * 100
+        percent_discovered = (found_top / n_top) * 100
+
+        discovery_curve_x.append(percent_evaluated)
+        discovery_curve_y.append(percent_discovered)
+
+        # Check if we've crossed any of our discovery thresholds
+        for threshold in discovery_thresholds:
+            if percent_discovered >= threshold and threshold not in materials_needed:
+                materials_needed[threshold] = percent_evaluated
+
+    # Calculate enrichment factor at specified percentage
+    ef_index = int(n_materials * top_percent / 100) - 1
+    if ef_index < 0:
+        ef_index = 0
+    ef_value = discovery_curve_y[ef_index] / top_percent
+
+    # Calculate AUC (normalized so random = 0.5, perfect = 1.0)
+    curve_auc = auc(discovery_curve_x, discovery_curve_y) / (100 * 100)
+    normalized_auc = 2 * (curve_auc - 0.5)
+
+    return {
+        "enrichment_factor": ef_value,
+        "auc": curve_auc,
+        "normalized_auc": normalized_auc,
+        "materials_needed": materials_needed,
+        "discovery_curve": {"x": discovery_curve_x, "y": discovery_curve_y},
+    }
+
+
+def plot_discovery_curves(split, top_percent=10.0):
+    models = sorted(BENCHMARKS_DIR.glob("*"))
+    enrichment_metrics = {}
+    for model in models:
+        if model.name.startswith("."):
+            continue
+        results_files = model.glob(f"tasks/{split}/*results.json")
+        tags = [f.name.split("_")[0] for f in results_files]
+        for tag in tags:
+            if tag == "results.json":
+                tag = None
+            enrichment_metrics[
+                f"{model.name}-{tag}" if tag is not None else model.name
+            ] = compute_enrichment(model.name, split, tag=tag, top_percent=top_percent)
+
+    fig, axes = plt.subplots(2, 1, figsize=(10, 12))
+    for m in enrichment_metrics:
+        if enrichment_metrics[m] is not None:
+            label = f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f})"
+            linestyle = "-"
+            if m == "median_value":
+                label = "Median value"
+                linestyle = "--"
+            axes[0].plot(
+                enrichment_metrics[m]["discovery_curve"]["x"],
+                enrichment_metrics[m]["discovery_curve"]["y"],
+                # label=f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f}, AUC: {enrichment_metrics[m]['normalized_auc']:.2f})",
+                label=label,
+                linestyle=linestyle,
+            )
+    axes[0].legend(bbox_to_anchor=(1.05, 1))
+
+    # perfect discovery curve
+    perfect_curve_x = [0, top_percent, 100]
+    perfect_curve_y = [0, 100, 100]
+
+    axes[0].plot(
+        perfect_curve_x,
+        perfect_curve_y,
+        linestyle="--",
+        color="black",
+        label="Perfect oracle",
+    )
+
+    axes[0].set_xlabel("% of materials evaluated")
+    axes[0].set_ylabel("% of top materials discovered")
+
+    holdout = load_holdout(split)
+    holdout["FOM"] = holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
+    axes[1].scatter(holdout["src_bandgap"], holdout["dKP_full_neum"], c=holdout["FOM"])
+    # plot top percent in different colours
+    top_materials = holdout.nlargest(int(len(holdout) * top_percent / 100), "FOM")
+    axes[1].plot(
+        top_materials["src_bandgap"],
+        top_materials["dKP_full_neum"],
+        c="red",
+        marker="*",
+    )
+    axes[1].set_xlim(0, 10)
+    axes[1].set_ylim(0, 160)
+    axes[1].set_ylabel(r"$d_\text{KP}$ (pm/V)")
+    axes[1].set_xlabel("Band gap (eV)")
+    plt.savefig(RESULTS_DIR / f"discovery_curves-{split}.png", dpi=300)
+
+
 def global_bar_plot():
     summary = load_summary()
 
@@ -185,11 +336,9 @@ def global_bar_plot():
 
     metric_limits = {"mae": [0, 20], "spearman": [-0.3, 1]}
 
-    plt.rcParams["font.family"] = "Liberation Sans"
-
     for split, split_data in summary.items():
         group_data = {}
-        fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+        fig, ax = plt.subplots(1, 1, figsize=(6.5, 4))
         for group, group_models in grouping.items():
             group_data[group] = {}
             for model, model_data in split_data.items():
@@ -342,3 +491,8 @@ def visualize_predictions(
         fig.write_html(f"{str(figs_path)}.html")
 
     return fig
+
+
+if __name__ == "__main__":
+    plot_discovery_curves("distribution_125")
+    plot_discovery_curves("distribution_250")
