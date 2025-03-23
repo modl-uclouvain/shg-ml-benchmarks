@@ -19,6 +19,7 @@ from shg_ml_benchmarks.utils import (
     RESULTS_DIR,
     SHG_BENCHMARK_SPLITS,
     load_holdout,
+    load_train,
 )
 
 
@@ -147,7 +148,7 @@ def load_summary():
     return summary
 
 
-def pareto_fit(x, a=160, b=-1.0):
+def pareto_fit(x, a=245.338, b=-0.7378):
     return a * np.exp(b * x)
 
 
@@ -242,26 +243,40 @@ def plot_discovery_curves(split, top_percent=10.0):
         for tag in tags:
             if tag == "results.json":
                 tag = None
-            enrichment_metrics[
-                f"{model.name}-{tag}" if tag is not None else model.name
-            ] = compute_enrichment(model.name, split, tag=tag, top_percent=top_percent)
+            result = compute_enrichment(
+                model.name, split, tag=tag, top_percent=top_percent
+            )
+            if result is not None:
+                if len(tags) == 1:
+                    tag = None
+                enrichment_metrics[
+                    f"{model.name}-{tag}" if tag is not None else model.name
+                ] = result
 
     fig, axes = plt.subplots(2, 1, figsize=(10, 12))
-    for m in enrichment_metrics:
-        if enrichment_metrics[m] is not None:
-            label = f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f})"
-            linestyle = "-"
-            if m == "median_value":
-                label = "Median value"
-                linestyle = "--"
-            axes[0].plot(
-                enrichment_metrics[m]["discovery_curve"]["x"],
-                enrichment_metrics[m]["discovery_curve"]["y"],
-                # label=f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f}, AUC: {enrichment_metrics[m]['normalized_auc']:.2f})",
-                label=label,
-                linestyle=linestyle,
-            )
-    axes[0].legend(bbox_to_anchor=(1.05, 1))
+    for m in sorted(
+        enrichment_metrics,
+        key=lambda x: enrichment_metrics[x]["enrichment_factor"],
+        reverse=True,
+    ):
+        if enrichment_metrics[m]["enrichment_factor"] < 1.0:
+            continue
+        label = f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f})"
+        linestyle = "-"
+        c = None
+        if m == "median_value":
+            label = "Median value"
+            linestyle = "--"
+            c = "k"
+        axes[0].plot(
+            enrichment_metrics[m]["discovery_curve"]["x"],
+            enrichment_metrics[m]["discovery_curve"]["y"],
+            # label=f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f}, AUC: {enrichment_metrics[m]['normalized_auc']:.2f})",
+            label=label,
+            linestyle=linestyle,
+            c=c,
+        )
+    axes[0].legend()
 
     # perfect discovery curve
     perfect_curve_x = [0, top_percent, 100]
@@ -277,10 +292,17 @@ def plot_discovery_curves(split, top_percent=10.0):
 
     axes[0].set_xlabel("% of materials evaluated")
     axes[0].set_ylabel("% of top materials discovered")
+    axes[0].set_xlim(0, 20)
+    axes[0].set_ylim(0, 100)
 
     holdout = load_holdout(split)
     holdout["FOM"] = holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
     axes[1].scatter(holdout["src_bandgap"], holdout["dKP_full_neum"], c=holdout["FOM"])
+
+    train = load_train(split)
+    axes[1].scatter(
+        train["src_bandgap"], train["dKP_full_neum"], c="black", marker="x", zorder=0
+    )
     # plot top percent in different colours
     top_materials = holdout.nlargest(int(len(holdout) * top_percent / 100), "FOM")
     axes[1].plot(
@@ -290,7 +312,7 @@ def plot_discovery_curves(split, top_percent=10.0):
         marker="*",
     )
     axes[1].set_xlim(0, 10)
-    axes[1].set_ylim(0, 160)
+    axes[1].set_ylim(-10, 200)
     axes[1].set_ylabel(r"$d_\text{KP}$ (pm/V)")
     axes[1].set_xlabel("Band gap (eV)")
     plt.savefig(RESULTS_DIR / f"discovery_curves-{split}.png", dpi=300)
