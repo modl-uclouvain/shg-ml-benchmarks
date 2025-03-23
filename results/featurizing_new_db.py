@@ -270,107 +270,112 @@ def main():
     do_feature_selection = False
 
     # ====================================================================
-    task = "gnome2025"
+    for task, db_name in [
+        ("gnome2025", "GNome2025"),
+        ("gnome2025_v2", "GNome2025_v2"),
+        ("alexandria2025", "Alexandria2025"),
+    ]:
 
-    # Load training data + full data
-    df_train = pd.read_json("../data/GNome2025.json.gz")
+        # Load training data + full data
+        df_train = pd.read_json(f"../data/{db_name}.json.gz")
 
-    ids = df_train.index.tolist()
-    structures = [Structure.from_dict(s) for s in df_train["structure"]]
-    name_target = "src_bandgap"
-    targets = df_train[name_target]
+        ids = df_train.index.tolist()
+        structures = [Structure.from_dict(s) for s in df_train["structure"]]
+        name_target = "src_bandgap"
+        targets = df_train[name_target]
 
-    # --------------------------------------------------------------------
-    # To specify which features are considered
-    task_feat = "../data/" + task + "/mmf_pgnn"
+        # --------------------------------------------------------------------
+        # To specify which features are considered
+        task_feat = "../data/" + task + "/mmf_pgnn"
 
-    features = None
+        features = None
 
-    df_featurized = get_features(
-        ids=ids,
-        structures=structures,
-        type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
-        path_features=None,
-        features=features,
-        n_jobs=n_jobs,
-        path_saved=f"{task_feat}/features/df_featurized_final.csv.gz",
-        path_dir_tmp=f"{task_feat}/tmp_df_feat",
-        remove_dir_indiv_feat=False,
-    )
+        df_featurized = get_features(
+            ids=ids,
+            structures=structures,
+            type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
+            path_features=None,
+            features=features,
+            n_jobs=n_jobs,
+            path_saved=f"{task_feat}/features/df_featurized_final.csv.gz",
+            path_dir_tmp=f"{task_feat}/tmp_df_feat",
+            remove_dir_indiv_feat=False,
+        )
 
-    _ = train_fn(
-        ids=ids,
-        structures=structures,
-        targets=targets,
-        name_target=name_target,
-        path_moddata=f"{task_feat}/moddata/mod.data_{task}",
-        df_featurized=df_featurized,
-        moddata=None,
-        do_feature_selection=do_feature_selection,
-        save_moddata=True,
-        n_jobs=n_jobs,
-        path_model=f"{task_feat}/models/model_ensemble_modnet.pkl",
-        do_training=False,
-    )
+        _ = train_fn(
+            ids=ids,
+            structures=structures,
+            targets=targets,
+            name_target=name_target,
+            path_moddata=f"{task_feat}/moddata/mod.data_{task}",
+            df_featurized=df_featurized,
+            moddata=None,
+            do_feature_selection=do_feature_selection,
+            save_moddata=True,
+            n_jobs=n_jobs,
+            path_model=f"{task_feat}/models/model_ensemble_modnet.pkl",
+            do_training=False,
+        )
 
-    # Load MODData to predict n
-    path_moddata = f"{task_feat}/moddata/mod.data_{task}_notfeatselect"
-    md = MODData.load(path_moddata)
+        # Load MODData to predict n
+        path_moddata = f"{task_feat}/moddata/mod.data_{task}_notfeatselect"
+        md = MODData.load(path_moddata)
 
-    # --------------------------------------------------------------------
-    # To specify which features are considered
-    task_feat = "../data/" + task + "/mmf_pgnn_pred_n_gap"
+        # --------------------------------------------------------------------
+        # To specify which features are considered
+        task_feat = "../data/" + task + "/mmf_pgnn_pred_n_gap"
 
-    # Load MODNet to predict n
-    model_path = "/home/vtrinquet/Documents/Doctorat/JNB_Scripts_Clusters/NLO/Custom_Features_NLO/predict_n/models/production/GA_Rf0_Nstd5-refractive_index_prod_refr_idx.pkl"
-    model = EnsembleMODNetModel.load(model_path)
+        # Load MODNet to predict n
+        model_path = "/home/vtrinquet/Documents/Doctorat/JNB_Scripts_Clusters/NLO/Custom_Features_NLO/predict_n/models/production/GA_Rf0_Nstd5-refractive_index_prod_refr_idx.pkl"
+        model = EnsembleMODNetModel.load(model_path)
 
-    # Predict n
-    predictions, uncertainties = model.predict(md, return_unc=True)
-    predictions = predictions.filter(md.df_featurized.index, axis=0)
-    uncertainties = uncertainties.filter(predictions.index, axis=0)
-    assert predictions.shape[0] == md.df_featurized.shape[0]
-    df_pred = pd.DataFrame(index=predictions.index.tolist())
-    df_pred["refractive_index"] = predictions[predictions.columns[0]].tolist()
-    df_pred["refractive_index_unc"] = uncertainties[uncertainties.columns[0]].tolist()
+        # Predict n
+        predictions, uncertainties = model.predict(md, return_unc=True)
+        predictions = predictions.filter(md.df_featurized.index, axis=0)
+        uncertainties = uncertainties.filter(predictions.index, axis=0)
+        assert predictions.shape[0] == md.df_featurized.shape[0]
+        df_pred = pd.DataFrame(index=predictions.index.tolist())
+        df_pred["refractive_index"] = predictions[predictions.columns[0]].tolist()
+        df_pred["refractive_index_unc"] = uncertainties[uncertainties.columns[0]].tolist()
 
-    # Define predicted n and src_gap as custom features
-    df_tmp = df_train.filter(["src_bandgap"], axis=1)
-    df_tmp.rename(
-        {
-            "src_bandgap": "bandgap"
-        },  # bc the dKP model was trained with this feature name
-        axis=1,
-        inplace=True,
-    )
-    features = pd.concat([df_pred, df_tmp], axis=1)
+        # Define predicted n and src_gap as custom features
+        df_tmp = df_train.filter(["src_bandgap"], axis=1)
+        df_tmp.rename(
+            {
+                "src_bandgap": "bandgap"
+            },  # bc the dKP model was trained with this feature name
+            axis=1,
+            inplace=True,
+        )
+        features = pd.concat([df_pred, df_tmp], axis=1)
 
-    df_featurized = get_features(
-        ids=ids,
-        structures=structures,
-        type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
-        path_features=None,
-        features=features,
-        n_jobs=n_jobs,
-        path_saved=f"{task_feat}/features/df_featurized_final.csv.gz",
-        path_dir_tmp=f"{task_feat}/tmp_df_feat",
-        remove_dir_indiv_feat=False,
-    )
+        df_featurized = get_features(
+            ids=ids,
+            structures=structures,
+            type_features=["mm_fast", "pgnn_mm", "pgnn_ofm", "pgnn_mvl32"],
+            path_features=None,
+            features=features,
+            n_jobs=n_jobs,
+            path_saved=f"{task_feat}/features/df_featurized_final.csv.gz",
+            path_dir_tmp=f"{task_feat}/tmp_df_feat",
+            remove_dir_indiv_feat=False,
+        )
 
-    _ = train_fn(
-        ids=ids,
-        structures=structures,
-        targets=targets,
-        name_target=name_target,
-        path_moddata=f"{task_feat}/moddata/mod.data_{task}",
-        df_featurized=df_featurized,
-        moddata=None,
-        do_feature_selection=do_feature_selection,
-        save_moddata=True,
-        n_jobs=n_jobs,
-        path_model=f"{task_feat}/models/model_ensemble_modnet.pkl",
-        do_training=False,
-    )
+        _ = train_fn(
+            ids=ids,
+            structures=structures,
+            targets=targets,
+            name_target=name_target,
+            path_moddata=f"{task_feat}/moddata/mod.data_{task}",
+            df_featurized=df_featurized,
+            moddata=None,
+            do_feature_selection=do_feature_selection,
+            save_moddata=True,
+            n_jobs=n_jobs,
+            path_model=f"{task_feat}/models/model_ensemble_modnet.pkl",
+            do_training=False,
+        )
+
 
 
 if __name__ == "__main__":
