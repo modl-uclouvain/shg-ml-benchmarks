@@ -1,5 +1,11 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+
+colours = plt.cm.Dark2.colors
+alexandria_col = colours[0]
+gnome_col = colours[1]
+dft_col = colours[2]
 
 plt.rcParams["font.family"] = "Liberation Sans"
 
@@ -37,62 +43,90 @@ alexandria_target_df = alexandria_target_df[
     ~alexandria_target_df["formula_reduced"].isin(computed_df["formula_reduced"])
 ]
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(5, 2.5))
 
-ax.errorbar(
-    gnome_target_df["src_bandgap"],
-    gnome_pred_df["dKP_pred"],
-    yerr=gnome_pred_df["dKP_unc"],
-    alpha=0.2,
-    c="blue",
-    fmt="none",
-)
+# ax.errorbar(
+#    gnome_target_df["src_bandgap"],
+#    gnome_pred_df["dKP_pred"],
+#    yerr=gnome_pred_df["dKP_unc"],
+#    alpha=0.2,
+#    c=gnome_col,
+#    fmt="none",
+#    rasterized=True
+# )
 ax.scatter(
     gnome_target_df["src_bandgap"],
     gnome_pred_df["dKP_pred"],
-    alpha=0.5,
-    c="blue",
+    alpha=0.75,
+    c=gnome_col,
     s=5,
-    lw=0.5,
-    edgecolor="black",
+    lw=0,
+    # edgecolor="black",
+    marker="v",
     zorder=1e10,
-    label="GNome2025 (MODNet)",
+    label="GNome (MODNet)",
+    rasterized=True,
 )
 
-ax.errorbar(
-    alexandria_target_df["src_bandgap"],
-    alexandria_pred_df["dKP_pred"],
-    yerr=alexandria_pred_df["dKP_unc"],
-    alpha=0.2,
-    c="green",
-    fmt="none",
-)
+# ax.errorbar(
+#    alexandria_target_df["src_bandgap"],
+#    alexandria_pred_df["dKP_pred"],
+#    yerr=alexandria_pred_df["dKP_unc"],
+#    alpha=0.2,
+#    c=alexandria_col,
+#    fmt="none",
+#    rasterized=True
+# )
+ax.set_xlim(0, 10)
+ax.set_ylim(-1, 200)
 ax.scatter(
     alexandria_target_df["src_bandgap"],
     alexandria_pred_df["dKP_pred"],
-    alpha=0.5,
+    alpha=0.75,
     s=5,
     zorder=1e9,
-    lw=0.5,
-    edgecolor="black",
-    c="green",
-    label="Alexandria2025 (MODNet)",
+    marker="^",
+    lw=0,
+    c=alexandria_col,
+    label="Alexandria (MODNet)",
+    rasterized=True,
 )
 
 ax.scatter(
     computed_df["src_bandgap"],
     computed_df["dKP_full_neum"],
     zorder=1e11,
-    alpha=0.5,
-    lw=0.5,
-    s=5,
-    c="r",
-    edgecolor="black",
-    label="SHG-2k (DFT)",
+    alpha=0.75,
+    # lw=0.5,
+    marker=".",
+    s=2,
+    c=dft_col,
+    # edgecolor="black",
+    label="SHG-25 (DFT)",
+    rasterized=True,
+)
+
+x_pareto = np.linspace(0, 10, 1000)
+a = 245.338
+b = -0.7378
+
+ax.plot(
+    x_pareto,
+    a * np.exp(b * x_pareto),
+    c="k",
+    lw=1.5,
+    ls="--",
+    label="$T_0$ Fitted Pareto front",
+    zorder=1e20,
 )
 
 ax.set_xlabel("PBE $E_g$ (eV)")
 ax.set_ylabel(r"$d_\text{KP}$ (pm/V)")
 ax.legend()
 
-plt.savefig("figs/gnome-alex-explore.png", dpi=300)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+plt.tight_layout()
+
+plt.savefig("figs/gnome-alex-explore.pdf", dpi=300)
