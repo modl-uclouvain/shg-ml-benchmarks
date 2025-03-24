@@ -43,7 +43,7 @@ alexandria_target_df = alexandria_target_df[
     ~alexandria_target_df["formula_reduced"].isin(computed_df["formula_reduced"])
 ]
 
-fig, ax = plt.subplots(figsize=(5, 2.5))
+fig, ax = plt.subplots(figsize=(3.5, 2.5))
 
 # ax.errorbar(
 #    gnome_target_df["src_bandgap"],
