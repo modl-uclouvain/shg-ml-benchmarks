@@ -240,7 +240,7 @@ def plot_discovery_curves(split, top_percent=10.0):
                     f"{model.name}-{tag}" if tag is not None else model.name
                 ] = result
 
-    fig, axes = plt.subplots(1, 1, figsize=(5, 4))
+    fig, axes = plt.subplots(1, 1, figsize=(4, 3.5))
     axes = [axes]
 
     models_to_highlight = {
@@ -277,7 +277,6 @@ def plot_discovery_curves(split, top_percent=10.0):
     }
 
     models_to_skip = {
-        "matten",
         "modnet_nan-mmf",
         "modnet_nan-pgnn",
         "modnet-mmf",
@@ -353,8 +352,10 @@ def plot_discovery_curves(split, top_percent=10.0):
     holdout = load_holdout(split)
     holdout["FOM"] = holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
 
+    plt.tight_layout()
+
     plt.savefig(RESULTS_DIR / f"discovery_curves-{split}.pdf")
-    fig, ax = plt.subplots(1, 1, figsize=(5, 4))
+    fig, ax = plt.subplots(1, 1, figsize=(4, 3.5))
     ax.scatter(
         holdout["src_bandgap"],
         holdout["dKP_full_neum"],
@@ -392,6 +393,7 @@ def plot_discovery_curves(split, top_percent=10.0):
     ax.set_ylim(-10, 200)
     ax.set_ylabel(r"$d_\text{KP}$ (pm/V)")
     ax.set_xlabel("Band gap (eV)")
+    plt.tight_layout()
     plt.savefig(RESULTS_DIR / f"top-n-percent-{split}-scatter.pdf")
 
 
