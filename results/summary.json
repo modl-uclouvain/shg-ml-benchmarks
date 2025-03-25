@@ -446,6 +446,17 @@
         }
     },
     "distribution_250": {
+        "claude-3.5-sonnet": {
+            "default": {
+                "claude-3.5-sonnet-composition-icl": {
+                    "mae": 11.628979626576461,
+                    "rmse": 26.258461223239173,
+                    "spearman": 0.5973607642429152,
+                    "r2_score": -0.07625769440771402,
+                    "source": "benchmarks/claude-3.5-sonnet/tasks/distribution_250/claude-3.5-sonnet-composition-icl_results.json"
+                }
+            }
+        },
         "coGN": {
             "default": {
                 "default": {
@@ -553,6 +564,17 @@
                     "spearman": 0.8712865165842651,
                     "r2_score": 0.6992962833377611,
                     "source": "benchmarks/modnet_nan/tasks/distribution_250/pgnn_results.json"
+                }
+            }
+        },
+        "openai-gpt-4o": {
+            "default": {
+                "openai-gpt-4o-composition-icl": {
+                    "mae": 12.01242066262509,
+                    "rmse": 27.392117824749164,
+                    "spearman": 0.5271591752619542,
+                    "r2_score": -0.17119429125270758,
+                    "source": "benchmarks/openai-gpt-4o/tasks/distribution_250/openai-gpt-4o-composition-icl_results.json"
                 }
             }
         },
