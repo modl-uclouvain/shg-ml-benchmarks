@@ -356,6 +356,7 @@ def plot_discovery_curves(split, top_percent=10.0):
 
     plt.savefig(RESULTS_DIR / f"discovery_curves-{split}.pdf")
     fig, ax = plt.subplots(1, 1, figsize=(4, 3.5))
+    ax.set_yscale("log")
     ax.scatter(
         holdout["src_bandgap"],
         holdout["dKP_full_neum"],

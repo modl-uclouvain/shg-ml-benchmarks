@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import KFold, StratifiedKFold
 
+OUTLIERS = ["mp-622018"]
+
 _DATA_PATH_DFLT = str(
     Path(os.path.dirname(os.path.realpath(__file__))).parent.parent
     / "data"

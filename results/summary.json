@@ -537,10 +537,10 @@
         "megnet": {
             "default": {
                 "default": {
-                    "mae": 15.261241138111503,
-                    "rmse": 28.775708074103715,
-                    "spearman": 0.3534480871693947,
-                    "r2_score": -0.2924976514341704,
+                    "mae": 9.294284445320546,
+                    "rmse": 18.848319990497306,
+                    "spearman": 0.6592252676042817,
+                    "r2_score": 0.4454725910123253,
                     "source": "benchmarks/megnet/tasks/distribution_250/results.json"
                 }
             }
