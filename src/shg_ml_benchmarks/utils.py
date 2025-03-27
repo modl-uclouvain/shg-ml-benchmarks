@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import KFold, StratifiedKFold
 
-OUTLIERS = ["mp-622018"]
+OUTLIERS = ["mp-622018", "mp-13032", "mp-28264", "mp-13150", "mp-604884", "mp-1227604"]
 
 _DATA_PATH_DFLT = str(
     Path(os.path.dirname(os.path.realpath(__file__))).parent.parent
@@ -144,7 +144,9 @@ def load_holdout(task: str = "distribution_250") -> "pd.DataFrame":
     with open(holdout_path) as f:
         holdout_ids = json.load(f)
 
-    return pd.read_pickle(_DATA_PATH_DFLT).loc[holdout_ids]
+    df = pd.read_pickle(_DATA_PATH_DFLT).loc[holdout_ids]
+    # Remove outliers by ID
+    return df.loc[~df.index.isin(OUTLIERS)]
 
 
 def load_train(task: str = "distribution_250") -> "pd.DataFrame":
@@ -159,7 +161,7 @@ def load_train(task: str = "distribution_250") -> "pd.DataFrame":
 
     full_df = pd.read_pickle(_DATA_PATH_DFLT)
     full_df = full_df.query("is_unique_here == True")
-    return full_df.loc[~full_df.index.isin(holdout_ids + val_ids)]
+    return full_df.loc[~full_df.index.isin(holdout_ids + val_ids + OUTLIERS)]
 
 
 def load_full(only_unique=True):
