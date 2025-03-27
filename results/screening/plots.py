@@ -70,7 +70,7 @@ fig, axes = plt.subplots(1, 2, figsize=(8, 3))
 axes[0].scatter(
     gnome_target_df["src_bandgap"],
     gnome_pred_df["dKP_pred"],
-    alpha=1,
+    alpha=0.35,
     c=gnome_col,
     # s=5,
     edgecolor="none",
@@ -87,7 +87,7 @@ axes[1].set_xlim(0, 10)
 axes[1].scatter(
     alexandria_target_df["src_bandgap"],
     alexandria_pred_df["dKP_pred"],
-    alpha=1,
+    alpha=0.35,
     # s=5,
     zorder=1e11,
     edgecolor="none",
