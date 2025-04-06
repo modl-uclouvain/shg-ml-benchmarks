@@ -16,6 +16,7 @@ from sklearn.metrics import auc, r2_score
 
 from shg_ml_benchmarks.utils import (
     BENCHMARKS_DIR,
+    OUTLIERS,
     RESULTS_DIR,
     SHG_BENCHMARK_SPLITS,
     load_holdout,
@@ -75,7 +76,6 @@ def gather_results() -> dict:
     benchmarks = sorted(BENCHMARKS_DIR.glob("*"))
 
     for b in benchmarks:
-        benchmark_results: dict[str, dict] = {}
         if b.name.startswith("."):
             continue
 
@@ -84,7 +84,8 @@ def gather_results() -> dict:
 
         task_dirs = b.glob("tasks*")
 
-        benchmark_results[b.name] = {}
+        if benchmark_name == "lgbm":
+            breakpoint()
 
         for t in task_dirs:
             if t.name == "tasks":
@@ -95,8 +96,6 @@ def gather_results() -> dict:
             if not task_name:
                 print(f"Ignoring empty task name in {t}")
                 continue
-
-            benchmark_results[benchmark_name][task_name] = {}
 
             for split in sorted(t.glob("*")):
                 if split.name not in SHG_BENCHMARK_SPLITS:
@@ -112,8 +111,6 @@ def gather_results() -> dict:
 
                     print("\t\t\t" + results_label)
 
-                    benchmark_results[benchmark_name][task_name][results_label] = {}
-
                     with open(results) as f:
                         results_data = json.load(f)
 
@@ -127,10 +124,9 @@ def gather_results() -> dict:
                     metrics["source"] = str(
                         results.relative_to(Path(__file__).parent.parent.parent)
                     )
-                    benchmark_results[benchmark_name][task_name][results_label] = (
-                        metrics
+                    split_results_nested[split.name].update(
+                        {benchmark_name: {task_name: {results_label: metrics}}}
                     )
-                    split_results_nested[split.name].update(benchmark_results)
                     print(
                         f"\t\t\t\tMAE: {metrics['mae']:.1f} pm/V, RMSE: {metrics['rmse']:.1f} pm/V, Spearman: {metrics['spearman']:.1f}, R^2: {metrics['r2_score']:.1f}"
                     )
@@ -152,8 +148,17 @@ def pareto_fit(x, a=245.338, b=-0.7378):
     return a * np.exp(b * x)
 
 
+def pareto_fit_alt(x, a=245.338, b=-0.7378):
+    return a * np.exp(b * x)
+
+
 def compute_enrichment(
-    model, split, results_fname, discovery_thresholds=None, top_percent: float = 5
+    model,
+    split,
+    results_fname,
+    discovery_thresholds=None,
+    top_percent: float = 5,
+    use_uncertainty: bool = True,
 ):
     holdout = load_holdout(split)
 
@@ -168,14 +173,39 @@ def compute_enrichment(
     predictions = pd.DataFrame.from_dict(
         results["predictions"], orient="index", columns=["dKP_pred"]
     )
+
+    # remove global outliers
+    predictions = predictions.loc[~predictions.index.isin(OUTLIERS)]
+
     if not all(predictions.index == holdout.index):
         raise ValueError("Mismatching indices between predictions and holdout")
 
-    # Compute FOM as y-distance relative to fitted Pareto
-    holdout["FOM"] = holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
-    predictions["FOM"] = predictions["dKP_pred"] - pareto_fit(holdout["src_bandgap"])
+    uncertainties = None
+    if results.get("uncertainties"):
+        uncertainties = pd.DataFrame.from_dict(
+            results["uncertainties"], orient="index", columns=["dKP_pred"]
+        )
+        uncertainties = uncertainties.loc[~uncertainties.index.isin(OUTLIERS)]
 
-    pred_fom = np.array(predictions["FOM"])
+    # Compute FOM as y-distance relative to fitted Pareto
+    holdout["FOM"] = (
+        holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
+    ) / pareto_fit(holdout["src_bandgap"])
+    predictions["FOM"] = (
+        predictions["dKP_pred"] - pareto_fit(holdout["src_bandgap"])
+    ) / pareto_fit(holdout["src_bandgap"])
+
+    if uncertainties is not None:
+        predictions["FOM+uncertainties"] = (
+            (uncertainties["dKP_pred"] + predictions["dKP_pred"])
+            - pareto_fit(holdout["src_bandgap"])
+        ) / pareto_fit(holdout["src_bandgap"])
+
+    if uncertainties is not None and use_uncertainty:
+        pred_fom = np.array(predictions["FOM+uncertainties"])
+    else:
+        pred_fom = np.array(predictions["FOM"])
+
     real_fom = np.array(holdout["FOM"])
 
     # Determine actual top materials
@@ -185,8 +215,21 @@ def compute_enrichment(
     top_mask = np.zeros(n_materials, dtype=bool)
     top_mask[top_indices] = True
 
-    # Rank materials by predicted values
     rank_indices = np.argsort(-pred_fom)
+
+    # Plot the predicted rank vs the real rank in the holdout set
+    fig, ax = plt.subplots(1, 1, figsize=(4, 3.5))
+    real_ranks = np.argsort(-real_fom)[:n_top]
+    sorted_fom = np.sort(-real_fom)[:n_top]
+    # pred_ranks = np.argsort(-pred_fom)[:n_top]
+    # real_low_ranks = np.argsort(-real_fom)[n_top:]
+    # pred_low_ranks = np.argsort(-pred_fom)[n_top:]
+    # ax.scatter(range(len(pred_ranks), len(pred_fom)), pred_low_ranks, c="grey", s=5, alpha=0.4)
+    ax.scatter(real_ranks, sorted_fom, c="black", s=5)
+
+    ax.set_xlabel("Real rank")
+    ax.set_ylabel("Predicted rank")
+    plt.savefig(RESULTS_DIR / (model + ".pdf"))
 
     # Calculate discovery curve
     discovery_curve_x = []  # % of materials evaluated
@@ -229,51 +272,76 @@ def compute_enrichment(
     }
 
 
-def plot_discovery_curves(split, top_percent=10.0):
+def plot_discovery_curves(split, top_percent=15.0):
     models = sorted(BENCHMARKS_DIR.glob("*"))
     enrichment_metrics = {}
     for model in models:
         if model.name.startswith("."):
             continue
         results_files = model.glob(f"task*/{split}/*results.json")
-        # breakpoint()
-        # tags = [f.name.split("_")[0] for f in results_files]
         for results_fname in results_files:
             tag = results_fname.name.split("_")[0]
             if tag == "results.json":
                 tag = None
             result = compute_enrichment(
-                model.name, split, results_fname, top_percent=top_percent
+                model.name,
+                split,
+                results_fname,
+                top_percent=top_percent,
+                use_uncertainty=False,
             )
             if result is not None:
                 enrichment_metrics[
                     f"{model.name}-{tag}" if tag is not None else model.name
                 ] = result
 
-    fig, axes = plt.subplots(2, 1, figsize=(10, 12))
-    for m in sorted(
-        enrichment_metrics,
-        key=lambda x: enrichment_metrics[x]["enrichment_factor"],
-        reverse=True,
-    ):
-        if enrichment_metrics[m]["enrichment_factor"] < 1.0:
-            continue
-        label = f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f})"
-        linestyle = "-"
-        c = None
-        if m == "median_value":
-            label = "Median value"
-            linestyle = "--"
-            c = "k"
-        axes[0].plot(
-            enrichment_metrics[m]["discovery_curve"]["x"],
-            enrichment_metrics[m]["discovery_curve"]["y"],
-            # label=f"{m} (EF: {enrichment_metrics[m]['enrichment_factor']:.1f}, AUC: {enrichment_metrics[m]['normalized_auc']:.2f})",
-            label=label,
-            linestyle=linestyle,
-            c=c,
-        )
-    axes[0].legend()
+    fig, axes = plt.subplots(1, 1, figsize=(5, 3.5))
+    axes = [axes]
+
+    models_to_highlight = {
+        "modnet-pgnn": {
+            "label": "MODNet",
+            "linestyle": "-",
+            "c": None,
+        },
+        "coGN": {
+            "label": "coGN",
+            "linestyle": "-",
+            "c": None,
+        },
+        "et-mmf": {
+            "label": "ET",
+            "linestyle": "-",
+            "c": None,
+        },
+        "lgbm-mmf": {
+            "label": "LGBM",
+            "linestyle": "-",
+            "c": None,
+        },
+        "tensornet": {
+            "label": "Other models",
+            "linestyle": "--",
+            "c": "grey",
+        },
+        "median_value": {
+            "label": "Median value",
+            "linestyle": "--",
+            "c": "k",
+        },
+    }
+
+    models_to_skip = {
+        "modnet_nan-mmf",
+        "modnet_nan-pgnn",
+        "modnet-mmf",
+        "modnet-pgnncoNGN",
+        "et-pgnn",
+        "lgbm-pgnn",
+    }
+
+    other_label = "Other models"
+    others_labelled = False
 
     # perfect discovery curve
     perfect_curve_x = [0, top_percent, 100]
@@ -282,37 +350,174 @@ def plot_discovery_curves(split, top_percent=10.0):
     axes[0].plot(
         perfect_curve_x,
         perfect_curve_y,
-        linestyle="--",
+        linestyle="-.",
         color="black",
-        label="Perfect oracle",
+        label="Perfect oracle",  # (EF: 1.0)",
     )
 
+    for m in models_to_highlight:
+        c = models_to_highlight[m]["c"]
+        linestyle = models_to_highlight[m]["linestyle"]
+        label = (
+            models_to_highlight[m]["label"]
+            # + f" (EF: {enrichment_metrics[m]['enrichment_factor'] / (100 / top_percent):.2f})"# if not models_to_highlight[m]["label"].startswith("Other") else ""
+        )
+        alpha = 1.0 if not models_to_highlight[m]["label"].startswith("Other") else 0.5
+        zorder = 1
+
+        axes[0].plot(
+            enrichment_metrics[m]["discovery_curve"]["x"],
+            enrichment_metrics[m]["discovery_curve"]["y"],
+            label=label,
+            linestyle=linestyle,
+            c=c,
+            alpha=alpha,
+            zorder=zorder,
+        )
+
+    for m in sorted(
+        enrichment_metrics,
+        key=lambda x: enrichment_metrics[x]["enrichment_factor"],
+        reverse=True,
+    ):
+        if m in models_to_skip:
+            continue
+        linestyle = "--"
+        c = "grey"
+        alpha = 0.5
+        zorder = 0
+        if not others_labelled:
+            label = other_label
+            others_labelled = True
+        else:
+            label = None
+
+        # label = f"{m} (EF: {enrichment_metrics[m]['enrichment_factor'] / (100 / top_percent):.2f})"
+        if m in models_to_highlight:
+            continue
+
+        axes[0].plot(
+            enrichment_metrics[m]["discovery_curve"]["x"],
+            enrichment_metrics[m]["discovery_curve"]["y"],
+            label=label,
+            linestyle=linestyle,
+            c=c,
+            alpha=alpha,
+            zorder=zorder,
+        )
+
+    axes[0].legend(bbox_to_anchor=(1.05, 1), loc="upper left")
+
     axes[0].set_xlabel("% of materials evaluated")
-    axes[0].set_ylabel("% of top materials discovered")
-    axes[0].set_xlim(0, 20)
-    axes[0].set_ylim(0, 100)
+    axes[0].set_ylabel(f"% of top {top_percent:.0f}% materials discovered")
+    axes[0].set_xlim(-5, 105)
+    axes[0].set_ylim(-5, 105)
+
+    axes[0].spines["top"].set_visible(False)
+    axes[0].spines["right"].set_visible(False)
 
     holdout = load_holdout(split)
-    holdout["FOM"] = holdout["dKP_full_neum"] - pareto_fit(holdout["src_bandgap"])
-    axes[1].scatter(holdout["src_bandgap"], holdout["dKP_full_neum"], c=holdout["FOM"])
+    # holdout["FOM"] = (np.log10(holdout["dKP_full_neum"]) - np.log10(pareto_fit_alt(holdout["src_bandgap"])))
+    holdout["FOM"] = (
+        holdout["dKP_full_neum"] - pareto_fit_alt(holdout["src_bandgap"])
+    ) / pareto_fit_alt(holdout["src_bandgap"])
+
+    plt.tight_layout()
+
+    plt.savefig(RESULTS_DIR / f"discovery_curves-{split}.pdf")
+    fig, ax = plt.subplots(1, 1, figsize=(4, 3.5))
+    ax.set_yscale("log")
+    ax.scatter(
+        holdout["src_bandgap"],
+        holdout["dKP_full_neum"],
+        lw=1,
+        edgecolor="w",
+        c=holdout["FOM"],
+        label="Holdout set",
+    )
 
     train = load_train(split)
-    axes[1].scatter(
-        train["src_bandgap"], train["dKP_full_neum"], c="black", marker="x", zorder=0
+    ax.scatter(
+        train["src_bandgap"],
+        train["dKP_full_neum"],
+        c="black",
+        s=7,
+        marker="x",
+        zorder=0,
+        alpha=0.5,
+        label="Training set",
     )
     # plot top percent in different colours
     top_materials = holdout.nlargest(int(len(holdout) * top_percent / 100), "FOM")
-    axes[1].plot(
+    ax.plot(
         top_materials["src_bandgap"],
         top_materials["dKP_full_neum"],
-        c="red",
-        marker="*",
+        markeredgecolor="red",
+        markerfacecolor="none",
+        lw=0,
+        markersize=10,
+        marker="o",
+        label=f"Top {top_percent:.0f}% materials in holdout",
     )
-    axes[1].set_xlim(0, 10)
-    axes[1].set_ylim(-10, 200)
-    axes[1].set_ylabel(r"$d_\text{KP}$ (pm/V)")
-    axes[1].set_xlabel("Band gap (eV)")
-    plt.savefig(RESULTS_DIR / f"discovery_curves-{split}.png", dpi=300)
+
+    x_space = np.linspace(0, 10, 100)
+    ax.plot(
+        x_space, pareto_fit_alt(x_space), label="Pareto fit", c="gold", linestyle="--"
+    )
+    ax.set_xlim(0, 10)
+    ax.legend()
+    ax.set_ylim(-10, 200)
+    ax.set_ylabel(r"$d_\text{KP}$ (pm/V)")
+    ax.set_xlabel("Band gap (eV)")
+    plt.tight_layout()
+    plt.savefig(RESULTS_DIR / f"top-n-percent-{split}-scatter.pdf")
+
+    fig, ax = plt.subplots(1, 1, figsize=(4, 3.5))
+    # ax.set_yscale("log")
+    ax.scatter(
+        holdout["src_bandgap"],
+        holdout["dKP_full_neum"],
+        lw=1,
+        edgecolor="w",
+        c=holdout["FOM"],
+        label="Holdout set",
+    )
+
+    train = load_train(split)
+    ax.scatter(
+        train["src_bandgap"],
+        train["dKP_full_neum"],
+        c="black",
+        s=7,
+        marker="x",
+        zorder=0,
+        alpha=0.5,
+        label="Training set",
+    )
+    # plot top percent in different colours
+    top_materials = holdout.nlargest(int(len(holdout) * top_percent / 100), "FOM")
+    ax.plot(
+        top_materials["src_bandgap"],
+        top_materials["dKP_full_neum"],
+        markeredgecolor="red",
+        markerfacecolor="none",
+        lw=0,
+        markersize=10,
+        marker="o",
+        label=f"Top {top_percent:.0f}% materials in holdout",
+    )
+
+    x_space = np.linspace(0, 10, 100)
+    ax.plot(
+        x_space, pareto_fit_alt(x_space), label="Pareto fit", c="gold", linestyle="--"
+    )
+    ax.set_xlim(0, 10)
+    ax.legend()
+    ax.set_ylim(-10, 200)
+    ax.set_ylabel(r"$d_\text{KP}$ (pm/V)")
+    ax.set_xlabel("Band gap (eV)")
+    plt.tight_layout()
+    plt.savefig(RESULTS_DIR / f"top-n-percent-{split}-scatter-linear.pdf")
 
 
 def global_bar_plot():

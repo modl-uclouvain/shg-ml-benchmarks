@@ -114,6 +114,10 @@ def run_benchmark(
     holdout_df = load_holdout(task)
     train_df = load_train(task)
 
+    cache_path = results_path.parent
+    cache_file = cache_path / "cache.json"
+    cache_path.mkdir(parents=True, exist_ok=True)
+
     if train_fn:
         model = train_fn(train_df, target=target)
 
@@ -136,6 +140,11 @@ def run_benchmark(
             predictions[structure_id] = pred
             if unc:
                 uncertainties[structure_id] = unc
+
+            with open(cache_file, "w") as fp:
+                json.dump(
+                    {"predictions": predictions, "uncertainties": uncertainties}, fp
+                )
     else:
         try:
             df_pred, df_unc = predict_fn(
