@@ -6,10 +6,10 @@ The results and methods of this benchmarking are found in this repository under 
 
 This repository accompanies the preprint:
 
-> V. Trinquet, M. L. Evans, G-M.R. Rignanese, *Machine learning-assisted screening of hypothetical compounds for nonlinear optical response* (2025).
+> V. Trinquet, M. L. Evans, G-M.R. Rignanese, *Accelerating the discovery of high-performance nonlinear optical materials using active learning and high-throughput screening* (2025) arXiV:[2504.01526](https://arxiv.org/abs/2504.01526) DOI: [10.48550/arXiv.2504.01526](https://doi.org/10.48550/arXiv.2504.01526)
 
-The resulting dataset is archived on the [Materials Cloud Archive ](https://archive.materialscloud.org/):
+The resulting dataset is archived on the [Materials Cloud Archive](https://archive.materialscloud.org/):
 
-> V. Trinquet, M. L. Evans, G-M.R. Rignanese, *Machine learning-assisted screening of hypothetical compounds for nonlinear optical response* (2025), DOI: xxx
+> V. Trinquet, M. L. Evans, G-M.R. Rignanese, *Accelerating the discovery of high-performance nonlinear optical materials using active learning and high-throughput screening* (2025) DOI: [10.24435/materialscloud:wk-qm](https://doi.org/10.24435/materialscloud:wk-qm)
 
-with associated OPTIMADE API access at https://optimade.materialscloud.org/archive/<TO-COMPLETE>/v1/info.
+with associated OPTIMADE API access at https://optimade.materialscloud.org/archive/wk-qm/v1/info.
