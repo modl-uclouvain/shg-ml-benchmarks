@@ -79,7 +79,8 @@ def predict_fn(
 
 # Needed to distinguish between two different hparams optimization for example, just "" if not needed
 # Also corresponds to the end of the model file name
-tasks_tag = "_An"
+# tasks_tag = "_An"
+tasks_tag = "_opti"
 
 for split in SHG_BENCHMARK_SPLITS:
     for incl_feat in ["mmf", "pgnn", "mmf_pgnn"]:
