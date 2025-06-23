@@ -31,12 +31,12 @@ def verify_kleinman(d):
 
     # Kleinman implies that all arrangements of i,j, and k are equivalent
     klmn_equival = ["ijk", "kij", "jki", "ikj", "jik", "kji"]
-    # Meaning there are only 10 independent components 
+    # Meaning there are only 10 independent components
     # The -1 at the end is there to treat those combination as array indices
     klmn_indpt = np.array([ [1,1,1], [1,2,2], [1,3,3], [1,2,3], [1,1,3], [1,1,2],
                             [2,2,2], [2,3,3], [2,2,3],
                             [3,3,3]])-1
-    
+
     # Iterate over the independent components
     for idx in klmn_indpt:
         ref = dijk[idx[0], idx[1], idx[2]]
@@ -67,8 +67,8 @@ def create_kleinman_tensor(d11=0, d12=0, d13=0, d14=0, d15=0, d16=0, d22=0, d23=
 
 
 def pg_nb_to_symbol(pg_symbol=None, pg_nb=None):
-    pg_symbols_HM = ["1", "-1", "2", "m", "2/m", "222", "mm2", "mmm", "4", "-4", "4/m", "422", "4mm", "-42m", "4/mmm", "3", 
-                     "-3", "32", "3m", "-3m", "6", "-6", "6/m", "622", "6mm", "-6m2", "6/mmm", "23", "m-3", "432", "-43m", 
+    pg_symbols_HM = ["1", "-1", "2", "m", "2/m", "222", "mm2", "mmm", "4", "-4", "4/m", "422", "4mm", "-42m", "4/mmm", "3",
+                     "-3", "32", "3m", "-3m", "6", "-6", "6/m", "622", "6mm", "-6m2", "6/mmm", "23", "m-3", "432", "-43m",
                      "m-3m"]
     cs_pg_symbols_HM = ["-1", "2/m", "mmm", "4/m", "4/mmm", "-3", "-3m", "6/m", "6/mmm", "m-3", "m-3m"]
 
@@ -330,7 +330,7 @@ def verify_shg_conventional_shape_by_pg(d, pg_nb=None, pg_symbol=None, tol_max_n
         return False, f"{min_d_full = }"
 
     max_d_null = get_max_null_component(d, pg_symbol=pg_symbol, pg_nb=pg_nb, spg_symbol=spg_symbol)
-    
+
     if max_d_null>=tol_max_null and my_floor(max_d_null/min_d_full, precision=str(tol_rel_null_full)[::-1].find('.'))>tol_rel_null_full:
         # print(f"The largest of the components supposed to be null is {max_d_null} instead of being close to 0 and is greater than 1% of the minimum value of the non-null components.")
         return False, f"{max_d_null/min_d_full = }"
@@ -344,8 +344,8 @@ def verify_shg_conventional_shape_by_pg(d, pg_nb=None, pg_symbol=None, tol_max_n
     return True, None
 
 
-def apply_all_rot_get_max_null_and_min_full( d, 
-                                step      = 10, 
+def apply_all_rot_get_max_null_and_min_full( d,
+                                step      = 10,
                                 minangle_a  = 0,
                                 maxangle_a  = 120,
                                 minangle_b  = 0,
@@ -365,19 +365,19 @@ def apply_all_rot_get_max_null_and_min_full( d,
     # Instantiate two arrays with the dKP and dijk for each rotation respectively
     max_null_ar  = np.zeros([l,l,l])
     min_full_ar  = np.zeros([l,l,l])
-    
+
     for ia, alpha in enumerate(valpha):
         for ib, beta in enumerate(vbeta):
             for ig, gamma in enumerate(vgamma):
                 d_rot = shg.apply_rot(d, alpha, beta, gamma)
                 max_null_ar[ia, ib, ig] = get_max_null_component(d_rot, pg_symbol=pg_symbol, pg_nb=pg_nb)
                 min_full_ar[ia, ib, ig] = get_min_full_component(d_rot, pg_symbol=pg_symbol, pg_nb=pg_nb)
-    
-    
+
+
     return valpha,vbeta,vgamma,max_null_ar, min_full_ar
 
-def apply_all_rot_get_max_null( d, 
-                                step      = 10, 
+def apply_all_rot_get_max_null( d,
+                                step      = 10,
                                 minangle_a  = 0,
                                 maxangle_a  = 120,
                                 minangle_b  = 0,
@@ -396,14 +396,14 @@ def apply_all_rot_get_max_null( d,
 
     # Instantiate two arrays with the dKP and dijk for each rotation respectively
     max_null_ar  = np.zeros([l,l,l])
-    
+
     for ia, alpha in enumerate(valpha):
         for ib, beta in enumerate(vbeta):
             for ig, gamma in enumerate(vgamma):
                 d_rot = shg.apply_rot(d, alpha, beta, gamma)
                 max_null_ar[ia, ib, ig] = get_max_null_component(d_rot, pg_symbol=pg_symbol, pg_nb=pg_nb)
-    
-    
+
+
     return valpha,vbeta,vgamma,max_null_ar
 
 
@@ -472,7 +472,7 @@ def apply_rot_by_R(d, R):
 
     # Define the order of the tensor to rotate
     ndim = len(d.shape)
-        
+
     # Equivalent to R @ d @ R.T but generalized to any order of tensor
     # Rotate d: use np.einsum to multiply d by R in a for-loop over the order of tensor to target each dimension
     subs = 'ijklmnop'[:ndim]
@@ -480,7 +480,7 @@ def apply_rot_by_R(d, R):
     for n in range(ndim): # or reversed(range(ndim)), does not matter
         eins_n = eins.format(subs.replace(subs[n],'z'),subs.replace(subs[n],'Z')) # 'Zz,ijz->ijZ' then 'Zz,izk->iZk' then 'Zz,zjk->Zjk' for ndim=3
         d = np.einsum(eins_n,R,d)
-    
+
     return d
 
 # Applies a Euler rotation to a system of vectors such as rprim e.g. (each row of syst is a vector to be rotated) ===============
@@ -491,7 +491,7 @@ def apply_rot_syst_by_R(syst,
                         R
                         ):
 
-    # Decomposes the rotation by rotating each vector (1st order tensor) individually 
+    # Decomposes the rotation by rotating each vector (1st order tensor) individually
     syst = shg.to_array(syst)
     syst_rot = np.zeros(np.shape(syst))
     for i in range(len(syst)):
@@ -504,7 +504,7 @@ def apply_rot_syst_by_R(syst,
 def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=0, add_beta=0, add_gamma=0):
 
     # some math: generate points on the surface of the ellipsoid
-    
+
     # Indicatrix
     a = diag_indicatrix[0]
     b = diag_indicatrix[1]
@@ -513,7 +513,7 @@ def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=
     phi = np.linspace(0, 2*np.pi)
     theta = np.linspace(-np.pi/2, np.pi/2)
     phi, theta=np.meshgrid(phi, theta)
-    
+
     x = np.cos(theta) * np.sin(phi) * a
     y = np.cos(theta) * np.cos(phi) * b
     z = np.sin(theta) * c
@@ -523,7 +523,7 @@ def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=
     points_ellips = np.array([x.flatten(), y.flatten(), z.flatten()]).T # row = 1 point, column=x,y,z // rotation lattice structure
     points_ellips_rotated_bis = shg.apply_rot_syst(points_ellips, alpha, beta, gamma)
     points_ellips_rotated = shg.apply_rot_syst(points_ellips_rotated_bis, add_alpha, add_beta, add_gamma)
-    
+
     fig = go.Figure(data=[Mesh3d({
                                    'x': points_ellips_rotated[:,0],
                                    'y': points_ellips_rotated[:,1],
@@ -531,18 +531,18 @@ def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=
                                    'alphahull': 0
                                    })
                         ]
-                    )                  
-    
+                    )
 
-    fig.add_trace(go.Scatter3d(x=[-lim_range, lim_range], 
+
+    fig.add_trace(go.Scatter3d(x=[-lim_range, lim_range],
                                y=[0, 0],
                                z=[0, 0],
                                mode='lines', line_width = 15, line_color = "black"))
-    fig.add_trace(go.Scatter3d(x=[0, 0], 
+    fig.add_trace(go.Scatter3d(x=[0, 0],
                                y=[-lim_range, lim_range],
                                z=[0, 0],
                                mode='lines', line_width = 15, line_color = "black"))
-    fig.add_trace(go.Scatter3d(x=[0, 0], 
+    fig.add_trace(go.Scatter3d(x=[0, 0],
                                y=[0, 0],
                                z=[-lim_range, lim_range],
                                mode='lines', line_width = 15, line_color = "black"))
@@ -561,7 +561,7 @@ def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=
         coords_line_rotated = shg.apply_rot_syst(coords_line_rotated_bis, add_alpha, add_beta, add_gamma)
         print(f"{coords_line_rotated = }")
 
-        fig.add_trace(go.Scatter3d(x=coords_line_rotated[:,0], 
+        fig.add_trace(go.Scatter3d(x=coords_line_rotated[:,0],
                                    y=coords_line_rotated[:,1],
                                    z=coords_line_rotated[:,2],
                                    mode='lines', line_width = 15, line_color = "red"))
@@ -575,7 +575,7 @@ def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=
         coords_line_rotated = shg.apply_rot_syst(coords_line_rotated_bis, add_alpha, add_beta, add_gamma)
         print(f"{coords_line_rotated = }")
 
-        fig.add_trace(go.Scatter3d(x=coords_line_rotated[:,0], 
+        fig.add_trace(go.Scatter3d(x=coords_line_rotated[:,0],
                                    y=coords_line_rotated[:,1],
                                    z=coords_line_rotated[:,2],
                                    mode='lines', line_width = 15, line_color = "red"))
@@ -610,8 +610,8 @@ def plot_ellipsoid(diag_indicatrix, t=None, alpha=0, beta=0, gamma=0, add_alpha=
                     r=10, l=10,
                     b=10, t=10)
                   )
-    
-    
+
+
     init_notebook_mode()
     iplot(fig)
 
@@ -720,10 +720,10 @@ R_y = np.array([ # rotation of +90 around y
 
 # ====================================================================================
 
-# Get the ABINIT symmetries (spg, pg, and crystal system) for a df 
+# Get the ABINIT symmetries (spg, pg, and crystal system) for a df
 # with a 'structure' column containing the dict of pmg Structure
 def get_abisym(
-        df_nosym, 
+        df_nosym,
         path_df_abisym = "df_abisym.json.gz"
 ):
     # Load the df at the path_df_abisym if it exists
@@ -752,7 +752,7 @@ def get_abisym(
             try:
                 list_abi_pg_symbol.append(PointGroup.from_space_group(sg_symbol=list_abi_spg_symbol[-1]).symbol)
             except ValueError:
-                # Some matching between spg and pg are unknown to pymatgen, so need to do this matching manually via 
+                # Some matching between spg and pg are unknown to pymatgen, so need to do this matching manually via
                 # Wikipedia list of spg
                 if list_abi_spg_symbol[-1] in ["P3_221", "P3_121", "P321"]:
                     list_abi_pg_symbol.append(PointGroup("32").symbol)
@@ -761,17 +761,17 @@ def get_abisym(
                 else:
                     print(list_abi_spg_symbol[-1])
                     raise ValueError
-    
+
         df['abi_spg_symbol'] = list_abi_spg_symbol
         df['abi_spg_number'] = list_abi_spg_number
         df['abi_pg_symbol'] = list_abi_pg_symbol
         df['abi_crystal_system'] = list_abi_crystal_system
-    
+
         if path_df_abisym is not None:
             df.to_json(path_df_abisym, orient="columns")
 
         return df
-    
+
 # ===================================================================================================================
 
 # Takes a df with dijk, epsij, structure (dict of pmg Structure), and a pg and spg as input
@@ -809,7 +809,7 @@ def get_conv(
             else:
                 list_pg_match.append(True)
 
-            if  verify_shg_conventional_shape_by_pg(d, pg_symbol=pg, tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+            if  verify_shg_conventional_shape_by_pg(d, pg_symbol=pg, tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=spg)[0]:
                 d_rot = copy(d)
                 eps_rot = copy(eps)
@@ -906,9 +906,9 @@ def get_conv(
                         else:
                             vec_a = vec1
 
-                # Align mirror plan with x-z plan (-1 at symmop[1,1]), if b//-y, then rotate by 180 around x, 
+                # Align mirror plan with x-z plan (-1 at symmop[1,1]), if b//-y, then rotate by 180 around x,
                 # then align the smallest lattice parameter (conventional setting for all this) with z
-                # Needed bc some monoclinic are highly symmetrical with three conventional angles of 90 degrees 
+                # Needed bc some monoclinic are highly symmetrical with three conventional angles of 90 degrees
                 # such that the algorithm throws errors
                 elif pg=="m" and not rot_pmg_ieee:
                     sga = SpacegroupAnalyzer(structure_new, symprec=0.001) # dflt 0.01
@@ -979,7 +979,7 @@ def get_conv(
             list_structure_rot.append(structure_new.as_dict())
             if pg == "422":
                 list_rot_is_conventional.append(True)
-            elif not verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=pg, tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+            elif not verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=pg, tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=spg)[0]:
                 list_rot_is_conventional.append(False)
             else:
@@ -1001,7 +1001,7 @@ def get_conv(
                 structure = Structure.from_dict(r['structure_rot'])
                 structure_new = structure.copy()
                 structure_new.lattice = Lattice(matrix=shg.apply_rot_syst(structure.lattice.matrix, *angles))
-                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=r[name_spg])[0]:
                     df_rot_ieee.at[ir, 'dijk_rot'] = list(d_rot)
                     df_rot_ieee.at[ir, 'epsij_rot'] = list(eps_rot)
@@ -1015,7 +1015,7 @@ def get_conv(
                 structure = Structure.from_dict(r['structure'])
                 structure_new = structure.copy()
                 structure_new.lattice = Lattice(matrix=shg.apply_rot_syst(structure.lattice.matrix, *angles))
-                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=r[name_spg])[0]:
                     df_rot_ieee.at[ir, 'dijk_rot'] = list(d_rot)
                     df_rot_ieee.at[ir, 'epsij_rot'] = list(eps_rot)
@@ -1031,7 +1031,7 @@ def get_conv(
             structure = Structure.from_dict(r['structure'])
             structure_new = structure.copy()
             structure_new.lattice = Lattice(matrix=shg.apply_rot_syst(structure.lattice.matrix, *angles))
-            if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+            if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                     spg_symbol=r[name_spg])[0]:
                 df_rot_ieee.at[ir, 'dijk_rot'] = list(d_rot)
                 df_rot_ieee.at[ir, 'epsij_rot'] = list(eps_rot)
@@ -1075,7 +1075,7 @@ def get_conv(
                 structure_new = structure.copy()
                 structure_new.lattice = Lattice(matrix=shg.apply_rot_syst(structure.lattice.matrix, *angles))
                 spga = SpacegroupAnalyzer(structure=structure, symprec=0.01)
-                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=spga.get_point_group_symbol(), tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=spga.get_point_group_symbol(), tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=spga.get_space_group_symbol())[0]:
                     df_rot_ieee.at[ir, 'dijk_rot'] = list(d_rot)
                     df_rot_ieee.at[ir, 'epsij_rot'] = list(eps_rot)
@@ -1092,7 +1092,7 @@ def get_conv(
                 structure_new = structure.copy()
                 structure_new.lattice = Lattice(matrix=shg.apply_rot_syst(structure.lattice.matrix, *angles))
                 spga = SpacegroupAnalyzer(structure=structure, symprec=0.01)
-                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=spga.get_point_group_symbol(), tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=spga.get_point_group_symbol(), tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=spga.get_space_group_symbol())[0]:
                     df_rot_ieee.at[ir, 'dijk_rot'] = list(d_rot)
                     df_rot_ieee.at[ir, 'epsij_rot'] = list(eps_rot)
@@ -1118,7 +1118,7 @@ def get_conv(
                 eps_rot = np.array(SHGTensor(np.array(eps)).convert_to_ieee(structure=structure, initial_fit=True))
                 R_ieee = np.array(SHGTensor(np.array(d)).get_ieee_rotation(structure=structure))
                 structure_new = structure.copy().apply_operation(SymmOp.from_rotation_and_translation(rotation_matrix=R_ieee))
-                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full, 
+                if verify_shg_conventional_shape_by_pg(d_rot, pg_symbol=r[name_pg], tol_max_null=1e-6, tol_rel_null_full=tol_rel_null_full,
                                                         spg_symbol=r[name_spg])[0]:
                     df_rot_ieee.at[ir, 'dijk_rot'] = list(d_rot)
                     df_rot_ieee.at[ir, 'epsij_rot'] = list(eps_rot)
@@ -1155,10 +1155,10 @@ def get_conv(
                 else:
                     pg = r['abi_pg_symbol']
                     spg = r['abi_spg_symbol']
-    
+
                 list_dijk_full.append(shg.from_voigt(get_full_d(r['dijk_rot'], pg_symbol=pg, spg_symbol=spg)))
                 list_dKP_full.append(shg.get_dKP(list_dijk_full[-1]))
-    
+
             df_rot_ieee['dijk_full'] = list_dijk_full
             df_rot_ieee['dKP_full'] = list_dKP_full
 
@@ -1197,7 +1197,7 @@ def get_conv(
         # Save final df
         if path_df_conv is not None:
             df_rot_ieee.to_json(path_df_conv)
-    
+
     return df_rot_ieee
 
 
@@ -1224,7 +1224,7 @@ if __name__ == "__main__":
     import argparse
 
     # Set up the argument parser
-    # Add required "optional" argument 
+    # Add required "optional" argument
     parser = argparse.ArgumentParser(description="Process a file to either get the abisym or find the conventional SHG form.")
     parser.add_argument('--file',     type=str, required=True, help="Path to the df as a json file to be processed")
     parser.add_argument('--action',   type=str, required=True, help="Type of action to perform: abisym or findconv")
@@ -1235,4 +1235,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Call the main function with the parsed arguments
-    main(args.file, args.action, args.no_force_zero, args.no_force_neum) 
+    main(args.file, args.action, args.no_force_zero, args.no_force_neum)

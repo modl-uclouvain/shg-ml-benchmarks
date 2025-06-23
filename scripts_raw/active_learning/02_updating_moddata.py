@@ -30,7 +30,7 @@ else:
         structure_ids=df_outputs_filtout.index.tolist(),
     )
 
-    # Featurize it 
+    # Featurize it
         # md.featurizer = Matminer2024FastFeaturizer()
         # md.featurize(n_jobs=2)
     # or load from previous MODData, which also contains predicted n and src Eg
@@ -112,7 +112,7 @@ print(f"{md.df_featurized.shape = }")
 #     # Load old MODData new MODData to refeaturize fast
 # path_md_training = Path(f"../data/mod.data_nl_featselec_dKP-dRMS_v{cur_v}")
 # df_featurized_old = MODData.load(path_md_training).df_featurized
-# print(f"{df_featurized_old.shape = }") 
+# print(f"{df_featurized_old.shape = }")
 # df_new_feat = md.df_featurized.drop(df_featurized_old.columns, axis=1, errors='ignore')
 # print(f"{df_new_feat.columns = }")
 # df_new_feat.to_pickle("df_tmp_new_feat.pkl")
